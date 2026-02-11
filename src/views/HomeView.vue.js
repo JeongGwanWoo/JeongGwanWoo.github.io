@@ -1,7 +1,6 @@
+import ProfileSection from '../components/ProfileSection.vue';
 import ReportItem from '../components/common/ReportItem.vue';
 import SectionCard from '../components/common/SectionCard.vue';
-import TechBadge from '../components/common/TechBadge.vue';
-const coreStack = ['Java', 'Spring Boot', 'JPA', 'MySQL', 'Redis', 'Docker'];
 const reports = [
     {
         title: 'API 응답 시간 분석 자동화',
@@ -26,75 +25,43 @@ let __VLS_directives;
 __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({
     ...{ class: "grid gap-6" },
 });
+/** @type {[typeof ProfileSection, ]} */ ;
+// @ts-ignore
+const __VLS_0 = __VLS_asFunctionalComponent(ProfileSection, new ProfileSection({}));
+const __VLS_1 = __VLS_0({}, ...__VLS_functionalComponentArgsRest(__VLS_0));
 /** @type {[typeof SectionCard, typeof SectionCard, ]} */ ;
 // @ts-ignore
-const __VLS_0 = __VLS_asFunctionalComponent(SectionCard, new SectionCard({
-    title: "Engineer Summary",
-    subtitle: "비즈니스 요구를 코드와 지표로 연결하는 백엔드 개발자를 목표로 합니다.",
-}));
-const __VLS_1 = __VLS_0({
-    title: "Engineer Summary",
-    subtitle: "비즈니스 요구를 코드와 지표로 연결하는 백엔드 개발자를 목표로 합니다.",
-}, ...__VLS_functionalComponentArgsRest(__VLS_0));
-__VLS_2.slots.default;
-__VLS_asFunctionalElement(__VLS_intrinsicElements.p, __VLS_intrinsicElements.p)({
-    ...{ class: "text-sm leading-6 text-slate-300" },
-});
-__VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({
-    ...{ class: "flex flex-wrap gap-2" },
-});
-for (const [item] of __VLS_getVForSourceType((__VLS_ctx.coreStack))) {
-    /** @type {[typeof TechBadge, ]} */ ;
-    // @ts-ignore
-    const __VLS_3 = __VLS_asFunctionalComponent(TechBadge, new TechBadge({
-        key: (item),
-        label: (item),
-    }));
-    const __VLS_4 = __VLS_3({
-        key: (item),
-        label: (item),
-    }, ...__VLS_functionalComponentArgsRest(__VLS_3));
-}
-var __VLS_2;
-/** @type {[typeof SectionCard, typeof SectionCard, ]} */ ;
-// @ts-ignore
-const __VLS_6 = __VLS_asFunctionalComponent(SectionCard, new SectionCard({
+const __VLS_3 = __VLS_asFunctionalComponent(SectionCard, new SectionCard({
     title: "Technical Reports",
     subtitle: "실무형 관점에서 정리한 핵심 개선 사례",
 }));
-const __VLS_7 = __VLS_6({
+const __VLS_4 = __VLS_3({
     title: "Technical Reports",
     subtitle: "실무형 관점에서 정리한 핵심 개선 사례",
-}, ...__VLS_functionalComponentArgsRest(__VLS_6));
-__VLS_8.slots.default;
+}, ...__VLS_functionalComponentArgsRest(__VLS_3));
+__VLS_5.slots.default;
 __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({
     ...{ class: "grid gap-3 md:grid-cols-2" },
 });
 for (const [report] of __VLS_getVForSourceType((__VLS_ctx.reports))) {
     /** @type {[typeof ReportItem, ]} */ ;
     // @ts-ignore
-    const __VLS_9 = __VLS_asFunctionalComponent(ReportItem, new ReportItem({
+    const __VLS_6 = __VLS_asFunctionalComponent(ReportItem, new ReportItem({
         key: (report.title),
         title: (report.title),
         description: (report.description),
         impact: (report.impact),
     }));
-    const __VLS_10 = __VLS_9({
+    const __VLS_7 = __VLS_6({
         key: (report.title),
         title: (report.title),
         description: (report.description),
         impact: (report.impact),
-    }, ...__VLS_functionalComponentArgsRest(__VLS_9));
+    }, ...__VLS_functionalComponentArgsRest(__VLS_6));
 }
-var __VLS_8;
+var __VLS_5;
 /** @type {__VLS_StyleScopedClasses['grid']} */ ;
 /** @type {__VLS_StyleScopedClasses['gap-6']} */ ;
-/** @type {__VLS_StyleScopedClasses['text-sm']} */ ;
-/** @type {__VLS_StyleScopedClasses['leading-6']} */ ;
-/** @type {__VLS_StyleScopedClasses['text-slate-300']} */ ;
-/** @type {__VLS_StyleScopedClasses['flex']} */ ;
-/** @type {__VLS_StyleScopedClasses['flex-wrap']} */ ;
-/** @type {__VLS_StyleScopedClasses['gap-2']} */ ;
 /** @type {__VLS_StyleScopedClasses['grid']} */ ;
 /** @type {__VLS_StyleScopedClasses['gap-3']} */ ;
 /** @type {__VLS_StyleScopedClasses['md:grid-cols-2']} */ ;
@@ -102,10 +69,9 @@ var __VLS_dollars;
 const __VLS_self = (await import('vue')).defineComponent({
     setup() {
         return {
+            ProfileSection: ProfileSection,
             ReportItem: ReportItem,
             SectionCard: SectionCard,
-            TechBadge: TechBadge,
-            coreStack: coreStack,
             reports: reports,
         };
     },

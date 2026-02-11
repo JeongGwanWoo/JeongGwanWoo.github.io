@@ -1,15 +1,13 @@
 ﻿<script setup lang="ts">
+import ProfileSection from '../components/ProfileSection.vue';
 import ReportItem from '../components/common/ReportItem.vue';
 import SectionCard from '../components/common/SectionCard.vue';
-import TechBadge from '../components/common/TechBadge.vue';
 
 interface Report {
   title: string;
   description: string;
   impact: string;
 }
-
-const coreStack = ['Java', 'Spring Boot', 'JPA', 'MySQL', 'Redis', 'Docker'];
 
 const reports: Report[] = [
   {
@@ -35,18 +33,7 @@ const reports: Report[] = [
 
 <template>
   <div class="grid gap-6">
-    <SectionCard
-      title="Engineer Summary"
-      subtitle="비즈니스 요구를 코드와 지표로 연결하는 백엔드 개발자를 목표로 합니다."
-    >
-      <p class="text-sm leading-6 text-slate-300">
-        안정적인 API 설계, 트랜잭션 관리, 데이터 정합성을 중심으로 학습하고 프로젝트에 반영했습니다. 개인
-        포트폴리오를 리포트 형식으로 구성해 기술적 판단 근거를 명확히 기록합니다.
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <TechBadge v-for="item in coreStack" :key="item" :label="item" />
-      </div>
-    </SectionCard>
+    <ProfileSection />
 
     <SectionCard title="Technical Reports" subtitle="실무형 관점에서 정리한 핵심 개선 사례">
       <div class="grid gap-3 md:grid-cols-2">
