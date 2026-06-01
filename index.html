@@ -1,12 +1,585 @@
-﻿<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JeongGwanWoo Portfolio</title>
-  </head>
-  <body class="bg-slate-950">
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="정관우 백엔드 개발자 포트폴리오 — 기술 이력서, 설계 사례집, 문제 해결 로그 중심의 백엔드 포트폴리오" />
+  <title>정관우 | 백엔드 포트폴리오</title>
+  <script>
+    (() => {
+      const value = location.hash.replace(/^#/, '');
+      const caseId = value.startsWith('case-') ? value.slice(5) : value.split('-')[0];
+      if (['wedge', 'dondone', 'dnc', 'mtq'].includes(caseId)) {
+        window.__initialCase = caseId;
+        history.replaceState(null, '', `${location.pathname}${location.search}`);
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="index.html#main">본문으로 이동</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="주요 메뉴">
+      <div class="nav-left">
+        <button class="brand" type="button" data-scroll-top aria-label="맨 위로 이동">정관우</button>
+        <a class="nav-cta" href="index.html#projects">프로젝트</a>
+        <a class="nav-cta" href="assets/pdfs/profile.pdf" target="_blank" rel="noopener">프로필 PDF</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#notes">기술노트</a>
+        <a href="index.html#about">소개</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Java / Spring 백엔드 개발자</h1>
+        <p class="lead">
+          API 서버, 인증·권한, 외부 API 연동을 구현했습니다.<br />
+          4개 프로젝트의 문제와 해결 과정을 정리했습니다.
+        </p>
+      </div>
+
+      <div class="hero-profile">
+        <aside class="profile-card" aria-label="프로필 요약">
+          <img src="assets/images/profile-photo.jpg" width="1984" height="2550" alt="정관우 프로필 사진" />
+          <div class="profile-copy">
+            <p class="card-label">백엔드 개발자</p>
+            <h2>정관우</h2>
+            <p>Java / Spring 기반 API 서버와 외부 연동 흐름을 구현했습니다.</p>
+            <p class="profile-contact-title">연락처</p>
+            <dl class="profile-contact">
+              <div><dt>Email</dt><dd><a href="assets/pdfs/profile.pdf" target="_blank" rel="noopener">프로필 PDF</a></dd></div>
+              <div><dt>GitHub</dt><dd><a href="assets/pdfs/profile.pdf" target="_blank" rel="noopener">프로필 PDF</a></dd></div>
+            </dl>
+          </div>
+        </aside>
+
+      </div>
+
+      <div class="hero-lower-grid">
+        <aside class="tech-stack-card" aria-label="최근 프로젝트 기준 기술스택">
+          <h3>기술스택</h3>
+          <p>최근 4개 프로젝트에서 사용한 기술 기준</p>
+          <ul class="tech-stack-list">
+            <li><img src="assets/icons/openjdk.svg" width="24" height="24" alt="" loading="lazy" /><span>Java</span></li>
+            <li><img src="assets/icons/springboot.svg" width="24" height="24" alt="" loading="lazy" /><span>Spring Boot</span></li>
+            <li><img src="assets/icons/hibernate.svg" width="24" height="24" alt="" loading="lazy" /><span>JPA · Hibernate</span></li>
+            <li><img src="assets/icons/jsonwebtokens.svg" width="24" height="24" alt="" loading="lazy" /><span>JWT</span></li>
+            <li><img src="assets/icons/mysql.svg" width="24" height="24" alt="" loading="lazy" /><span>MySQL</span></li>
+            <li><img src="assets/icons/redis.svg" width="24" height="24" alt="" loading="lazy" /><span>Redis</span></li>
+            <li><img src="assets/icons/docker.svg" width="24" height="24" alt="" loading="lazy" /><span>Docker</span></li>
+            <li><img src="assets/icons/githubactions.svg" width="24" height="24" alt="" loading="lazy" /><span>GitHub Actions</span></li>
+            <li><img src="assets/icons/aws.svg" width="24" height="24" alt="" loading="lazy" /><span>AWS EC2</span></li>
+          </ul>
+        </aside>
+
+        <aside class="project-summary-card" aria-label="대표 프로젝트 요약">
+          <h3>대표 프로젝트</h3>
+          <ul>
+            <li>
+              <strong>Wedge</strong>
+              <span>비동기 실행 상태 관리</span>
+            </li>
+            <li>
+              <strong>DonDone</strong>
+              <span>근무 증빙 데이터 재사용</span>
+            </li>
+            <li>
+              <strong>DNC · MTQ</strong>
+              <span>외부 API·AI 연동 경험</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section evidence-strip" id="evidence" aria-labelledby="evidence-title">
+      <div class="section-head compact">
+        <h2 id="evidence-title">프로젝트별 원본 자료</h2>
+        <p>각 프로젝트 PDF와 주요 캡처를 연결했습니다.</p>
+      </div>
+      <div class="evidence-links">
+        <a href="assets/pdfs/wedge.pdf" target="_blank" rel="noopener">Wedge PDF</a>
+        <a href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">DonDone PDF</a>
+        <a href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">DNC PDF</a>
+        <a href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">MyTripQuest PDF</a>
+        <a href="assets/pdfs/profile.pdf" target="_blank" rel="noopener">프로필 PDF</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="focus-title">
+      <div class="section-head">
+        <p class="eyebrow">백엔드 관심 영역</p>
+        <h2 id="focus-title">제가 다룬 백엔드 문제</h2>
+      </div>
+      <div class="focus-grid">
+        <article class="focus-card">
+          <span>01</span>
+          <h3>API와 접근 경계</h3>
+          <p>public, authenticated, admin API 경계를 나누고 권한 조건과 실패 응답을 명확히 정리하는 데 관심이 있습니다.</p>
+        </article>
+        <article class="focus-card">
+          <span>02</span>
+          <h3>상태 전이와 정합성</h3>
+          <p>Run/Step, WorkProof, sensor status처럼 상태가 바뀌는 도메인에서 전이 조건과 예외 경로를 먼저 확인합니다.</p>
+        </article>
+        <article class="focus-card">
+          <span>03</span>
+          <h3>외부 API 연동</h3>
+          <p>Runner, Analyzer, Dexcom, FastAPI AI, TourAPI 같은 외부 결과를 내부 도메인 데이터로 안전하게 연결합니다.</p>
+        </article>
+        <article class="focus-card">
+          <span>04</span>
+          <h3>실행·검증 근거</h3>
+          <p>Docker, Jenkins/GitHub Actions, README, 테스트 로그를 통해 실행·검증 가능한 자료를 남기는 방식을 지향합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">대표 프로젝트</p>
+          <h2 id="projects-title">프로젝트 선택</h2>
+        </div>
+        <p class="section-note">클릭하면 해당 프로젝트의 문제 해결 과정으로 이동합니다.</p>
+      </div>
+
+      <div class="project-scroll-stage" data-project-stage>
+        <div class="project-viewport" data-project-viewport>
+          <div class="project-picker" aria-label="프로젝트 선택 목록" data-project-track>
+        <button class="project-select-card project-preview main is-active" type="button" data-case="wedge" data-title="Wedge" data-desc="비동기 실행 상태 관리">
+          <div class="project-preview-copy">
+            <span class="project-index">01 · 백엔드</span>
+            <strong>Wedge</strong>
+            <em>브라우저 실행 기반 UX 진단 리포트</em>
+            <p>비동기 실행 상태, analysis outbox/retry, 리포트 공유 token 경계를 다룬 프로젝트입니다.</p>
+            <dl class="project-preview-facts">
+              <div><dt>문제</dt><dd>비동기 실행 실패 지점 분리</dd></div>
+              <div><dt>선택</dt><dd>상태 매핑 + outbox/retry</dd></div>
+              <div><dt>근거</dt><dd>프로젝트 PDF · 아키텍처</dd></div>
+            </dl>
+            <small>상세 보기 →</small>
+          </div>
+          <div class="project-preview-media web-shot" aria-hidden="true">
+            <img src="assets/images/wedge-report-web.png" width="2880" height="1800" alt="" loading="lazy" />
+          </div>
+        </button>
+
+        <button class="project-select-card project-preview main" type="button" data-case="dondone" data-title="DonDone" data-desc="근무 증빙 데이터 재사용">
+          <div class="project-preview-copy">
+            <span class="project-index">02 · 백엔드</span>
+            <strong>DonDone</strong>
+            <em>근무 기록 기반 급여 지갑 서비스</em>
+            <p>WorkProof 출퇴근 기록을 급여 확인, 문서, 클레임 흐름으로 재사용한 프로젝트입니다.</p>
+            <dl class="project-preview-facts">
+              <div><dt>문제</dt><dd>근무 증빙 데이터 재사용</dd></div>
+              <div><dt>선택</dt><dd>급여·문서·클레임 흐름 분리</dd></div>
+              <div><dt>근거</dt><dd>프로젝트 PDF · 모바일 흐름</dd></div>
+            </dl>
+            <small>상세 보기 →</small>
+          </div>
+          <div class="project-preview-media mobile-shots" aria-hidden="true">
+            <img src="assets/images/dondone-check.png" width="657" height="1388" alt="" loading="lazy" />
+            <img src="assets/images/dondone-wage-review.png" width="865" height="1819" alt="" loading="lazy" />
+          </div>
+        </button>
+
+        <button class="project-select-card project-preview" type="button" data-case="dnc" data-title="DNC" data-desc="외부 API·AI 분석 연동">
+          <div class="project-preview-copy">
+            <span class="project-index">03 · 백엔드 / 인프라</span>
+            <strong>DNC 당낭콩</strong>
+            <em>CGM 식단 기록 기반 AI 리포트</em>
+            <p>Dexcom CGM 데이터, 사용자별 Redis buffer, AI 서버 결과 매핑을 다룬 프로젝트입니다.</p>
+            <dl class="project-preview-facts">
+              <div><dt>문제</dt><dd>외부 센서·AI 결과 연결</dd></div>
+              <div><dt>선택</dt><dd>사용자별 격리와 중복 체크</dd></div>
+              <div><dt>근거</dt><dd>프로젝트 PDF · API 매핑</dd></div>
+            </dl>
+            <small>상세 보기 →</small>
+          </div>
+          <div class="project-preview-media mobile-shots" aria-hidden="true">
+            <img src="assets/images/dnc-analysis.png" width="624" height="1388" alt="" loading="lazy" />
+            <img src="assets/images/dnc-report.png" width="688" height="1439" alt="" loading="lazy" />
+          </div>
+        </button>
+
+        <button class="project-select-card project-preview" type="button" data-case="mtq" data-title="MyTripQuest" data-desc="GPS·AI 사진 인증">
+          <div class="project-preview-copy">
+            <span class="project-index">04 · 풀스택</span>
+            <strong>MyTripQuest</strong>
+            <em>위치 기반 여행 퀘스트 플랫폼</em>
+            <p>TourAPI, GPS 도착 인증, AI 사진 인증, 보상·랭킹 흐름을 다룬 프로젝트입니다.</p>
+            <dl class="project-preview-facts">
+              <div><dt>문제</dt><dd>위치·사진 인증과 보상 연결</dd></div>
+              <div><dt>선택</dt><dd>도착 인증 후 퀘스트 상태 전이</dd></div>
+              <div><dt>근거</dt><dd>프로젝트 PDF · 앱 화면</dd></div>
+            </dl>
+            <small>상세 보기 →</small>
+          </div>
+          <div class="project-preview-media mobile-shots" aria-hidden="true">
+            <img src="assets/images/mtq-map.png" width="391" height="844" alt="" loading="lazy" />
+            <img src="assets/images/mtq-quest.png" width="391" height="843" alt="" loading="lazy" />
+          </div>
+        </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section detail-section" aria-labelledby="detail-title">
+      <div class="section-head">
+        <p class="eyebrow">문제 해결 과정</p>
+        <h2 id="detail-title">프로젝트별 문제 해결 과정</h2>
+      </div>
+
+      <article class="case-study is-active" id="case-wedge" data-case-panel="wedge" aria-labelledby="case-wedge-title">
+        <aside class="toc-card" aria-label="Wedge 목차">
+          <strong>Wedge</strong>
+          <a href="#wedge-overview">개요</a>
+          <a href="#wedge-decisions">설계 판단</a>
+          <a href="#wedge-evidence">검증 자료</a>
+          <a href="#wedge-improve">보완 계획</a>
+        </aside>
+        <div class="case-body">
+          <header id="wedge-overview">
+            <p class="card-label">대표 사례 · 근거 A/B</p>
+            <h3 id="case-wedge-title">Wedge — 비동기 실행 상태와 공개 리포트 경계</h3>
+            <p>Spring Core Backend 역할 범위에서 Runner callback의 step event를 Run/Step 상태에 매핑하고, analysis request outbox/retry와 report share token 접근 경계 구현에 참여한 것으로 정리합니다.</p>
+          </header>
+          <div class="media-grid web-detail">
+            <figure class="screenshot-frame wide"><img src="assets/images/wedge-report-web.png" width="2880" height="1800" alt="Wedge 웹 리포트 화면" loading="lazy" /><figcaption>리포트 화면은 결과물 이해를 돕는 보조 캡처로만 사용</figcaption></figure>
+          </div>
+          <section class="decision-log" id="wedge-decisions">
+            <h4>설계 판단 기록</h4>
+            <dl>
+              <div><dt>문제</dt><dd>브라우저 실행, evidence 저장, 분석 요청, 리포트 공유가 비동기로 이어져 실패 지점을 분리해야 했습니다.</dd></div>
+              <div><dt>선택지</dt><dd>단일 동기 처리 / callback 기반 상태 갱신 / outbox + retry.</dd></div>
+              <div><dt>선택한 방법</dt><dd>callback은 Run/Step 상태로 매핑하고, 분석 요청은 outbox 저장 후 발행·재시도 흐름으로 분리했습니다.</dd></div>
+              <div><dt>포기한 것</dt><dd>전체 CI/CD 또는 시스템 전체 설계를 개인 단독 성과로 표현하지 않습니다.</dd></div>
+            </dl>
+          </section>
+          <section class="evidence-panel" id="wedge-evidence">
+            <h4>검증 자료</h4>
+            <ul>
+              <li><strong>A</strong> Runner callback step event → Run/Step 상태 매핑</li>
+              <li><strong>A</strong> analysis.request outbox 저장, AFTER_COMMIT 발행, scheduled retry 흐름</li>
+              <li><strong>A</strong> report share token 만료·revoke·row lock·active token 재사용 경계</li>
+              <li><strong>B</strong> Jenkins/Mattermost/EC2 pipeline은 팀 운영 구조로만 표현</li>
+            </ul>
+          </section>
+          <section class="improve-box" id="wedge-improve">
+            <h4>다음에 보완할 점</h4>
+            <p>Run/Step 상태 전이, Runner callback, analysis outbox retry는 이 프로젝트에서 가장 설명 가치가 큰 백엔드 흐름입니다.</p>
+            <p>다음 보완에서는 중복 callback, terminal 상태 이후 evidence 거부, outbox 재시도 케이스를 targeted test와 sequence diagram으로 분리하고, Analyzer 병렬 처리 개선도 동일 조건의 측정 로그와 함께 정리하겠습니다.</p>
+          </section>
+        </div>
+        <aside class="right-evidence">
+          <a href="assets/pdfs/wedge.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
+          <a href="assets/images/wedge-architecture.png" target="_blank" rel="noopener">아키텍처</a>
+          <span>정리 기준 문서: 01-S14P31C104</span>
+          <span>과장하지 않을 점: 전체 단독 설계·리딩</span>
+        </aside>
+      </article>
+
+      <article class="case-study" id="case-dondone" data-case-panel="dondone" aria-labelledby="case-dondone-title">
+        <aside class="toc-card" aria-label="DonDone 목차"><strong>DonDone</strong><a href="#dondone-overview">개요</a><a href="#dondone-decisions">설계 판단</a><a href="#dondone-evidence">검증 자료</a><a href="#dondone-improve">보완 계획</a></aside>
+        <div class="case-body">
+          <header id="dondone-overview">
+            <p class="card-label">대표 사례 · 근거 A</p>
+            <h3 id="case-dondone-title">DonDone — 같은 근무 증거를 여러 기능에서 재사용하는 흐름</h3>
+            <p>WorkProof 출퇴근 기록을 Wage verification snapshot, 문서 생성, Claim 준비 흐름과 연결한 백엔드 구현 참여로 표현합니다.</p>
+          </header>
+          <div class="media-grid mobile-detail">
+            <figure class="screenshot-frame phone"><img src="assets/images/dondone-check.png" width="657" height="1388" alt="DonDone 출퇴근 화면" loading="lazy" /></figure>
+            <figure class="screenshot-frame phone"><img src="assets/images/dondone-advance.png" width="868" height="1813" alt="DonDone 미리받기 화면" loading="lazy" /></figure>
+          </div>
+          <section class="decision-log" id="dondone-decisions"><h4>설계 판단 기록</h4><dl><div><dt>문제</dt><dd>GPS 기반 출퇴근 기록이 급여 확인, 문서, 클레임 준비의 기준 데이터가 되어야 했습니다.</dd></div><div><dt>선택</dt><dd>반경 밖 퇴근을 단순 실패로 버리지 않고 NEEDS_REVIEW 상태로 남기고, verification snapshot을 증빙 anchor로 사용했습니다.</dd></div><div><dt>주의</dt><dd>실제 금융 서비스, 자동 법률 판단, 실정산 서비스처럼 표현하지 않습니다.</dd></div></dl></section>
+          <section class="evidence-panel" id="dondone-evidence"><h4>검증 자료</h4><ul><li><strong>A</strong> WorkProof 출퇴근/GPS/review/correction 흐름</li><li><strong>A</strong> Wage verification snapshot과 Documents/Claim anchor 연결</li><li><strong>A</strong> Employer registration/review queue, Advance admin approval 일부 흐름</li></ul></section>
+          <section class="improve-box" id="dondone-improve"><h4>다음에 보완할 점</h4><p>WorkProof 출퇴근 기록이 Wage, Documents, Claim, Advance 흐름에서 재사용되는 구조는 이 프로젝트의 핵심입니다.</p><p>다음 보완에서는 WorkProof → Wage → Documents/Claim → Advance 흐름을 feature 단위 테스트로 다시 확보하고, Advance 요청의 Idempotency-Key 정책을 API 문서와 코드에서 일치시키겠습니다. PDF 문서는 on-demand 생성에서 object storage 기반 보관 구조로 확장하는 방향을 검토하겠습니다.</p></section>
+        </div>
+        <aside class="right-evidence"><a href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">프로젝트 PDF</a><span>정리 기준 문서: 02-S14P21C202</span><span>과장하지 않을 점: production finance</span></aside>
+      </article>
+
+      <article class="case-study" id="case-dnc" data-case-panel="dnc" aria-labelledby="case-dnc-title">
+        <aside class="toc-card" aria-label="DNC 목차"><strong>DNC</strong><a href="#dnc-overview">개요</a><a href="#dnc-decisions">설계 판단</a><a href="#dnc-evidence">검증 자료</a><a href="#dnc-improve">보완 계획</a></aside>
+        <div class="case-body">
+          <header id="dnc-overview"><p class="card-label">보조 사례 · 근거 A/B</p><h3 id="case-dnc-title">DNC — CGM 데이터와 AI 분석 결과를 도메인 흐름으로 연결</h3><p>의료 효과나 AI 정확도를 주장하지 않고, 사용자별 데이터 격리·중복 체크·외부 AI 결과 매핑 중심으로 소개합니다.</p></header>
+          <div class="media-grid mobile-detail"><figure class="screenshot-frame phone"><img src="assets/images/dnc-analysis.png" width="624" height="1388" alt="DNC 식단 분석 촬영 화면" loading="lazy" /></figure><figure class="screenshot-frame phone"><img src="assets/images/dnc-report.png" width="688" height="1439" alt="DNC 리포트 화면" loading="lazy" /></figure></div>
+          <section class="decision-log" id="dnc-decisions"><h4>설계 판단 기록</h4><dl><div><dt>문제</dt><dd>Dexcom CGM 데이터와 식단 AI 분석 결과를 사용자별로 분리하고, 리포트로 재사용해야 했습니다.</dd></div><div><dt>선택</dt><dd>사용자별 Redis buffer, user+recordId 중복 체크, AI 서버 결과를 Spring Boot 도메인 데이터로 매핑하는 흐름으로 설명합니다.</dd></div><div><dt>주의</dt><dd>의료 진단, 치료 효과, AI 예측 정확도는 공개 주장하지 않습니다.</dd></div></dl></section>
+          <section class="evidence-panel" id="dnc-evidence"><h4>검증 자료</h4><ul><li><strong>A/B</strong> Dexcom CGM 5분 수집, token refresh, Redis buffer, DB sync</li><li><strong>A</strong> 사용자별 Redis key, user+recordId 중복 체크</li><li><strong>A</strong> FastAPI AI 서버 결과와 Gemini 요약을 식단/리포트 흐름에 연결</li></ul></section>
+          <section class="improve-box" id="dnc-improve"><h4>다음에 보완할 점</h4><p>Dexcom CGM 데이터 수집과 AI 분석 결과 연결은 사용자별 데이터 격리, 중복 방지, 외부 API 결과 매핑 관점에서 설명할 수 있습니다.</p><p>다음 보완에서는 Testcontainers 또는 별도 test profile로 CGM 파이프라인 테스트를 격리하고, Dexcom API 실패·Redis 장애·AI 서버 실패에 대한 retry, fallback, 모니터링 지표를 추가하겠습니다. 공개 화면에서는 건강정보처럼 보이는 상세 수치를 익명화해 의료 효과나 AI 정확도 주장으로 읽히지 않게 정리하겠습니다.</p></section>
+        </div>
+        <aside class="right-evidence"><a href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">프로젝트 PDF</a><span>정리 기준 문서: 03-S14P11C105</span><span>과장하지 않을 점: 의료 효과·AI 정확도</span></aside>
+      </article>
+
+      <article class="case-study" id="case-mtq" data-case-panel="mtq" aria-labelledby="case-mtq-title">
+        <aside class="toc-card" aria-label="MyTripQuest 목차"><strong>MyTripQuest</strong><a href="#mtq-overview">개요</a><a href="#mtq-decisions">설계 판단</a><a href="#mtq-evidence">검증 자료</a><a href="#mtq-improve">보완 계획</a></aside>
+        <div class="case-body">
+          <header id="mtq-overview"><p class="card-label">보조 사례 · 기여 범위 주의</p><h3 id="case-mtq-title">MyTripQuest — 위치·사진 인증 조건을 나눈 여행 퀘스트</h3><p>2인 풀스택 프로젝트이므로 단독 구현보다 팀 구현 흐름과 설명 가능한 백엔드 조건 분리 경험으로 짧게 소개합니다.</p></header>
+          <div class="media-grid mobile-detail"><figure class="screenshot-frame phone"><img src="assets/images/mtq-main.png" width="391" height="842" alt="MyTripQuest 메인 화면" loading="lazy" /></figure><figure class="screenshot-frame phone"><img src="assets/images/mtq-quest.png" width="391" height="843" alt="MyTripQuest 퀘스트 상세 화면" loading="lazy" /></figure></div>
+          <section class="decision-log" id="mtq-decisions"><h4>설계 판단 기록</h4><dl><div><dt>문제</dt><dd>관광지 방문 퀘스트 완료를 위치, 시간, 사진 판정 조건으로 나눠야 했습니다.</dd></div><div><dt>선택</dt><dd>GPS 도착 인증과 AI 사진 인증, 보상·아바타·랭킹 흐름을 팀 구현 사례로 제한해 소개합니다.</dd></div><div><dt>주의</dt><dd>기능별 단독 구현, AI 인증 정확도, production observability는 주장하지 않습니다.</dd></div></dl></section>
+          <section class="evidence-panel" id="mtq-evidence"><h4>검증 자료</h4><ul><li><strong>A</strong> GPS 도착 인증과 AI 사진 인증을 결합한 퀘스트 완료 흐름</li><li><strong>A</strong> TourAPI 관광지 기반 장소/퀘스트 생성과 AI 인증 반경 저장</li><li><strong>A</strong> Spring Security, JWT, OAuth2 기반 인증/인가 흐름</li></ul></section>
+          <section class="improve-box" id="mtq-improve"><h4>다음에 보완할 점</h4><p>위치, 시간, 사진 인증을 나누어 퀘스트 완료 여부를 판단한 흐름은 학습 경험으로 의미가 있었습니다.</p><p>다음 보완에서는 test profile 또는 Testcontainers로 테스트 실행 환경을 분리하고, OAuth2 로그인 이후 토큰 전달 방식은 URL 전달 대신 HttpOnly Cookie 또는 일회성 auth code 방식으로 개선하겠습니다. AI 사진 인증은 정확도 향상 주장보다 GPS·시간 선검증, AI 실패 fallback, 관리자 검토 로그를 추가하는 방향으로 보완하겠습니다.</p></section>
+        </div>
+        <aside class="right-evidence"><a href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">프로젝트 PDF</a><span>정리 기준 문서: 04-MyTripQuest</span><span>과장하지 않을 점: 단독 구현</span></aside>
+      </article>
+    </section>
+
+    <section class="section" id="notes" aria-labelledby="notes-title">
+      <div class="section-head split">
+        <div><p class="eyebrow">기술 노트</p><h2 id="notes-title">문제 → 원인 → 선택 → 한계를 짧게 남기는 섹션입니다.</h2></div>
+        <p class="section-note">실제 블로그 글로 확장 가능한 제목 후보입니다.</p>
+      </div>
+      <div class="note-grid">
+        <article class="note-card"><span>비동기 상태</span><h3>Runner callback 이후 Run/Step 상태를 어떻게 분리했는가</h3><p>비동기 작업에서 callback 이벤트를 상태 전이로 매핑하고, evidence 저장 이후 analysis request 발행을 별도 흐름으로 분리한 과정을 정리합니다.</p><small>Wedge · 5분</small></article>
+        <article class="note-card"><span>증빙 데이터</span><h3>WorkProof를 급여·문서·클레임에서 재사용한 이유</h3><p>출퇴근 기록을 한 기능에서만 소비하지 않고 verification snapshot과 문서 anchor로 고정한 판단을 설명합니다.</p><small>DonDone · 4분</small></article>
+        <article class="note-card"><span>외부 API</span><h3>CGM 데이터 수집에서 사용자별 Redis key를 둔 이유</h3><p>외부 CGM 데이터의 중복 저장과 사용자 데이터 혼선을 줄이기 위해 key 구조와 recordId 체크를 분리한 흐름을 정리합니다.</p><small>DNC · 4분</small></article>
+        <article class="note-card"><span>인증과 검증</span><h3>여행 퀘스트 완료 조건을 위치와 사진으로 나눈 과정</h3><p>GPS 도착 인증, 사진 메타데이터/시간 조건, AI 판정을 한 덩어리로 보지 않고 단계별로 나눈 경험을 정리합니다.</p><small>MyTripQuest · 3분</small></article>
+      </div>
+    </section>
+
+    <section class="section working" id="about" aria-labelledby="about-title">
+      <div class="working-copy">
+        <p class="eyebrow">작업 방식</p>
+        <h2 id="about-title">제가 일하는 방식</h2>
+        <ol>
+          <li>요구사항을 API, 데이터 상태 변화, 실패 케이스로 먼저 나눕니다.</li>
+          <li>팀 결과와 개인 기여, 근거와 추론을 분리해 문장 강도를 조절합니다.</li>
+          <li>구현 후에는 README, 테스트 로그, 캡처처럼 다시 확인할 수 있는 근거를 남기려 합니다.</li>
+          <li>성능·품질·정확도는 수치 근거가 없으면 주장하지 않고, 개선 계획으로 남깁니다.</li>
+        </ol>
+      </div>
+      <div class="about-card">
+        <h3>소개</h3>
+        <p>기능이 동작하는 것에서 멈추지 않고, 실패 케이스와 운영 관점까지 함께 고민하는 백엔드 개발자를 지향합니다. 이 포트폴리오는 프로젝트를 완벽하게 포장하기보다 판단 근거와 남은 한계를 함께 보여주는 방식으로 구성했습니다.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>정관우 백엔드 포트폴리오</strong></p>
+    <p>초안 · 검증 자료 중심 · 문서형 디자인 · 2026.05.31</p>
+    <a href="#top">맨 위로</a>
+  </footer>
+
+
+  <nav class="side-project-nav" data-side-nav aria-label="다른 프로젝트 선택" aria-hidden="true" inert>
+    <button class="side-project-button prev" type="button" data-side-action="prev">
+      <span>이전 프로젝트</span>
+      <strong data-side-prev-title>MyTripQuest</strong>
+      <small data-side-prev-desc>위치 기반 여행 퀘스트</small>
+    </button>
+    <button class="side-project-button next" type="button" data-side-action="next">
+      <span>다음 프로젝트</span>
+      <strong data-side-next-title>DonDone</strong>
+      <small data-side-next-desc>근무 증빙 데이터 재사용</small>
+    </button>
+  </nav>
+
+  <script>
+    (() => {
+      const cards = Array.from(document.querySelectorAll('[data-case]'));
+      const panels = Array.from(document.querySelectorAll('[data-case-panel]'));
+      const sideNav = document.querySelector('[data-side-nav]');
+      const sidePrev = document.querySelector('[data-side-action="prev"]');
+      const sideNext = document.querySelector('[data-side-action="next"]');
+      const known = new Set(cards.map((card) => card.dataset.case));
+      const projectOrder = cards.map((card) => ({
+        id: card.dataset.case,
+        title: card.dataset.title,
+        desc: card.dataset.desc
+      }));
+
+      function hashFromHref(value) {
+        if (!value) return '';
+        if (value.startsWith('#')) return value;
+        try {
+          return new URL(value, location.href).hash || '';
+        } catch (_) {
+          const hashIndex = value.indexOf('#');
+          return hashIndex >= 0 ? value.slice(hashIndex) : '';
+        }
+      }
+
+      function caseFromHash(hash) {
+        const value = hashFromHref(hash).replace(/^#/, '');
+        if (value.startsWith('case-')) return value.replace('case-', '');
+        const prefix = value.split('-')[0];
+        return known.has(prefix) ? prefix : 'wedge';
+      }
+
+      function isCaseHash(hash) {
+        const value = hashFromHref(hash).replace(/^#/, '');
+        if (!value) return false;
+        if (value.startsWith('case-')) return known.has(value.replace('case-', ''));
+        return known.has(value.split('-')[0]);
+      }
+
+      function cleanCaseHash() {
+        if (!location.hash) return;
+        history.replaceState(null, '', `${location.pathname}${location.search}`);
+      }
+
+      function getNeighbor(caseId, offset) {
+        const currentIndex = Math.max(0, projectOrder.findIndex((item) => item.id === caseId));
+        const nextIndex = (currentIndex + offset + projectOrder.length) % projectOrder.length;
+        return projectOrder[nextIndex];
+      }
+
+      function updateSideNav(caseId) {
+        const prev = getNeighbor(caseId, -1);
+        const next = getNeighbor(caseId, 1);
+        if (!sidePrev || !sideNext) return;
+
+        sidePrev.dataset.targetCase = prev.id;
+        sideNext.dataset.targetCase = next.id;
+        sidePrev.querySelector('[data-side-prev-title]').textContent = prev.title;
+        sidePrev.querySelector('[data-side-prev-desc]').textContent = prev.desc;
+        sideNext.querySelector('[data-side-next-title]').textContent = next.title;
+        sideNext.querySelector('[data-side-next-desc]').textContent = next.desc;
+      }
+
+      const sideNavDesktop = window.matchMedia('(min-width: 1481px)');
+      const CASE_SCROLL_OFFSET = 104;
+
+      function scrollToCaseSection() {
+        const target = document.querySelector('.detail-section');
+        if (!target) return;
+        const top = target.getBoundingClientRect().top + window.scrollY - CASE_SCROLL_OFFSET;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+
+      function activate(caseId) {
+        if (!known.has(caseId)) caseId = 'wedge';
+        updateSideNav(caseId);
+
+        cards.forEach((card) => {
+          const active = card.dataset.case === caseId;
+          card.classList.toggle('is-active', active);
+        });
+
+        panels.forEach((panel) => {
+          const active = panel.dataset.casePanel === caseId;
+          panel.classList.toggle('is-active', active);
+          panel.toggleAttribute('hidden', !active);
+        });
+
+        requestSideVisibilityUpdate();
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener('click', (event) => {
+          event.preventDefault();
+          const caseId = card.dataset.case;
+          cleanCaseHash();
+          activate(caseId);
+          scrollToCaseSection();
+        });
+      });
+
+      [sidePrev, sideNext].forEach((button) => {
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const caseId = button.dataset.targetCase;
+          cleanCaseHash();
+          activate(caseId);
+          scrollToCaseSection();
+        });
+      });
+
+      function setSideNavVisible(visible) {
+        if (!sideNav) return;
+        sideNav.classList.toggle('is-visible', visible);
+        sideNav.setAttribute('aria-hidden', String(!visible));
+        sideNav.inert = !visible;
+        [sidePrev, sideNext].forEach((button) => {
+          if (button) button.tabIndex = visible ? 0 : -1;
+        });
+      }
+
+      function updateSideVisibility() {
+        if (!sideNav || !sideNavDesktop.matches) {
+          setSideNavVisible(false);
+          return;
+        }
+        const activePanel = document.querySelector('[data-case-panel].is-active');
+        if (!activePanel) {
+          setSideNavVisible(false);
+          return;
+        }
+
+        const rect = activePanel.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const sampleButton = sidePrev || sideNext;
+        const buttonHeight = sampleButton ? sampleButton.offsetHeight : 116;
+        const margin = 18;
+        const headerSafeTop = 92;
+
+        const cardTopLimit = rect.top + margin;
+        const cardBottomLimit = rect.bottom - buttonHeight - margin;
+        const viewportTopLimit = headerSafeTop;
+        const viewportBottomLimit = viewportHeight - buttonHeight - margin;
+
+        const minTop = Math.max(cardTopLimit, viewportTopLimit);
+        const maxTop = Math.min(cardBottomLimit, viewportBottomLimit);
+        const preferredTop = (viewportHeight - buttonHeight) / 2;
+        const visible = rect.top < viewportHeight - margin && rect.bottom > headerSafeTop + margin && maxTop >= minTop;
+
+        if (visible) {
+          const clampedTop = Math.min(Math.max(preferredTop, minTop), maxTop);
+          sideNav.style.setProperty('--side-button-top', `${Math.round(clampedTop)}px`);
+        }
+        setSideNavVisible(visible);
+      }
+
+      let sideVisibilityFrame = 0;
+      function requestSideVisibilityUpdate() {
+        if (!sideNav || sideVisibilityFrame) return;
+        sideVisibilityFrame = window.requestAnimationFrame(() => {
+          sideVisibilityFrame = 0;
+          updateSideVisibility();
+        });
+      }
+
+      if (sideNav) {
+        window.addEventListener('scroll', requestSideVisibilityUpdate, { passive: true });
+        window.addEventListener('resize', requestSideVisibilityUpdate);
+        sideNavDesktop.addEventListener?.('change', requestSideVisibilityUpdate);
+        setSideNavVisible(false);
+        requestSideVisibilityUpdate();
+      }
+
+      document.querySelectorAll('[data-scroll-top]').forEach((button) => {
+        button.addEventListener('click', () => {
+          if (location.hash) history.replaceState(null, '', `${location.pathname}${location.search}`);
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        });
+      });
+
+      window.addEventListener('hashchange', () => {
+        const currentHash = hashFromHref(location.hash);
+        if (!isCaseHash(currentHash)) return;
+        activate(caseFromHash(currentHash));
+        cleanCaseHash();
+      });
+
+      if (window.__initialCase) {
+        activate(window.__initialCase);
+      } else if (location.hash && isCaseHash(location.hash)) {
+        const initialHash = hashFromHref(location.hash);
+        activate(caseFromHash(initialHash));
+        cleanCaseHash();
+      } else {
+        activate('wedge');
+      }
+    })();
+  </script>
+</body>
 </html>
