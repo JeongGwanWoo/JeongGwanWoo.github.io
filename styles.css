@@ -681,10 +681,47 @@ body.modal-open {
   padding: 6px 10px;
   color: var(--text-primary);
 }
+.project-modal {
+  --modal-accent: #0F766E;
+  --modal-accent-soft: rgba(15, 118, 110, .16);
+  --modal-accent-mid: rgba(15, 118, 110, .28);
+  --modal-accent-text: #084D49;
+}
+.project-modal[data-modal-project="wedge"] {
+  --modal-accent: #0F766E;
+  --modal-accent-soft: rgba(15, 118, 110, .16);
+  --modal-accent-mid: rgba(15, 118, 110, .28);
+  --modal-accent-text: #084D49;
+}
+.project-modal[data-modal-project="dondone"] {
+  --modal-accent: #6D5DF6;
+  --modal-accent-soft: rgba(109, 93, 246, .16);
+  --modal-accent-mid: rgba(109, 93, 246, .28);
+  --modal-accent-text: #3C2EAE;
+}
+.project-modal[data-modal-project="dnc"] {
+  --modal-accent: #7A8F4B;
+  --modal-accent-soft: rgba(122, 143, 75, .18);
+  --modal-accent-mid: rgba(122, 143, 75, .30);
+  --modal-accent-text: #475A1F;
+}
+.project-modal[data-modal-project="mtq"] {
+  --modal-accent: #3BA5D9;
+  --modal-accent-soft: rgba(59, 165, 217, .16);
+  --modal-accent-mid: rgba(59, 165, 217, .30);
+  --modal-accent-text: #116180;
+}
+.project-modal [data-modal-kicker],
+.project-modal .modal-section li::before {
+  color: var(--modal-accent-text);
+}
+.project-modal .modal-section li::before {
+  background: var(--modal-accent);
+}
 .modal-highlight {
   border-radius: 6px;
-  background: linear-gradient(180deg, rgba(255, 235, 156, .52), rgba(255, 214, 102, .36));
-  color: #5F3B00;
+  background: linear-gradient(180deg, var(--modal-accent-soft), var(--modal-accent-mid));
+  color: var(--modal-accent-text);
   font-weight: 950;
   padding: 0 .18em;
 }

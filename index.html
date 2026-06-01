@@ -427,7 +427,7 @@
 
 
 
-  <dialog class="project-modal" data-project-modal aria-labelledby="project-modal-title">
+  <dialog class="project-modal" data-project-modal data-modal-project="wedge" aria-labelledby="project-modal-title">
     <div class="project-modal-card">
       <button class="project-modal-close" type="button" data-modal-close aria-label="프로젝트 요약 닫기">×</button>
       <div class="project-modal-head">
@@ -692,6 +692,7 @@
         const data = modalData[caseId];
         modalLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         projectModal.dataset.currentCase = caseId;
+        projectModal.dataset.modalProject = caseId;
         modalKicker.textContent = data.kicker;
         modalTitle.textContent = data.title;
         modalSummary.textContent = data.summary;
