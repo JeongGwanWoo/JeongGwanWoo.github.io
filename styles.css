@@ -673,11 +673,6 @@ body.modal-open {
   letter-spacing: -.04em;
 }
 
-.modal-section.tone-build { border-color: rgba(15, 118, 110, .28); background: linear-gradient(180deg, rgba(15,118,110,.08), rgba(247,244,238,.42)); }
-.modal-section.tone-role { border-color: rgba(196, 106, 28, .26); background: linear-gradient(180deg, rgba(196,106,28,.08), rgba(247,244,238,.42)); }
-.modal-section.tone-tech, .modal-section.tone-stack { border-color: rgba(37, 99, 235, .22); background: linear-gradient(180deg, rgba(37,99,235,.06), rgba(247,244,238,.42)); }
-.modal-section.tone-result { border-color: rgba(22, 163, 74, .24); background: linear-gradient(180deg, rgba(22,163,74,.07), rgba(247,244,238,.42)); }
-.modal-section.tone-review { border-color: rgba(124, 58, 237, .22); background: linear-gradient(180deg, rgba(124,58,237,.06), rgba(247,244,238,.42)); }
 .modal-section h3 {
   display: inline-flex;
   align-items: center;
