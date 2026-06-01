@@ -223,6 +223,7 @@
         <aside class="toc-card" aria-label="Wedge 목차">
           <strong>Wedge</strong>
           <a href="#wedge-overview">개요</a>
+          <a href="#wedge-video">영상</a>
           <a href="#wedge-decisions">설계 판단</a>
           <a href="#wedge-evidence">검증 자료</a>
           <a href="#wedge-improve">보완 계획</a>
@@ -233,9 +234,16 @@
             <h3 id="case-wedge-title">Wedge — 비동기 실행 상태와 공개 리포트 경계</h3>
             <p>Spring Core Backend 역할 범위에서 Runner callback의 step event를 Run/Step 상태에 매핑하고, analysis request outbox/retry와 report share token 접근 경계 구현에 참여한 것으로 정리합니다.</p>
           </header>
-          <div class="media-grid web-detail">
-            <figure class="screenshot-frame wide"><img src="assets/images/wedge-report-web.png" width="2880" height="1800" alt="Wedge 웹 리포트 화면" loading="lazy" /><figcaption>리포트 화면은 결과물 이해를 돕는 보조 캡처로만 사용</figcaption></figure>
-          </div>
+          <section class="service-video-card" id="wedge-video" aria-labelledby="wedge-video-title">
+            <div class="service-video-copy">
+              <p class="card-label">서비스 소개 영상</p>
+              <h4 id="wedge-video-title">Wedge 서비스 시연</h4>
+              <p>YouTube 링크를 연결하면 이 영역에서 바로 재생됩니다.</p>
+            </div>
+            <div class="video-frame" data-youtube-id="" data-video-title="Wedge 서비스 소개 영상">
+              <div class="video-placeholder" aria-hidden="true"><span>▶</span><strong>영상 준비 중</strong><small>YouTube ID 연결 예정</small></div>
+            </div>
+          </section>
           <section class="decision-log" id="wedge-decisions">
             <h4>설계 판단 기록</h4>
             <dl>
@@ -269,17 +277,23 @@
       </article>
 
       <article class="case-study" id="case-dondone" data-case-panel="dondone" aria-labelledby="case-dondone-title">
-        <aside class="toc-card" aria-label="DonDone 목차"><strong>DonDone</strong><a href="#dondone-overview">개요</a><a href="#dondone-decisions">설계 판단</a><a href="#dondone-evidence">검증 자료</a><a href="#dondone-improve">보완 계획</a></aside>
+        <aside class="toc-card" aria-label="DonDone 목차"><strong>DonDone</strong><a href="#dondone-overview">개요</a><a href="#dondone-video">영상</a><a href="#dondone-decisions">설계 판단</a><a href="#dondone-evidence">검증 자료</a><a href="#dondone-improve">보완 계획</a></aside>
         <div class="case-body">
           <header id="dondone-overview">
             <p class="card-label">대표 사례 · 근거 A</p>
             <h3 id="case-dondone-title">DonDone — 같은 근무 증거를 여러 기능에서 재사용하는 흐름</h3>
             <p>WorkProof 출퇴근 기록을 Wage verification snapshot, 문서 생성, Claim 준비 흐름과 연결한 백엔드 구현 참여로 표현합니다.</p>
           </header>
-          <div class="media-grid mobile-detail">
-            <figure class="screenshot-frame phone"><img src="assets/images/dondone-check.png" width="657" height="1388" alt="DonDone 출퇴근 화면" loading="lazy" /></figure>
-            <figure class="screenshot-frame phone"><img src="assets/images/dondone-advance.png" width="868" height="1813" alt="DonDone 미리받기 화면" loading="lazy" /></figure>
-          </div>
+          <section class="service-video-card" id="dondone-video" aria-labelledby="dondone-video-title">
+            <div class="service-video-copy">
+              <p class="card-label">서비스 소개 영상</p>
+              <h4 id="dondone-video-title">DonDone 서비스 시연</h4>
+              <p>YouTube 링크를 연결하면 이 영역에서 바로 재생됩니다.</p>
+            </div>
+            <div class="video-frame" data-youtube-id="" data-video-title="DonDone 서비스 소개 영상">
+              <div class="video-placeholder" aria-hidden="true"><span>▶</span><strong>영상 준비 중</strong><small>YouTube ID 연결 예정</small></div>
+            </div>
+          </section>
           <section class="decision-log" id="dondone-decisions"><h4>설계 판단 기록</h4><dl><div><dt>문제</dt><dd>GPS 기반 출퇴근 기록이 급여 확인, 문서, 클레임 준비의 기준 데이터가 되어야 했습니다.</dd></div><div><dt>선택</dt><dd>반경 밖 퇴근을 단순 실패로 버리지 않고 NEEDS_REVIEW 상태로 남기고, verification snapshot을 증빙 anchor로 사용했습니다.</dd></div><div><dt>주의</dt><dd>실제 금융 서비스, 자동 법률 판단, 실정산 서비스처럼 표현하지 않습니다.</dd></div></dl></section>
           <section class="evidence-panel" id="dondone-evidence"><h4>검증 자료</h4><ul><li><strong>A</strong> WorkProof 출퇴근/GPS/review/correction 흐름</li><li><strong>A</strong> Wage verification snapshot과 Documents/Claim anchor 연결</li><li><strong>A</strong> Employer registration/review queue, Advance admin approval 일부 흐름</li></ul></section>
           <section class="improve-box" id="dondone-improve"><h4>다음에 보완할 점</h4><p>WorkProof 출퇴근 기록이 Wage, Documents, Claim, Advance 흐름에서 재사용되는 구조는 이 프로젝트의 핵심입니다.</p><p>다음 보완에서는 WorkProof → Wage → Documents/Claim → Advance 흐름을 feature 단위 테스트로 다시 확보하고, Advance 요청의 Idempotency-Key 정책을 API 문서와 코드에서 일치시키겠습니다. PDF 문서는 on-demand 생성에서 object storage 기반 보관 구조로 확장하는 방향을 검토하겠습니다.</p></section>
@@ -288,10 +302,19 @@
       </article>
 
       <article class="case-study" id="case-dnc" data-case-panel="dnc" aria-labelledby="case-dnc-title">
-        <aside class="toc-card" aria-label="DNC 목차"><strong>DNC</strong><a href="#dnc-overview">개요</a><a href="#dnc-decisions">설계 판단</a><a href="#dnc-evidence">검증 자료</a><a href="#dnc-improve">보완 계획</a></aside>
+        <aside class="toc-card" aria-label="DNC 목차"><strong>DNC</strong><a href="#dnc-overview">개요</a><a href="#dnc-video">영상</a><a href="#dnc-decisions">설계 판단</a><a href="#dnc-evidence">검증 자료</a><a href="#dnc-improve">보완 계획</a></aside>
         <div class="case-body">
           <header id="dnc-overview"><p class="card-label">보조 사례 · 근거 A/B</p><h3 id="case-dnc-title">DNC — CGM 데이터와 AI 분석 결과를 도메인 흐름으로 연결</h3><p>의료 효과나 AI 정확도를 주장하지 않고, 사용자별 데이터 격리·중복 체크·외부 AI 결과 매핑 중심으로 소개합니다.</p></header>
-          <div class="media-grid mobile-detail"><figure class="screenshot-frame phone"><img src="assets/images/dnc-analysis.png" width="624" height="1388" alt="DNC 식단 분석 촬영 화면" loading="lazy" /></figure><figure class="screenshot-frame phone"><img src="assets/images/dnc-report.png" width="688" height="1439" alt="DNC 리포트 화면" loading="lazy" /></figure></div>
+          <section class="service-video-card" id="dnc-video" aria-labelledby="dnc-video-title">
+            <div class="service-video-copy">
+              <p class="card-label">서비스 소개 영상</p>
+              <h4 id="dnc-video-title">DNC 서비스 시연</h4>
+              <p>YouTube 링크를 연결하면 이 영역에서 바로 재생됩니다.</p>
+            </div>
+            <div class="video-frame" data-youtube-id="" data-video-title="DNC 서비스 소개 영상">
+              <div class="video-placeholder" aria-hidden="true"><span>▶</span><strong>영상 준비 중</strong><small>YouTube ID 연결 예정</small></div>
+            </div>
+          </section>
           <section class="decision-log" id="dnc-decisions"><h4>설계 판단 기록</h4><dl><div><dt>문제</dt><dd>Dexcom CGM 데이터와 식단 AI 분석 결과를 사용자별로 분리하고, 리포트로 재사용해야 했습니다.</dd></div><div><dt>선택</dt><dd>사용자별 Redis buffer, user+recordId 중복 체크, AI 서버 결과를 Spring Boot 도메인 데이터로 매핑하는 흐름으로 설명합니다.</dd></div><div><dt>주의</dt><dd>의료 진단, 치료 효과, AI 예측 정확도는 공개 주장하지 않습니다.</dd></div></dl></section>
           <section class="evidence-panel" id="dnc-evidence"><h4>검증 자료</h4><ul><li><strong>A/B</strong> Dexcom CGM 5분 수집, token refresh, Redis buffer, DB sync</li><li><strong>A</strong> 사용자별 Redis key, user+recordId 중복 체크</li><li><strong>A</strong> FastAPI AI 서버 결과와 Gemini 요약을 식단/리포트 흐름에 연결</li></ul></section>
           <section class="improve-box" id="dnc-improve"><h4>다음에 보완할 점</h4><p>Dexcom CGM 데이터 수집과 AI 분석 결과 연결은 사용자별 데이터 격리, 중복 방지, 외부 API 결과 매핑 관점에서 설명할 수 있습니다.</p><p>다음 보완에서는 Testcontainers 또는 별도 test profile로 CGM 파이프라인 테스트를 격리하고, Dexcom API 실패·Redis 장애·AI 서버 실패에 대한 retry, fallback, 모니터링 지표를 추가하겠습니다. 공개 화면에서는 건강정보처럼 보이는 상세 수치를 익명화해 의료 효과나 AI 정확도 주장으로 읽히지 않게 정리하겠습니다.</p></section>
@@ -300,10 +323,19 @@
       </article>
 
       <article class="case-study" id="case-mtq" data-case-panel="mtq" aria-labelledby="case-mtq-title">
-        <aside class="toc-card" aria-label="MyTripQuest 목차"><strong>MyTripQuest</strong><a href="#mtq-overview">개요</a><a href="#mtq-decisions">설계 판단</a><a href="#mtq-evidence">검증 자료</a><a href="#mtq-improve">보완 계획</a></aside>
+        <aside class="toc-card" aria-label="MyTripQuest 목차"><strong>MyTripQuest</strong><a href="#mtq-overview">개요</a><a href="#mtq-video">영상</a><a href="#mtq-decisions">설계 판단</a><a href="#mtq-evidence">검증 자료</a><a href="#mtq-improve">보완 계획</a></aside>
         <div class="case-body">
           <header id="mtq-overview"><p class="card-label">보조 사례 · 기여 범위 주의</p><h3 id="case-mtq-title">MyTripQuest — 위치·사진 인증 조건을 나눈 여행 퀘스트</h3><p>2인 풀스택 프로젝트이므로 단독 구현보다 팀 구현 흐름과 설명 가능한 백엔드 조건 분리 경험으로 짧게 소개합니다.</p></header>
-          <div class="media-grid mobile-detail"><figure class="screenshot-frame phone"><img src="assets/images/mtq-main.png" width="391" height="842" alt="MyTripQuest 메인 화면" loading="lazy" /></figure><figure class="screenshot-frame phone"><img src="assets/images/mtq-quest.png" width="391" height="843" alt="MyTripQuest 퀘스트 상세 화면" loading="lazy" /></figure></div>
+          <section class="service-video-card" id="mtq-video" aria-labelledby="mtq-video-title">
+            <div class="service-video-copy">
+              <p class="card-label">서비스 소개 영상</p>
+              <h4 id="mtq-video-title">MyTripQuest 서비스 시연</h4>
+              <p>YouTube 링크를 연결하면 이 영역에서 바로 재생됩니다.</p>
+            </div>
+            <div class="video-frame" data-youtube-id="" data-video-title="MyTripQuest 서비스 소개 영상">
+              <div class="video-placeholder" aria-hidden="true"><span>▶</span><strong>영상 준비 중</strong><small>YouTube ID 연결 예정</small></div>
+            </div>
+          </section>
           <section class="decision-log" id="mtq-decisions"><h4>설계 판단 기록</h4><dl><div><dt>문제</dt><dd>관광지 방문 퀘스트 완료를 위치, 시간, 사진 판정 조건으로 나눠야 했습니다.</dd></div><div><dt>선택</dt><dd>GPS 도착 인증과 AI 사진 인증, 보상·아바타·랭킹 흐름을 팀 구현 사례로 제한해 소개합니다.</dd></div><div><dt>주의</dt><dd>기능별 단독 구현, AI 인증 정확도, production observability는 주장하지 않습니다.</dd></div></dl></section>
           <section class="evidence-panel" id="mtq-evidence"><h4>검증 자료</h4><ul><li><strong>A</strong> GPS 도착 인증과 AI 사진 인증을 결합한 퀘스트 완료 흐름</li><li><strong>A</strong> TourAPI 관광지 기반 장소/퀘스트 생성과 AI 인증 반경 저장</li><li><strong>A</strong> Spring Security, JWT, OAuth2 기반 인증/인가 흐름</li></ul></section>
           <section class="improve-box" id="mtq-improve"><h4>다음에 보완할 점</h4><p>위치, 시간, 사진 인증을 나누어 퀘스트 완료 여부를 판단한 흐름은 학습 경험으로 의미가 있었습니다.</p><p>다음 보완에서는 test profile 또는 Testcontainers로 테스트 실행 환경을 분리하고, OAuth2 로그인 이후 토큰 전달 방식은 URL 전달 대신 HttpOnly Cookie 또는 일회성 auth code 방식으로 개선하겠습니다. AI 사진 인증은 정확도 향상 주장보다 GPS·시간 선검증, AI 실패 fallback, 관리자 검토 로그를 추가하는 방향으로 보완하겠습니다.</p></section>
@@ -412,6 +444,22 @@
         const currentIndex = Math.max(0, projectOrder.findIndex((item) => item.id === caseId));
         const nextIndex = (currentIndex + offset + projectOrder.length) % projectOrder.length;
         return projectOrder[nextIndex];
+      }
+
+      function initYoutubeEmbeds() {
+        document.querySelectorAll('[data-youtube-id]').forEach((frame) => {
+          const videoId = (frame.dataset.youtubeId || '').trim();
+          if (!videoId) return;
+
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`;
+          iframe.title = frame.dataset.videoTitle || '서비스 소개 영상';
+          iframe.loading = 'lazy';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.allowFullscreen = true;
+          frame.replaceChildren(iframe);
+          frame.classList.add('has-video');
+        });
       }
 
       function updateSideNav(caseId) {
@@ -528,6 +576,8 @@
           updateSideVisibility();
         });
       }
+
+      initYoutubeEmbeds();
 
       if (sideNav) {
         window.addEventListener('scroll', requestSideVisibilityUpdate, { passive: true });
