@@ -652,13 +652,39 @@
           .replaceAll("'", '&#039;');
       }
 
+      const highlightTerms = [
+        '비동기 실행', '상태 기준', '분석 요청', '재시도', '공유 링크', '접근 경계', '동시 수정 방지',
+        '출퇴근 기록', '검토 필요 상태', '급여 확인', '증빙', '문서', '클레임', '관리자 승인',
+        '토큰 갱신', '실시간 데이터', '사용자별', '임시 저장', '중복 데이터', 'AI 분석', '리포트',
+        '관광지 정보', '위치 도착 확인', '사진 인증', '퀘스트 상태', '보상', '로그인', '권한',
+        'RabbitMQ', 'Redis', 'PostgreSQL', 'MySQL', 'FastAPI', 'Gemini API', 'TourAPI', 'JWT', 'OAuth2', 'Spring Boot', 'JPA'
+      ].sort((a, b) => b.length - a.length);
+
+      function highlightText(value) {
+        let escaped = escapeHtml(value);
+        highlightTerms.forEach((term) => {
+          const escapedTerm = escapeHtml(term);
+          escaped = escaped.replaceAll(escapedTerm, `<mark class="modal-highlight">${escapedTerm}</mark>`);
+        });
+        return escaped;
+      }
+
+      function sectionTone(title) {
+        if (title === '구현 사항') return ' tone-build';
+        if (title === '담당 역할') return ' tone-role';
+        if (title === '기술 선정 이유') return ' tone-tech';
+        if (title === '프로젝트 성과') return ' tone-result';
+        if (title === '프로젝트 리뷰') return ' tone-review';
+        return '';
+      }
+
       function renderModalSection(section) {
         const wide = section.title === '프로젝트 리뷰' ? ' wide' : '';
-        return `<section class="modal-section${wide}"><h3>✔️ ${escapeHtml(section.title)}</h3><ul>${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></section>`;
+        return `<section class="modal-section${wide}${sectionTone(section.title)}"><h3>✔️ ${escapeHtml(section.title)}</h3><ul>${section.items.map((item) => `<li>${highlightText(item)}</li>`).join('')}</ul></section>`;
       }
 
       function renderStackSection(stack) {
-        return `<section class="modal-section wide"><h3>✔️ 기술 스택</h3><div class="modal-stack">${stack.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</div></section>`;
+        return `<section class="modal-section wide tone-stack"><h3>✔️ 기술 스택</h3><div class="modal-stack">${stack.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</div></section>`;
       }
 
       function openProjectModal(caseId) {
