@@ -159,77 +159,53 @@
         <div class="project-viewport" data-project-viewport>
           <div class="project-picker" aria-label="프로젝트 선택 목록" data-project-track>
         <button class="project-select-card project-preview main is-active" type="button" data-case="wedge" data-title="Wedge" data-desc="비동기 실행 상태 관리">
+          <div class="project-preview-media web-shot" aria-hidden="true">
+            <img src="assets/images/wedge-report-web.png" width="2880" height="1800" alt="" loading="lazy" />
+          </div>
           <div class="project-preview-copy">
             <span class="project-index">01 · 백엔드</span>
             <strong>Wedge</strong>
-            <em>브라우저 실행 기반 UX 진단 리포트</em>
-            <p>비동기 실행 상태, analysis outbox/retry, 리포트 공유 token 경계를 다룬 프로젝트입니다.</p>
-            <dl class="project-preview-facts">
-              <div><dt>문제</dt><dd>비동기 실행 실패 지점 분리</dd></div>
-              <div><dt>선택</dt><dd>상태 매핑 + outbox/retry</dd></div>
-              <div><dt>근거</dt><dd>프로젝트 PDF · 아키텍처</dd></div>
-            </dl>
+            <p>비동기 실행 상태, outbox/retry, 리포트 공유 토큰 경계를 분리한 백엔드 진단 리포트 프로젝트입니다.</p>
             <small>상세 보기 →</small>
-          </div>
-          <div class="project-preview-media web-shot" aria-hidden="true">
-            <img src="assets/images/wedge-report-web.png" width="2880" height="1800" alt="" loading="lazy" />
           </div>
         </button>
 
         <button class="project-select-card project-preview main" type="button" data-case="dondone" data-title="DonDone" data-desc="근무 증빙 데이터 재사용">
-          <div class="project-preview-copy">
-            <span class="project-index">02 · 백엔드</span>
-            <strong>DonDone</strong>
-            <em>근무 기록 기반 급여 지갑 서비스</em>
-            <p>WorkProof 출퇴근 기록을 급여 확인, 문서, 클레임 흐름으로 재사용한 프로젝트입니다.</p>
-            <dl class="project-preview-facts">
-              <div><dt>문제</dt><dd>근무 증빙 데이터 재사용</dd></div>
-              <div><dt>선택</dt><dd>급여·문서·클레임 흐름 분리</dd></div>
-              <div><dt>근거</dt><dd>프로젝트 PDF · 모바일 흐름</dd></div>
-            </dl>
-            <small>상세 보기 →</small>
-          </div>
           <div class="project-preview-media mobile-shots" aria-hidden="true">
             <img src="assets/images/dondone-check.png" width="657" height="1388" alt="" loading="lazy" />
             <img src="assets/images/dondone-wage-review.png" width="865" height="1819" alt="" loading="lazy" />
           </div>
+          <div class="project-preview-copy">
+            <span class="project-index">02 · 백엔드</span>
+            <strong>DonDone</strong>
+            <p>출퇴근 WorkProof를 급여 확인, 문서, 클레임 흐름에서 재사용하도록 데이터 기준을 정리한 서비스입니다.</p>
+            <small>상세 보기 →</small>
+          </div>
         </button>
 
         <button class="project-select-card project-preview" type="button" data-case="dnc" data-title="DNC" data-desc="외부 API·AI 분석 연동">
-          <div class="project-preview-copy">
-            <span class="project-index">03 · 백엔드 / 인프라</span>
-            <strong>DNC 당낭콩</strong>
-            <em>CGM 식단 기록 기반 AI 리포트</em>
-            <p>Dexcom CGM 데이터, 사용자별 Redis buffer, AI 서버 결과 매핑을 다룬 프로젝트입니다.</p>
-            <dl class="project-preview-facts">
-              <div><dt>문제</dt><dd>외부 센서·AI 결과 연결</dd></div>
-              <div><dt>선택</dt><dd>사용자별 격리와 중복 체크</dd></div>
-              <div><dt>근거</dt><dd>프로젝트 PDF · API 매핑</dd></div>
-            </dl>
-            <small>상세 보기 →</small>
-          </div>
           <div class="project-preview-media mobile-shots" aria-hidden="true">
             <img src="assets/images/dnc-analysis.png" width="624" height="1388" alt="" loading="lazy" />
             <img src="assets/images/dnc-report.png" width="688" height="1439" alt="" loading="lazy" />
           </div>
+          <div class="project-preview-copy">
+            <span class="project-index">03 · 백엔드 / 인프라</span>
+            <strong>DNC 당낭콩</strong>
+            <p>CGM 데이터 수집, 사용자별 Redis buffer, AI 분석 결과 매핑을 다룬 외부 API·AI 연동 사례입니다.</p>
+            <small>상세 보기 →</small>
+          </div>
         </button>
 
         <button class="project-select-card project-preview" type="button" data-case="mtq" data-title="MyTripQuest" data-desc="GPS·AI 사진 인증">
-          <div class="project-preview-copy">
-            <span class="project-index">04 · 풀스택</span>
-            <strong>MyTripQuest</strong>
-            <em>위치 기반 여행 퀘스트 플랫폼</em>
-            <p>TourAPI, GPS 도착 인증, AI 사진 인증, 보상·랭킹 흐름을 다룬 프로젝트입니다.</p>
-            <dl class="project-preview-facts">
-              <div><dt>문제</dt><dd>위치·사진 인증과 보상 연결</dd></div>
-              <div><dt>선택</dt><dd>도착 인증 후 퀘스트 상태 전이</dd></div>
-              <div><dt>근거</dt><dd>프로젝트 PDF · 앱 화면</dd></div>
-            </dl>
-            <small>상세 보기 →</small>
-          </div>
           <div class="project-preview-media mobile-shots" aria-hidden="true">
             <img src="assets/images/mtq-map.png" width="391" height="844" alt="" loading="lazy" />
             <img src="assets/images/mtq-quest.png" width="391" height="843" alt="" loading="lazy" />
+          </div>
+          <div class="project-preview-copy">
+            <span class="project-index">04 · 풀스택</span>
+            <strong>MyTripQuest</strong>
+            <p>TourAPI, GPS 도착 인증, AI 사진 인증을 퀘스트 상태·보상 흐름으로 연결한 여행 서비스입니다.</p>
+            <small>상세 보기 →</small>
           </div>
         </button>
           </div>
