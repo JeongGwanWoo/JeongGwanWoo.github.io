@@ -426,6 +426,23 @@
   </footer>
 
 
+
+  <dialog class="project-modal" data-project-modal aria-labelledby="project-modal-title">
+    <div class="project-modal-card">
+      <button class="project-modal-close" type="button" data-modal-close aria-label="프로젝트 요약 닫기">×</button>
+      <div class="project-modal-head">
+        <p class="eyebrow" data-modal-kicker>프로젝트 요약</p>
+        <h2 id="project-modal-title" data-modal-title>프로젝트 요약</h2>
+        <p data-modal-summary></p>
+      </div>
+      <div class="project-modal-content" data-modal-content></div>
+      <div class="project-modal-actions">
+        <button class="modal-primary" type="button" data-modal-detail>문제 해결 과정 보기</button>
+        <a class="modal-secondary" href="#" target="_blank" rel="noopener" data-modal-pdf>PDF 보기</a>
+      </div>
+    </div>
+  </dialog>
+
   <nav class="side-project-nav" data-side-nav aria-label="다른 프로젝트 선택" aria-hidden="true" inert>
     <button class="side-project-button prev" type="button" data-side-action="prev">
       <span>이전 프로젝트</span>
@@ -452,6 +469,76 @@
         title: card.dataset.title,
         desc: card.dataset.desc
       }));
+      const projectModal = document.querySelector('[data-project-modal]');
+      const modalTitle = projectModal?.querySelector('[data-modal-title]');
+      const modalKicker = projectModal?.querySelector('[data-modal-kicker]');
+      const modalSummary = projectModal?.querySelector('[data-modal-summary]');
+      const modalContent = projectModal?.querySelector('[data-modal-content]');
+      const modalPdf = projectModal?.querySelector('[data-modal-pdf]');
+      const modalDetail = projectModal?.querySelector('[data-modal-detail]');
+      const modalClose = projectModal?.querySelector('[data-modal-close]');
+      let modalLastFocus = null;
+      let modalCloseTimer = 0;
+
+      const modalData = {
+        wedge: {
+          kicker: '01 · Backend',
+          title: 'Wedge',
+          summary: '브라우저 실행 기반 UX 진단 결과를 분석 요청, 리포트, 공유 링크 흐름으로 연결한 프로젝트입니다.',
+          pdf: 'assets/pdfs/wedge.pdf',
+          stack: ['Java', 'Spring Boot', 'JPA', 'PostgreSQL', 'Redis', 'RabbitMQ', 'Docker', 'Jenkins', 'AWS S3'],
+          sections: [
+            { title: '구현 사항', items: ['브라우저 실행 단계와 분석 요청, 리포트 공유 흐름을 상태 기준으로 분리했습니다.', '분석 요청을 저장한 뒤 안전하게 발행하고 실패 시 다시 처리하는 흐름을 구성했습니다.', '리포트 공유 링크의 만료, 회수, 재사용 기준을 나누어 접근 경계를 관리했습니다.'] },
+            { title: '담당 역할', items: ['Spring Core Backend 역할로 Run/Step 상태 매핑 흐름에 참여했습니다.', 'Analysis request 저장, 발행, 재시도 흐름 일부를 구현했습니다.', 'Report share token의 접근 정책과 동시 수정 방지 기준 구현에 참여했습니다.'] },
+            { title: '기술 선정 이유', items: ['RabbitMQ는 브라우저 실행 이후 분석 요청을 느슨하게 분리하기 위해 사용했습니다.', 'Redis는 실행 중간 상태나 임시 데이터를 빠르게 다루기 위해 사용했습니다.', 'PostgreSQL은 실행 결과와 리포트 데이터를 안정적으로 보관하기 위해 사용했습니다.'] },
+            { title: '프로젝트 성과', items: ['비동기 실행 실패 지점을 상태 기준으로 추적할 수 있는 구조를 경험했습니다.', '트랜잭션 이후 이벤트 발행과 재시도 흐름을 분리하는 필요성을 학습했습니다.', '공개 링크처럼 외부에 노출되는 기능은 만료와 회수 정책이 중요하다는 점을 확인했습니다.'] },
+            { title: '프로젝트 리뷰', items: ['지금이라면 중복 callback, terminal 상태 이후 이벤트 거부, outbox 재시도 케이스를 테스트로 더 보강하겠습니다.', '비동기 흐름은 구현보다 운영 중 관찰 가능한 로그와 상태 설계가 더 중요하다는 점을 배웠습니다.'] }
+          ]
+        },
+        dondone: {
+          kicker: '02 · Backend',
+          title: 'DonDone',
+          summary: '출퇴근 근무 증빙을 급여 확인, 문서, 클레임 흐름에서 재사용하도록 정리한 서비스입니다.',
+          pdf: 'assets/pdfs/dondone.pdf',
+          stack: ['Java', 'Spring Boot', 'JPA', 'MySQL', 'Redis', 'Docker', 'Jenkins', 'NGINX'],
+          sections: [
+            { title: '구현 사항', items: ['출근·퇴근 기록을 여러 기능에서 다시 쓸 수 있는 기준 데이터로 정리했습니다.', '위치 기준을 벗어난 기록을 바로 실패 처리하지 않고 검토 필요 상태로 남겼습니다.', '급여 확인 시점의 근무 증빙을 문서와 클레임 흐름에 연결했습니다.'] },
+            { title: '담당 역할', items: ['WorkProof 출퇴근, 위치 검증, 검토 상태 흐름 구현에 참여했습니다.', '급여 확인 기록과 문서/클레임 증빙 연결 흐름을 구성했습니다.', '사업장 검토와 관리자 승인처럼 운영자가 확인해야 하는 일부 흐름에 참여했습니다.'] },
+            { title: '기술 선정 이유', items: ['Spring Boot와 JPA는 근무 기록, 급여, 문서 도메인을 명확히 나누기 위해 사용했습니다.', 'MySQL은 근무 기록과 검토 상태처럼 관계가 분명한 데이터를 저장하기 위해 사용했습니다.', 'Redis는 인증이나 반복 조회가 필요한 임시 데이터를 빠르게 다루기 위해 사용했습니다.'] },
+            { title: '프로젝트 성과', items: ['하나의 출퇴근 기록을 여러 업무 흐름에서 재사용하는 데이터 기준을 경험했습니다.', '예외 상황을 실패로 끝내기보다 검토 가능한 상태로 남기는 설계의 필요성을 배웠습니다.', '문서와 클레임 기능에서는 기준 데이터가 흔들리지 않는 것이 중요하다는 점을 확인했습니다.'] },
+            { title: '프로젝트 리뷰', items: ['지금이라면 WorkProof → Wage → Documents/Claim 흐름을 기능 단위 테스트로 더 촘촘히 검증하겠습니다.', '선지급 요청처럼 중복 요청 위험이 있는 기능은 Idempotency-Key 정책을 더 명확히 문서화하겠습니다.'] }
+          ]
+        },
+        dnc: {
+          kicker: '03 · Backend / Infra',
+          title: 'DNC 당낭콩',
+          summary: '실시간 건강 데이터와 AI 분석 결과를 사용자별 식단 리포트 흐름으로 연결한 프로젝트입니다.',
+          pdf: 'assets/pdfs/dnc.pdf',
+          stack: ['Java', 'Spring Boot', 'JPA', 'MySQL', 'Redis', 'FastAPI', 'Gemini API', 'Docker'],
+          sections: [
+            { title: '구현 사항', items: ['외부 서비스 연동이 끊기지 않도록 토큰 갱신 흐름을 구성했습니다.', '사용자의 실시간 데이터를 주기적으로 받아와 사용자별로 임시 저장했습니다.', 'AI 서버 결과를 서비스의 식단 분석과 리포트 데이터로 연결했습니다.'] },
+            { title: '담당 역할', items: ['토큰 갱신, 실시간 데이터 수집, 사용자별 임시 저장 흐름에 참여했습니다.', '중복 데이터 저장을 막기 위한 사용자와 기록 ID 기준 확인 흐름을 구성했습니다.', 'AI 분석 결과와 요약 내용을 리포트 흐름에 매핑했습니다.'] },
+            { title: '기술 선정 이유', items: ['Redis는 사용자별 실시간 데이터를 분리해 임시 저장하기 위해 사용했습니다.', 'FastAPI는 AI 분석 서버와 Spring Boot 서비스의 역할을 분리하기 위해 사용했습니다.', 'Gemini API는 리포트 요약처럼 사용자가 이해하기 쉬운 문장을 생성하기 위해 연동했습니다.'] },
+            { title: '프로젝트 성과', items: ['외부 API, 임시 저장소, AI 서버, 리포트가 이어지는 전체 연동 흐름을 경험했습니다.', '사용자별 데이터 격리와 중복 방지가 외부 데이터 연동에서 중요하다는 점을 배웠습니다.', 'AI 기능은 정확도 주장보다 실패 처리와 결과 매핑 기준이 중요하다는 점을 확인했습니다.'] },
+            { title: '프로젝트 리뷰', items: ['지금이라면 외부 API 실패, Redis 장애, AI 서버 실패에 대한 fallback과 모니터링 지표를 추가하겠습니다.', '건강 정보처럼 민감해 보이는 데이터는 공개 화면에서 더 강하게 익명화하고 표현 범위를 제한하겠습니다.'] }
+          ]
+        },
+        mtq: {
+          kicker: '04 · Full Stack',
+          title: 'MyTripQuest',
+          summary: '관광지 정보, 위치 도착 확인, 사진 인증을 퀘스트 완료와 보상 흐름으로 연결한 여행 서비스입니다.',
+          pdf: 'assets/pdfs/mytripquest.pdf',
+          stack: ['Java', 'Spring Boot', 'JPA', 'MySQL', 'JWT', 'OAuth2', 'TourAPI', 'Docker'],
+          sections: [
+            { title: '구현 사항', items: ['공공 관광지 정보를 받아와 퀘스트 장소 데이터로 연결했습니다.', '사용자의 현재 위치가 관광지 근처인지 확인해 도착 조건을 판단했습니다.', '사진 인증, 퀘스트 상태 변경, 보상 흐름을 단계별로 나누어 구성했습니다.'] },
+            { title: '담당 역할', items: ['관광지 정보 연동과 위치 도착 확인 흐름 구현에 참여했습니다.', '사진 인증 결과를 퀘스트 상태 변경과 보상 처리 흐름으로 연결했습니다.', 'JWT/OAuth2 기반 로그인 이후 접근 권한 처리 흐름에 참여했습니다.'] },
+            { title: '기술 선정 이유', items: ['TourAPI는 실제 관광지 데이터를 기반으로 여행 퀘스트를 만들기 위해 사용했습니다.', 'JWT와 OAuth2는 로그인 이후 사용자별 퀘스트 접근을 분리하기 위해 사용했습니다.', 'Spring Boot와 JPA는 장소, 퀘스트, 보상 도메인을 안정적으로 관리하기 위해 사용했습니다.'] },
+            { title: '프로젝트 성과', items: ['위치 확인과 사진 인증을 한 덩어리로 보지 않고 단계별 조건으로 나누어 구현했습니다.', '관광지 데이터, 사용자 행동, 보상 흐름이 연결되는 서비스 구조를 경험했습니다.', '2인 프로젝트에서 역할을 나누고 서로의 구현 흐름을 맞추는 협업 경험을 얻었습니다.'] },
+            { title: '프로젝트 리뷰', items: ['지금이라면 테스트 실행 환경을 분리하고 위치·사진 인증 실패 케이스를 더 많이 검증하겠습니다.', 'OAuth2 로그인 이후 토큰 전달 방식은 URL 전달보다 HttpOnly Cookie나 일회성 code 방식으로 개선하겠습니다.'] }
+          ]
+        }
+      };
+
 
       function hashFromHref(value) {
         if (!value) return '';
@@ -556,6 +643,65 @@
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+
+      function renderModalSection(section) {
+        const wide = section.title === '프로젝트 리뷰' ? ' wide' : '';
+        return `<section class="modal-section${wide}"><h3>✔️ ${escapeHtml(section.title)}</h3><ul>${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></section>`;
+      }
+
+      function renderStackSection(stack) {
+        return `<section class="modal-section wide"><h3>✔️ 기술 스택</h3><div class="modal-stack">${stack.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</div></section>`;
+      }
+
+      function openProjectModal(caseId) {
+        if (!projectModal || !modalData[caseId]) return;
+        const data = modalData[caseId];
+        modalLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        projectModal.dataset.currentCase = caseId;
+        modalKicker.textContent = data.kicker;
+        modalTitle.textContent = data.title;
+        modalSummary.textContent = data.summary;
+        modalPdf.href = data.pdf;
+        modalContent.innerHTML = [
+          renderModalSection(data.sections[0]),
+          renderModalSection(data.sections[1]),
+          renderStackSection(data.stack),
+          ...data.sections.slice(2).map(renderModalSection)
+        ].join('');
+
+        window.clearTimeout(modalCloseTimer);
+        if (!projectModal.open) projectModal.showModal();
+        document.body.classList.add('modal-open');
+        window.requestAnimationFrame(() => projectModal.classList.add('is-open'));
+        modalDetail.focus({ preventScroll: true });
+      }
+
+      function closeProjectModal({ immediate = false } = {}) {
+        if (!projectModal || !projectModal.open) return;
+        window.clearTimeout(modalCloseTimer);
+        projectModal.classList.remove('is-open');
+        document.body.classList.remove('modal-open');
+
+        const finish = () => {
+          if (projectModal.open) projectModal.close();
+          modalLastFocus?.focus?.({ preventScroll: true });
+        };
+
+        if (immediate) {
+          finish();
+        } else {
+          modalCloseTimer = window.setTimeout(finish, 180);
+        }
+      }
+
       function activate(caseId) {
         if (!known.has(caseId)) caseId = 'wedge';
         updateSideNav(caseId);
@@ -580,9 +726,27 @@
           const caseId = card.dataset.case;
           cleanCaseHash();
           activate(caseId);
-          scrollToCaseSection();
+          openProjectModal(caseId);
         });
       });
+
+      if (projectModal) {
+        modalClose?.addEventListener('click', () => closeProjectModal());
+        projectModal.addEventListener('cancel', (event) => {
+          event.preventDefault();
+          closeProjectModal();
+        });
+        projectModal.addEventListener('click', (event) => {
+          if (event.target === projectModal) closeProjectModal();
+        });
+        modalDetail?.addEventListener('click', () => {
+          const caseId = projectModal.dataset.currentCase || 'wedge';
+          closeProjectModal({ immediate: true });
+          cleanCaseHash();
+          activate(caseId);
+          scrollToCaseSection();
+        });
+      }
 
       [sidePrev, sideNext].forEach((button) => {
         if (!button) return;
