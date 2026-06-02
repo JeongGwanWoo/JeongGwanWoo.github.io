@@ -41,6 +41,7 @@
             <iframe src="https://www.youtube-nocookie.com/embed/2jrZPjJJ3KY?rel=0" title="MyTripQuest 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
           <img class="project-page-view-image" data-page-image hidden alt="" />
+          <div class="project-page-zoom" data-page-zoom aria-hidden="true"></div>
           <figcaption data-page-caption>서비스 소개 영상</figcaption>
         </figure>
         <div class="project-page-thumbs" aria-label="MyTripQuest 미디어 선택">
@@ -113,9 +114,51 @@
       const video = gallery.querySelector('[data-page-video]');
       const iframe = video?.querySelector('iframe');
       const image = gallery.querySelector('[data-page-image]');
+      const zoom = gallery.querySelector('[data-page-zoom]');
       const caption = gallery.querySelector('[data-page-caption]');
       const viewer = gallery.querySelector('.project-page-media-viewer');
       const buttons = [...gallery.querySelectorAll('.project-page-thumb')];
+      const ZOOM_SCALE = 3.1;
+
+      function hideZoom() {
+        zoom?.classList.remove('is-visible');
+      }
+
+      function getContainedImageRect(target) {
+        const rect = target.getBoundingClientRect();
+        const naturalRatio = target.naturalWidth && target.naturalHeight ? target.naturalWidth / target.naturalHeight : rect.width / rect.height;
+        const boxRatio = rect.width / rect.height;
+        let width = rect.width;
+        let height = rect.height;
+        let left = rect.left;
+        let top = rect.top;
+
+        if (naturalRatio > boxRatio) {
+          height = rect.width / naturalRatio;
+          top = rect.top + (rect.height - height) / 2;
+        } else {
+          width = rect.height * naturalRatio;
+          left = rect.left + (rect.width - width) / 2;
+        }
+        return { left, top, width, height };
+      }
+
+      function updateZoom(event) {
+        if (!image || !zoom || image.hidden || !image.naturalWidth) return;
+        const content = getContainedImageRect(image);
+        const zoomRect = zoom.getBoundingClientRect();
+        const x = Math.min(1, Math.max(0, (event.clientX - content.left) / content.width));
+        const y = Math.min(1, Math.max(0, (event.clientY - content.top) / content.height));
+        const backgroundWidth = content.width * ZOOM_SCALE;
+        const backgroundHeight = content.height * ZOOM_SCALE;
+        const backgroundX = -(x * backgroundWidth - zoomRect.width / 2);
+        const backgroundY = -(y * backgroundHeight - zoomRect.height / 2);
+
+        zoom.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
+        zoom.style.backgroundSize = `${backgroundWidth}px ${backgroundHeight}px`;
+        zoom.style.backgroundPosition = `${backgroundX}px ${backgroundY}px`;
+        zoom.classList.add('is-visible');
+      }
 
       function selectMedia(button) {
         buttons.forEach((item) => {
@@ -123,6 +166,7 @@
           item.classList.toggle('is-active', active);
           item.setAttribute('aria-pressed', String(active));
         });
+        hideZoom();
 
         if (button.dataset.type === 'video') {
           if (iframe && iframe.src !== button.dataset.src) iframe.src = button.dataset.src;
@@ -142,6 +186,9 @@
         if (caption) caption.textContent = button.dataset.caption || '';
       }
 
+      image?.addEventListener('mousemove', updateZoom);
+      image?.addEventListener('mouseenter', updateZoom);
+      image?.addEventListener('mouseleave', hideZoom);
       buttons.forEach((button) => button.addEventListener('click', () => selectMedia(button)));
     });
   </script>
