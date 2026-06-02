@@ -27,7 +27,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html styles.css _site/
+          cp index.html styles.css project-*.html _site/
           cp -r assets _site/assets
 
       - name: Setup Pages
