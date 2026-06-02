@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DonDone | 정관우 포트폴리오</title>
+  <meta name="description" content="DonDone 프로젝트 상세 페이지" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="project-detail-page" data-project="dondone">
+  <nav class="nav">
+    <a href="index.html#projects">← 프로젝트 선택으로</a>
+    <div class="nav-links">
+      <a href="#media">영상·이미지</a>
+      <a href="#content">구현 내용</a>
+      <a href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">PDF</a>
+    </div>
+  </nav>
+  <main class="project-page-main">
+    <header class="project-page-hero">
+      <p class="eyebrow">02 · Backend</p>
+      <h1>DonDone</h1>
+      <p class="project-page-subtitle">외국인 근로자를 위한 근무 기록 기반 급여 지갑</p>
+      <p class="lead">출퇴근 근무 증빙을 급여 확인, 문서, 클레임 흐름에서 재사용하도록 정리한 서비스입니다.</p>
+    </header>
+
+    <section class="project-page-media" id="media" aria-labelledby="media-title">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Video · Images</p>
+          <h2 id="media-title">영상과 이미지</h2>
+        </div>
+        <a class="modal-secondary" href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
+      </div>
+      <div class="project-page-media-grid">
+        <div class="project-page-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/SWdI_c_8MB8?rel=0" title="DonDone 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="project-page-gallery" aria-label="DonDone 이미지 목록">
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dondone/attendance.png" alt="DonDone 출퇴근" loading="lazy" />
+            <figcaption>출퇴근</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dondone/wage-review.png" alt="DonDone 급여점검" loading="lazy" />
+            <figcaption>급여점검</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dondone/advance.png" alt="DonDone 미리받기" loading="lazy" />
+            <figcaption>미리받기</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dondone/report-pdf.png" alt="DonDone 리포트 PDF" loading="lazy" />
+            <figcaption>리포트 PDF</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-page-content" id="content" aria-labelledby="content-title">
+      <div class="section-head">
+        <p class="eyebrow">Project Summary</p>
+        <h2 id="content-title">구현 내용 정리</h2>
+      </div>
+      <section class="project-page-section tone-stack">
+        <h2>✔️ 기술 스택</h2>
+        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>Redis</span><span>Docker</span><span>Jenkins</span><span>NGINX</span></div>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 구현 사항</h2>
+        <ul><li>근무자의 출근·퇴근 기록을 이후 급여 확인과 문서 흐름에서 다시 쓸 수 있는 기준 데이터로 정리했습니다.</li><li>GPS 위치가 근무지 기준과 맞는지 확인하고, 예외 상황을 바로 버리지 않도록 흐름을 나눴습니다.</li><li>위치 기준을 벗어난 퇴근 기록을 실패로 끝내지 않고 관리자가 확인할 수 있는 상태로 남겼습니다.</li><li>급여 확인 시점의 근무 증빙을 고정해, 나중에 문서와 클레임에서 같은 기준을 재사용할 수 있게 했습니다.</li><li>출퇴근 기록을 문서 생성과 클레임 준비 흐름에 연결해, 기능마다 다른 기준을 쓰지 않도록 했습니다.</li><li>사업장 등록 검토와 선지급 승인처럼 관리자가 확인해야 하는 요청 흐름 일부를 구성했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 담당 역할</h2>
+        <ul><li>WorkProof 출퇴근, 위치 검증, 검토 상태 흐름 구현에 참여했습니다.</li><li>급여 확인 기록과 문서/클레임 증빙 연결 흐름을 구성했습니다.</li><li>사업장 검토와 관리자 승인처럼 운영자가 확인해야 하는 일부 흐름에 참여했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 기술 선정 이유</h2>
+        <ul><li>Spring Boot와 JPA는 근무 기록, 급여, 문서 도메인을 명확히 나누기 위해 사용했습니다.</li><li>MySQL은 근무 기록과 검토 상태처럼 관계가 분명한 데이터를 저장하기 위해 사용했습니다.</li><li>Redis는 인증이나 반복 조회가 필요한 임시 데이터를 빠르게 다루기 위해 사용했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 프로젝트 성과</h2>
+        <ul><li>하나의 출퇴근 기록을 여러 업무 흐름에서 재사용하는 데이터 기준을 경험했습니다.</li><li>예외 상황을 실패로 끝내기보다 검토 가능한 상태로 남기는 설계의 필요성을 배웠습니다.</li><li>문서와 클레임 기능에서는 기준 데이터가 흔들리지 않는 것이 중요하다는 점을 확인했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 프로젝트 리뷰</h2>
+        <ul><li>지금이라면 WorkProof → Wage → Documents/Claim 흐름을 기능 단위 테스트로 더 촘촘히 검증하겠습니다.</li><li>선지급 요청처럼 중복 요청 위험이 있는 기능은 Idempotency-Key 정책을 더 명확히 문서화하겠습니다.</li></ul>
+      </section>
+    </section>
+
+    <div class="project-page-bottom-nav">
+      <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
+    </div>
+  </main>
+</body>
+</html>

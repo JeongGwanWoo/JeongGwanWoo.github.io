@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNC 당낭콩 | 정관우 포트폴리오</title>
+  <meta name="description" content="DNC 당낭콩 프로젝트 상세 페이지" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="project-detail-page" data-project="dnc">
+  <nav class="nav">
+    <a href="index.html#projects">← 프로젝트 선택으로</a>
+    <div class="nav-links">
+      <a href="#media">영상·이미지</a>
+      <a href="#content">구현 내용</a>
+      <a href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">PDF</a>
+    </div>
+  </nav>
+  <main class="project-page-main">
+    <header class="project-page-hero">
+      <p class="eyebrow">03 · Backend / Infra</p>
+      <h1>DNC 당낭콩</h1>
+      <p class="project-page-subtitle">AI 기반 개인화 혈당 예측·식단 코칭 헬스케어 서비스</p>
+      <p class="lead">실시간 건강 데이터와 AI 분석 결과를 사용자별 식단 리포트 흐름으로 연결한 프로젝트입니다.</p>
+    </header>
+
+    <section class="project-page-media" id="media" aria-labelledby="media-title">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Video · Images</p>
+          <h2 id="media-title">영상과 이미지</h2>
+        </div>
+        <a class="modal-secondary" href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
+      </div>
+      <div class="project-page-media-grid">
+        <div class="project-page-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/sQhA71Rfi8A?rel=0" title="DNC 당낭콩 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="project-page-gallery" aria-label="DNC 당낭콩 이미지 목록">
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dnc/glucose-clean.png" alt="DNC 당낭콩 실시간 혈당 화면" loading="lazy" />
+            <figcaption>실시간 혈당 화면</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dnc/predicted-clean.png" alt="DNC 당낭콩 예상 혈당 화면" loading="lazy" />
+            <figcaption>예상 혈당 화면</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dnc/analysis-clean.png" alt="DNC 당낭콩 분석 촬영 화면" loading="lazy" />
+            <figcaption>분석 촬영 화면</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/dnc/report-clean.png" alt="DNC 당낭콩 리포트 화면" loading="lazy" />
+            <figcaption>리포트 화면</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-page-content" id="content" aria-labelledby="content-title">
+      <div class="section-head">
+        <p class="eyebrow">Project Summary</p>
+        <h2 id="content-title">구현 내용 정리</h2>
+      </div>
+      <section class="project-page-section tone-stack">
+        <h2>✔️ 기술 스택</h2>
+        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>Redis</span><span>FastAPI</span><span>Gemini API</span><span>Docker</span></div>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 구현 사항</h2>
+        <ul><li>외부 서비스 연동이 끊기지 않도록 만료되는 접근 토큰을 갱신하는 흐름을 구성했습니다.</li><li>사용자의 센서 데이터를 주기적으로 받아와 식단 기록과 리포트에서 쓸 수 있는 데이터 흐름으로 연결했습니다.</li><li>사용자마다 데이터를 따로 임시 저장해, 서로의 데이터가 섞이지 않도록 분리했습니다.</li><li>이미 저장된 외부 데이터가 다시 들어와도 중복 저장되지 않도록 사용자와 기록 ID 기준을 확인했습니다.</li><li>AI 서버가 돌려준 분석 결과를 서비스의 식단·리포트 데이터로 사용할 수 있게 매핑했습니다.</li><li>수집 데이터와 AI 요약 결과가 사용자가 보는 리포트로 이어지도록 연결 흐름을 정리했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 담당 역할</h2>
+        <ul><li>토큰 갱신, 실시간 데이터 수집, 사용자별 임시 저장 흐름에 참여했습니다.</li><li>중복 데이터 저장을 막기 위한 사용자와 기록 ID 기준 확인 흐름을 구성했습니다.</li><li>AI 분석 결과와 요약 내용을 리포트 흐름에 매핑했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 기술 선정 이유</h2>
+        <ul><li>Redis는 사용자별 실시간 데이터를 분리해 임시 저장하기 위해 사용했습니다.</li><li>FastAPI는 AI 분석 서버와 Spring Boot 서비스의 역할을 분리하기 위해 사용했습니다.</li><li>Gemini API는 리포트 요약처럼 사용자가 이해하기 쉬운 문장을 생성하기 위해 연동했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 프로젝트 성과</h2>
+        <ul><li>외부 API, 임시 저장소, AI 서버, 리포트가 이어지는 전체 연동 흐름을 경험했습니다.</li><li>사용자별 데이터 격리와 중복 방지가 외부 데이터 연동에서 중요하다는 점을 배웠습니다.</li><li>AI 기능은 정확도 주장보다 실패 처리와 결과 매핑 기준이 중요하다는 점을 확인했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 프로젝트 리뷰</h2>
+        <ul><li>지금이라면 외부 API 실패, Redis 장애, AI 서버 실패에 대한 fallback과 모니터링 지표를 추가하겠습니다.</li><li>건강 정보처럼 민감해 보이는 데이터는 공개 화면에서 더 강하게 익명화하고 표현 범위를 제한하겠습니다.</li></ul>
+      </section>
+    </section>
+
+    <div class="project-page-bottom-nav">
+      <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
+    </div>
+  </main>
+</body>
+</html>

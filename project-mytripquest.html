@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyTripQuest | 정관우 포트폴리오</title>
+  <meta name="description" content="MyTripQuest 프로젝트 상세 페이지" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="project-detail-page" data-project="mtq">
+  <nav class="nav">
+    <a href="index.html#projects">← 프로젝트 선택으로</a>
+    <div class="nav-links">
+      <a href="#media">영상·이미지</a>
+      <a href="#content">구현 내용</a>
+      <a href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">PDF</a>
+    </div>
+  </nav>
+  <main class="project-page-main">
+    <header class="project-page-hero">
+      <p class="eyebrow">04 · Full Stack</p>
+      <h1>MyTripQuest</h1>
+      <p class="project-page-subtitle">GPS와 AI 사진 인증을 활용한 위치 기반 여행 퀘스트 플랫폼</p>
+      <p class="lead">관광지 정보, 위치 도착 확인, 사진 인증을 퀘스트 완료와 보상 흐름으로 연결한 여행 서비스입니다.</p>
+    </header>
+
+    <section class="project-page-media" id="media" aria-labelledby="media-title">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Video · Images</p>
+          <h2 id="media-title">영상과 이미지</h2>
+        </div>
+        <a class="modal-secondary" href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
+      </div>
+      <div class="project-page-media-grid">
+        <div class="project-page-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/2jrZPjJJ3KY?rel=0" title="MyTripQuest 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="project-page-gallery" aria-label="MyTripQuest 이미지 목록">
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/mtq/main-page.png" alt="MyTripQuest 메인페이지" loading="lazy" />
+            <figcaption>메인페이지</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/mtq/quest-map.png" alt="MyTripQuest 퀘스트맵" loading="lazy" />
+            <figcaption>퀘스트맵</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/mtq/quest-page.png" alt="MyTripQuest 퀘스트페이지" loading="lazy" />
+            <figcaption>퀘스트페이지</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/mtq/character-customizing.png" alt="MyTripQuest 캐릭터 커스터마이징" loading="lazy" />
+            <figcaption>캐릭터 커스터마이징</figcaption>
+          </figure>
+          <figure class="project-page-shot">
+            <img src="assets/images/gallery/mtq/quest-status.png" alt="MyTripQuest 퀘스트 현황" loading="lazy" />
+            <figcaption>퀘스트 현황</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-page-content" id="content" aria-labelledby="content-title">
+      <div class="section-head">
+        <p class="eyebrow">Project Summary</p>
+        <h2 id="content-title">구현 내용 정리</h2>
+      </div>
+      <section class="project-page-section tone-stack">
+        <h2>✔️ 기술 스택</h2>
+        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>JWT</span><span>OAuth2</span><span>TourAPI</span><span>Docker</span></div>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 구현 사항</h2>
+        <ul><li>공공 관광지 정보를 받아와 퀘스트 장소와 화면에서 사용할 수 있는 데이터로 연결했습니다.</li><li>사용자의 현재 위치가 관광지 근처인지 확인해 퀘스트 완료 조건의 첫 단계를 판단했습니다.</li><li>방문 인증 사진을 AI 판정 흐름과 연결해 위치 확인 이후의 추가 인증 단계로 분리했습니다.</li><li>도착 확인과 사진 인증 결과에 따라 퀘스트 진행 상태가 바뀌도록 흐름을 나눴습니다.</li><li>퀘스트 완료 이후 보상, 아바타, 랭킹으로 이어지는 사용자 보상 흐름을 구성했습니다.</li><li>사용자 로그인 이후 토큰 기반으로 접근 권한을 확인하는 인증 흐름을 구성했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 담당 역할</h2>
+        <ul><li>관광지 정보 연동과 위치 도착 확인 흐름 구현에 참여했습니다.</li><li>사진 인증 결과를 퀘스트 상태 변경과 보상 처리 흐름으로 연결했습니다.</li><li>JWT/OAuth2 기반 로그인 이후 접근 권한 처리 흐름에 참여했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 기술 선정 이유</h2>
+        <ul><li>TourAPI는 실제 관광지 데이터를 기반으로 여행 퀘스트를 만들기 위해 사용했습니다.</li><li>JWT와 OAuth2는 로그인 이후 사용자별 퀘스트 접근을 분리하기 위해 사용했습니다.</li><li>Spring Boot와 JPA는 장소, 퀘스트, 보상 도메인을 안정적으로 관리하기 위해 사용했습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 프로젝트 성과</h2>
+        <ul><li>위치 확인과 사진 인증을 한 덩어리로 보지 않고 단계별 조건으로 나누어 구현했습니다.</li><li>관광지 데이터, 사용자 행동, 보상 흐름이 연결되는 서비스 구조를 경험했습니다.</li><li>2인 프로젝트에서 역할을 나누고 서로의 구현 흐름을 맞추는 협업 경험을 얻었습니다.</li></ul>
+      </section>
+      <section class="project-page-section">
+        <h2>✔️ 프로젝트 리뷰</h2>
+        <ul><li>지금이라면 테스트 실행 환경을 분리하고 위치·사진 인증 실패 케이스를 더 많이 검증하겠습니다.</li><li>OAuth2 로그인 이후 토큰 전달 방식은 URL 전달보다 HttpOnly Cookie나 일회성 code 방식으로 개선하겠습니다.</li></ul>
+      </section>
+    </section>
+
+    <div class="project-page-bottom-nav">
+      <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
+    </div>
+  </main>
+</body>
+</html>
