@@ -1207,8 +1207,8 @@ body.modal-open {
   display: grid;
   gap: 18px;
 }
-.project-page-media-actions {
-  justify-content: flex-end;
+.project-page-pdf-link {
+  justify-self: end;
 }
 .project-page-gallery-shell {
   display: grid;
