@@ -444,12 +444,11 @@
     </div>
   </dialog>
 
-  <dialog class="image-modal" data-image-modal aria-labelledby="image-modal-title">
+  <dialog class="image-modal" data-image-modal aria-label="프로젝트 영상과 이미지">
     <div class="image-modal-card">
       <button class="project-modal-close image-modal-close" type="button" data-image-modal-close aria-label="영상과 이미지 닫기">×</button>
       <div class="image-modal-head">
-        <p class="eyebrow">영상 · 이미지</p>
-        <h2 id="image-modal-title" data-image-modal-title>프로젝트 이미지</h2>
+        <p class="eyebrow" data-image-modal-eyebrow>영상 · 이미지</p>
       </div>
       <div class="image-modal-viewer">
         <button class="image-modal-nav prev" type="button" data-image-modal-prev aria-label="이전 이미지">
@@ -538,7 +537,7 @@
       const modalDetail = projectModal?.querySelector('[data-modal-detail]');
       const modalClose = projectModal?.querySelector('[data-modal-close]');
       const imageModal = document.querySelector('[data-image-modal]');
-      const imageModalTitle = imageModal?.querySelector('[data-image-modal-title]');
+      const imageModalEyebrow = imageModal?.querySelector('[data-image-modal-eyebrow]');
       const imageModalFigure = imageModal?.querySelector('[data-image-modal-figure]');
       const imageModalImg = imageModal?.querySelector('[data-image-modal-img]');
       const imageModalVideo = imageModal?.querySelector('[data-image-modal-video]');
@@ -887,14 +886,15 @@
       }
 
       function selectImageModalItem(index) {
-        if (!imageModalItems.length || !imageModalImg || !imageModalTitle || !imageModalCaption) return;
+        if (!imageModalItems.length || !imageModalImg || !imageModalEyebrow || !imageModalCaption) return;
         imageModalCurrentIndex = (index + imageModalItems.length) % imageModalItems.length;
         const item = imageModalItems[imageModalCurrentIndex];
-        const title = `${imageModalProjectTitle} · ${item.title}`;
+        const itemLabel = item.type === 'video' ? '영상' : item.title;
+        const title = `${imageModalProjectTitle} · ${itemLabel}`;
 
         hideImageZoom();
-        imageModalTitle.textContent = title;
-        imageModalCaption.textContent = `${imageModalCurrentIndex + 1} / ${imageModalItems.length} · ${item.title}`;
+        imageModalEyebrow.textContent = title;
+        imageModalCaption.textContent = `${imageModalCurrentIndex + 1} / ${imageModalItems.length} · ${itemLabel}`;
         imageModalFigure?.classList.toggle('has-video', item.type === 'video');
 
         if (item.type === 'video') {
@@ -932,7 +932,7 @@
       }
 
       function openPreviewImageModal(image, card) {
-        if (!imageModal || !imageModalImg || !imageModalTitle || !imageModalCaption) return false;
+        if (!imageModal || !imageModalImg || !imageModalEyebrow || !imageModalCaption) return false;
         const projectId = card.dataset.case || 'wedge';
         const fallbackTitle = image.alt?.trim() || '프로젝트 이미지';
         const gallery = galleryData[projectId] || [];

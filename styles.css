@@ -870,10 +870,10 @@ body.modal-open {
 .image-modal-head {
   padding-right: 48px;
 }
-.image-modal-head h2 {
-  margin-top: 8px;
-  font-size: clamp(24px, 3vw, 32px);
-  letter-spacing: -.05em;
+.image-modal-head .eyebrow {
+  color: var(--primary);
+  font-size: 13px;
+  letter-spacing: .08em;
 }
 .image-modal-viewer {
   display: grid;
@@ -1161,8 +1161,7 @@ body.modal-open {
   .image-modal-card { padding: 22px 16px 18px; border-radius: 20px; }
   .project-modal-content { grid-template-columns: 1fr; }
   .modal-section.wide { grid-column: auto; }
-  .project-modal-head h2,
-  .image-modal-head h2 { font-size: 27px; }
+  .project-modal-head h2 { font-size: 27px; }
   .image-modal-viewer { grid-template-columns: 1fr; }
   .image-modal-nav { display: none; }
   .image-modal-figure { height: min(62vh, 560px); }
