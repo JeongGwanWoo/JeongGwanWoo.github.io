@@ -839,16 +839,23 @@ body.modal-open {
   font-size: clamp(24px, 3vw, 32px);
   letter-spacing: -.05em;
 }
+.image-modal-viewer {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 46px;
+  gap: 12px;
+  align-items: center;
+}
 .image-modal-figure {
   display: grid;
   gap: 10px;
+  min-width: 0;
   margin: 0;
 }
 .image-modal-figure img {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: 72vh;
+  max-height: 64vh;
   margin: 0 auto;
   object-fit: contain;
   border: 1px solid var(--border);
@@ -860,6 +867,67 @@ body.modal-open {
   font-size: 13px;
   font-weight: 800;
   text-align: center;
+}
+.image-modal-nav {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(15, 118, 110, .22);
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 950;
+  line-height: 1;
+}
+.image-modal-nav:hover,
+.image-modal-nav:focus-visible {
+  border-color: rgba(15, 118, 110, .42);
+  background: #fff;
+}
+.image-modal-thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(118px, 148px);
+  gap: 10px;
+  overflow-x: auto;
+  padding: 2px 2px 8px;
+  scrollbar-width: thin;
+}
+.image-modal-thumb {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+}
+.image-modal-thumb.is-active {
+  border-color: rgba(15, 118, 110, .48);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, .12);
+  color: var(--primary);
+}
+.image-modal-thumb img {
+  width: 100%;
+  height: 82px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 10px;
+  background: var(--surface-muted);
+}
+.image-modal-thumb span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 /* Side project selector shown while reading case studies */
@@ -980,7 +1048,11 @@ body.modal-open {
   .modal-section.wide { grid-column: auto; }
   .project-modal-head h2,
   .image-modal-head h2 { font-size: 27px; }
-  .image-modal-figure img { max-height: 70vh; border-radius: 14px; }
+  .image-modal-viewer { grid-template-columns: 1fr; }
+  .image-modal-nav { display: none; }
+  .image-modal-figure img { max-height: 62vh; border-radius: 14px; }
+  .image-modal-thumbs { grid-auto-columns: minmax(96px, 124px); }
+  .image-modal-thumb img { height: 70px; }
   .project-modal-actions { justify-content: stretch; }
   .modal-primary, .modal-secondary { width: 100%; }
 }
