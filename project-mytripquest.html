@@ -35,31 +35,40 @@
         </div>
         <a class="modal-secondary" href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
       </div>
-      <div class="project-page-media-grid">
-        <div class="project-page-video">
-          <iframe src="https://www.youtube-nocookie.com/embed/2jrZPjJJ3KY?rel=0" title="MyTripQuest 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="project-page-gallery" aria-label="MyTripQuest 이미지 목록">
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/mtq/main-page.png" alt="MyTripQuest 메인페이지" loading="lazy" />
-            <figcaption>메인페이지</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/mtq/quest-map.png" alt="MyTripQuest 퀘스트맵" loading="lazy" />
-            <figcaption>퀘스트맵</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/mtq/quest-page.png" alt="MyTripQuest 퀘스트페이지" loading="lazy" />
-            <figcaption>퀘스트페이지</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/mtq/character-customizing.png" alt="MyTripQuest 캐릭터 커스터마이징" loading="lazy" />
-            <figcaption>캐릭터 커스터마이징</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/mtq/quest-status.png" alt="MyTripQuest 퀘스트 현황" loading="lazy" />
-            <figcaption>퀘스트 현황</figcaption>
-          </figure>
+      <div class="project-page-gallery-shell" data-project-gallery>
+        <figure class="project-page-media-viewer has-video">
+          <div class="project-page-view-video" data-page-video>
+            <iframe src="https://www.youtube-nocookie.com/embed/2jrZPjJJ3KY?rel=0" title="MyTripQuest 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <img class="project-page-view-image" data-page-image hidden alt="" />
+          <figcaption data-page-caption>서비스 소개 영상</figcaption>
+        </figure>
+        <div class="project-page-thumbs" aria-label="MyTripQuest 미디어 선택">
+          <button class="project-page-thumb is-active" type="button" data-type="video" data-src="https://www.youtube-nocookie.com/embed/2jrZPjJJ3KY?rel=0" data-caption="서비스 소개 영상" aria-pressed="true">
+            <img src="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg" alt="" loading="lazy" />
+              <span class="image-modal-thumb-play" aria-hidden="true">▶</span>
+            <span>서비스 영상</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/mtq/main-page.png" data-alt="MyTripQuest 메인페이지" data-caption="메인페이지" aria-pressed="false">
+            <img src="assets/images/gallery/mtq/main-page.png" alt="" loading="lazy" />
+            <span>메인페이지</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/mtq/quest-map.png" data-alt="MyTripQuest 퀘스트맵" data-caption="퀘스트맵" aria-pressed="false">
+            <img src="assets/images/gallery/mtq/quest-map.png" alt="" loading="lazy" />
+            <span>퀘스트맵</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/mtq/quest-page.png" data-alt="MyTripQuest 퀘스트페이지" data-caption="퀘스트페이지" aria-pressed="false">
+            <img src="assets/images/gallery/mtq/quest-page.png" alt="" loading="lazy" />
+            <span>퀘스트페이지</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/mtq/character-customizing.png" data-alt="MyTripQuest 캐릭터 커스터마이징" data-caption="캐릭터 커스터마이징" aria-pressed="false">
+            <img src="assets/images/gallery/mtq/character-customizing.png" alt="" loading="lazy" />
+            <span>캐릭터 커스터마이징</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/mtq/quest-status.png" data-alt="MyTripQuest 퀘스트 현황" data-caption="퀘스트 현황" aria-pressed="false">
+            <img src="assets/images/gallery/mtq/quest-status.png" alt="" loading="lazy" />
+            <span>퀘스트 현황</span>
+          </button>
         </div>
       </div>
     </section>
@@ -99,5 +108,42 @@
       <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
     </div>
   </main>
+  <script data-project-page-gallery-script>
+    document.querySelectorAll('[data-project-gallery]').forEach((gallery) => {
+      const video = gallery.querySelector('[data-page-video]');
+      const iframe = video?.querySelector('iframe');
+      const image = gallery.querySelector('[data-page-image]');
+      const caption = gallery.querySelector('[data-page-caption]');
+      const viewer = gallery.querySelector('.project-page-media-viewer');
+      const buttons = [...gallery.querySelectorAll('.project-page-thumb')];
+
+      function selectMedia(button) {
+        buttons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+
+        if (button.dataset.type === 'video') {
+          if (iframe && iframe.src !== button.dataset.src) iframe.src = button.dataset.src;
+          if (video) video.hidden = false;
+          viewer?.classList.add('has-video');
+          if (image) image.hidden = true;
+        } else {
+          if (iframe) iframe.src = 'about:blank';
+          if (video) video.hidden = true;
+          if (image) {
+            image.src = button.dataset.src || '';
+            image.alt = button.dataset.alt || button.dataset.caption || '';
+            image.hidden = false;
+          }
+          viewer?.classList.remove('has-video');
+        }
+        if (caption) caption.textContent = button.dataset.caption || '';
+      }
+
+      buttons.forEach((button) => button.addEventListener('click', () => selectMedia(button)));
+    });
+  </script>
 </body>
 </html>

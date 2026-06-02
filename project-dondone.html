@@ -35,27 +35,36 @@
         </div>
         <a class="modal-secondary" href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
       </div>
-      <div class="project-page-media-grid">
-        <div class="project-page-video">
-          <iframe src="https://www.youtube-nocookie.com/embed/SWdI_c_8MB8?rel=0" title="DonDone 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="project-page-gallery" aria-label="DonDone 이미지 목록">
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/dondone/attendance.png" alt="DonDone 출퇴근" loading="lazy" />
-            <figcaption>출퇴근</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/dondone/wage-review.png" alt="DonDone 급여점검" loading="lazy" />
-            <figcaption>급여점검</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/dondone/advance.png" alt="DonDone 미리받기" loading="lazy" />
-            <figcaption>미리받기</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/dondone/report-pdf.png" alt="DonDone 리포트 PDF" loading="lazy" />
-            <figcaption>리포트 PDF</figcaption>
-          </figure>
+      <div class="project-page-gallery-shell" data-project-gallery>
+        <figure class="project-page-media-viewer has-video">
+          <div class="project-page-view-video" data-page-video>
+            <iframe src="https://www.youtube-nocookie.com/embed/SWdI_c_8MB8?rel=0" title="DonDone 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <img class="project-page-view-image" data-page-image hidden alt="" />
+          <figcaption data-page-caption>서비스 소개 영상</figcaption>
+        </figure>
+        <div class="project-page-thumbs" aria-label="DonDone 미디어 선택">
+          <button class="project-page-thumb is-active" type="button" data-type="video" data-src="https://www.youtube-nocookie.com/embed/SWdI_c_8MB8?rel=0" data-caption="서비스 소개 영상" aria-pressed="true">
+            <img src="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg" alt="" loading="lazy" />
+              <span class="image-modal-thumb-play" aria-hidden="true">▶</span>
+            <span>서비스 영상</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/dondone/attendance.png" data-alt="DonDone 출퇴근" data-caption="출퇴근" aria-pressed="false">
+            <img src="assets/images/gallery/dondone/attendance.png" alt="" loading="lazy" />
+            <span>출퇴근</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/dondone/wage-review.png" data-alt="DonDone 급여점검" data-caption="급여점검" aria-pressed="false">
+            <img src="assets/images/gallery/dondone/wage-review.png" alt="" loading="lazy" />
+            <span>급여점검</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/dondone/advance.png" data-alt="DonDone 미리받기" data-caption="미리받기" aria-pressed="false">
+            <img src="assets/images/gallery/dondone/advance.png" alt="" loading="lazy" />
+            <span>미리받기</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/dondone/report-pdf.png" data-alt="DonDone 리포트 PDF" data-caption="리포트 PDF" aria-pressed="false">
+            <img src="assets/images/gallery/dondone/report-pdf.png" alt="" loading="lazy" />
+            <span>리포트 PDF</span>
+          </button>
         </div>
       </div>
     </section>
@@ -95,5 +104,42 @@
       <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
     </div>
   </main>
+  <script data-project-page-gallery-script>
+    document.querySelectorAll('[data-project-gallery]').forEach((gallery) => {
+      const video = gallery.querySelector('[data-page-video]');
+      const iframe = video?.querySelector('iframe');
+      const image = gallery.querySelector('[data-page-image]');
+      const caption = gallery.querySelector('[data-page-caption]');
+      const viewer = gallery.querySelector('.project-page-media-viewer');
+      const buttons = [...gallery.querySelectorAll('.project-page-thumb')];
+
+      function selectMedia(button) {
+        buttons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+
+        if (button.dataset.type === 'video') {
+          if (iframe && iframe.src !== button.dataset.src) iframe.src = button.dataset.src;
+          if (video) video.hidden = false;
+          viewer?.classList.add('has-video');
+          if (image) image.hidden = true;
+        } else {
+          if (iframe) iframe.src = 'about:blank';
+          if (video) video.hidden = true;
+          if (image) {
+            image.src = button.dataset.src || '';
+            image.alt = button.dataset.alt || button.dataset.caption || '';
+            image.hidden = false;
+          }
+          viewer?.classList.remove('has-video');
+        }
+        if (caption) caption.textContent = button.dataset.caption || '';
+      }
+
+      buttons.forEach((button) => button.addEventListener('click', () => selectMedia(button)));
+    });
+  </script>
 </body>
 </html>

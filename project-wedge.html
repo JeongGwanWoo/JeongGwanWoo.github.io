@@ -35,43 +35,52 @@
         </div>
         <a class="modal-secondary" href="assets/pdfs/wedge.pdf" target="_blank" rel="noopener">프로젝트 PDF</a>
       </div>
-      <div class="project-page-media-grid">
-        <div class="project-page-video">
-          <iframe src="https://www.youtube-nocookie.com/embed/l0aA3LioQRU?rel=0" title="Wedge 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="project-page-gallery" aria-label="Wedge 이미지 목록">
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/home.png" alt="Wedge 메인 홈" loading="lazy" />
-            <figcaption>메인 홈</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/scenario-select.png" alt="Wedge 시나리오 선택" loading="lazy" />
-            <figcaption>시나리오 선택</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/analysis-progress.png" alt="Wedge 분석 진행 화면" loading="lazy" />
-            <figcaption>분석 진행 화면</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/test-running.png" alt="Wedge 테스트 실행" loading="lazy" />
-            <figcaption>테스트 실행</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/test-done.png" alt="Wedge 테스트 완료" loading="lazy" />
-            <figcaption>테스트 완료</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/report-web.png" alt="Wedge 리포트 웹 화면" loading="lazy" />
-            <figcaption>리포트 웹 화면</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/report-pdf.png" alt="Wedge 리포트 PDF 화면" loading="lazy" />
-            <figcaption>리포트 PDF 화면</figcaption>
-          </figure>
-          <figure class="project-page-shot">
-            <img src="assets/images/gallery/wedge/architecture.png" alt="Wedge 아키텍처" loading="lazy" />
-            <figcaption>아키텍처</figcaption>
-          </figure>
+      <div class="project-page-gallery-shell" data-project-gallery>
+        <figure class="project-page-media-viewer has-video">
+          <div class="project-page-view-video" data-page-video>
+            <iframe src="https://www.youtube-nocookie.com/embed/l0aA3LioQRU?rel=0" title="Wedge 서비스 소개 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <img class="project-page-view-image" data-page-image hidden alt="" />
+          <figcaption data-page-caption>서비스 소개 영상</figcaption>
+        </figure>
+        <div class="project-page-thumbs" aria-label="Wedge 미디어 선택">
+          <button class="project-page-thumb is-active" type="button" data-type="video" data-src="https://www.youtube-nocookie.com/embed/l0aA3LioQRU?rel=0" data-caption="서비스 소개 영상" aria-pressed="true">
+            <img src="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg" alt="" loading="lazy" />
+              <span class="image-modal-thumb-play" aria-hidden="true">▶</span>
+            <span>서비스 영상</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/home.png" data-alt="Wedge 메인 홈" data-caption="메인 홈" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/home.png" alt="" loading="lazy" />
+            <span>메인 홈</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/scenario-select.png" data-alt="Wedge 시나리오 선택" data-caption="시나리오 선택" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/scenario-select.png" alt="" loading="lazy" />
+            <span>시나리오 선택</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/analysis-progress.png" data-alt="Wedge 분석 진행 화면" data-caption="분석 진행 화면" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/analysis-progress.png" alt="" loading="lazy" />
+            <span>분석 진행 화면</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/test-running.png" data-alt="Wedge 테스트 실행" data-caption="테스트 실행" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/test-running.png" alt="" loading="lazy" />
+            <span>테스트 실행</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/test-done.png" data-alt="Wedge 테스트 완료" data-caption="테스트 완료" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/test-done.png" alt="" loading="lazy" />
+            <span>테스트 완료</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/report-web.png" data-alt="Wedge 리포트 웹 화면" data-caption="리포트 웹 화면" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/report-web.png" alt="" loading="lazy" />
+            <span>리포트 웹 화면</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/report-pdf.png" data-alt="Wedge 리포트 PDF 화면" data-caption="리포트 PDF 화면" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/report-pdf.png" alt="" loading="lazy" />
+            <span>리포트 PDF 화면</span>
+          </button>
+          <button class="project-page-thumb" type="button" data-type="image" data-src="assets/images/gallery/wedge/architecture.png" data-alt="Wedge 아키텍처" data-caption="아키텍처" aria-pressed="false">
+            <img src="assets/images/gallery/wedge/architecture.png" alt="" loading="lazy" />
+            <span>아키텍처</span>
+          </button>
         </div>
       </div>
     </section>
@@ -111,5 +120,42 @@
       <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
     </div>
   </main>
+  <script data-project-page-gallery-script>
+    document.querySelectorAll('[data-project-gallery]').forEach((gallery) => {
+      const video = gallery.querySelector('[data-page-video]');
+      const iframe = video?.querySelector('iframe');
+      const image = gallery.querySelector('[data-page-image]');
+      const caption = gallery.querySelector('[data-page-caption]');
+      const viewer = gallery.querySelector('.project-page-media-viewer');
+      const buttons = [...gallery.querySelectorAll('.project-page-thumb')];
+
+      function selectMedia(button) {
+        buttons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+
+        if (button.dataset.type === 'video') {
+          if (iframe && iframe.src !== button.dataset.src) iframe.src = button.dataset.src;
+          if (video) video.hidden = false;
+          viewer?.classList.add('has-video');
+          if (image) image.hidden = true;
+        } else {
+          if (iframe) iframe.src = 'about:blank';
+          if (video) video.hidden = true;
+          if (image) {
+            image.src = button.dataset.src || '';
+            image.alt = button.dataset.alt || button.dataset.caption || '';
+            image.hidden = false;
+          }
+          viewer?.classList.remove('has-video');
+        }
+        if (caption) caption.textContent = button.dataset.caption || '';
+      }
+
+      buttons.forEach((button) => button.addEventListener('click', () => selectMedia(button)));
+    });
+  </script>
 </body>
 </html>
