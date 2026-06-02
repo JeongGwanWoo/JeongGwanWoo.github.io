@@ -159,8 +159,9 @@
         <div class="project-viewport" data-project-viewport>
           <div class="project-picker" aria-label="프로젝트 선택 목록" data-project-track>
         <button class="project-select-card project-preview main is-active" type="button" data-case="wedge" data-title="Wedge" data-desc="비동기 실행 상태 관리">
-          <div class="project-preview-media web-shot" aria-hidden="true">
-            <img src="assets/images/wedge-report-web.png" width="2880" height="1800" alt="" loading="lazy" />
+          <div class="project-preview-media video-shot" aria-hidden="true">
+            <img src="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
+            <span class="project-preview-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg><strong>서비스 영상</strong></span>
           </div>
           <div class="project-preview-copy">
             <span class="project-index">01 · 백엔드</span>
@@ -171,9 +172,9 @@
         </button>
 
         <button class="project-select-card project-preview main" type="button" data-case="dondone" data-title="DonDone" data-desc="근무 증빙 데이터 재사용">
-          <div class="project-preview-media mobile-shots" aria-hidden="true">
-            <img src="assets/images/dondone-check.png" width="657" height="1388" alt="" loading="lazy" />
-            <img src="assets/images/dondone-wage-review.png" width="865" height="1819" alt="" loading="lazy" />
+          <div class="project-preview-media video-shot" aria-hidden="true">
+            <img src="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
+            <span class="project-preview-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg><strong>서비스 영상</strong></span>
           </div>
           <div class="project-preview-copy">
             <span class="project-index">02 · 백엔드</span>
@@ -184,9 +185,9 @@
         </button>
 
         <button class="project-select-card project-preview" type="button" data-case="dnc" data-title="DNC" data-desc="외부 API·AI 분석 연동">
-          <div class="project-preview-media mobile-shots" aria-hidden="true">
-            <img src="assets/images/dnc-analysis.png" width="624" height="1388" alt="" loading="lazy" />
-            <img src="assets/images/dnc-report.png" width="688" height="1439" alt="" loading="lazy" />
+          <div class="project-preview-media video-shot" aria-hidden="true">
+            <img src="https://img.youtube.com/vi/sQhA71Rfi8A/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
+            <span class="project-preview-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg><strong>서비스 영상</strong></span>
           </div>
           <div class="project-preview-copy">
             <span class="project-index">03 · 백엔드 / 인프라</span>
@@ -197,9 +198,9 @@
         </button>
 
         <button class="project-select-card project-preview" type="button" data-case="mtq" data-title="MyTripQuest" data-desc="GPS·AI 사진 인증">
-          <div class="project-preview-media mobile-shots" aria-hidden="true">
-            <img src="assets/images/mtq-map.png" width="391" height="844" alt="" loading="lazy" />
-            <img src="assets/images/mtq-quest.png" width="391" height="843" alt="" loading="lazy" />
+          <div class="project-preview-media video-shot" aria-hidden="true">
+            <img src="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
+            <span class="project-preview-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg><strong>서비스 영상</strong></span>
           </div>
           <div class="project-preview-copy">
             <span class="project-index">04 · 풀스택</span>
@@ -445,17 +446,18 @@
 
   <dialog class="image-modal" data-image-modal aria-labelledby="image-modal-title">
     <div class="image-modal-card">
-      <button class="project-modal-close image-modal-close" type="button" data-image-modal-close aria-label="원본 이미지 닫기">×</button>
+      <button class="project-modal-close image-modal-close" type="button" data-image-modal-close aria-label="영상과 이미지 닫기">×</button>
       <div class="image-modal-head">
-        <p class="eyebrow">원본 이미지</p>
+        <p class="eyebrow">영상 · 이미지</p>
         <h2 id="image-modal-title" data-image-modal-title>프로젝트 이미지</h2>
       </div>
       <div class="image-modal-viewer">
         <button class="image-modal-nav prev" type="button" data-image-modal-prev aria-label="이전 이미지">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8.75 12l5.75 6.5" /></svg>
         </button>
-        <figure class="image-modal-figure">
+        <figure class="image-modal-figure" data-image-modal-figure>
           <img alt="" data-image-modal-img />
+          <div class="image-modal-video" data-image-modal-video hidden></div>
           <div class="image-modal-zoom" data-image-modal-zoom aria-hidden="true"></div>
           <figcaption data-image-modal-caption></figcaption>
         </figure>
@@ -468,6 +470,7 @@
   </dialog>
 
   <template data-gallery-template="wedge">
+    <span data-gallery-video="l0aA3LioQRU" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg"></span>
     <img src="assets/images/gallery/wedge/home.png" alt="메인 홈" />
     <img src="assets/images/gallery/wedge/scenario-select.png" alt="시나리오 선택" />
     <img src="assets/images/gallery/wedge/analysis-progress.png" alt="분석 진행 화면" />
@@ -478,18 +481,21 @@
     <img src="assets/images/gallery/wedge/architecture.png" alt="아키텍처" />
   </template>
   <template data-gallery-template="dondone">
+    <span data-gallery-video="SWdI_c_8MB8" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg"></span>
     <img src="assets/images/gallery/dondone/attendance.png" alt="출퇴근" />
     <img src="assets/images/gallery/dondone/wage-review.png" alt="급여점검" />
     <img src="assets/images/gallery/dondone/advance.png" alt="미리받기" />
     <img src="assets/images/gallery/dondone/report-pdf.png" alt="리포트 PDF" />
   </template>
   <template data-gallery-template="dnc">
+    <span data-gallery-video="sQhA71Rfi8A" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/sQhA71Rfi8A/hqdefault.jpg"></span>
     <img src="assets/images/gallery/dnc/glucose-clean.png" alt="실시간 혈당 화면" />
     <img src="assets/images/gallery/dnc/predicted-clean.png" alt="예상 혈당 화면" />
     <img src="assets/images/gallery/dnc/analysis-clean.png" alt="분석 촬영 화면" />
     <img src="assets/images/gallery/dnc/report-clean.png" alt="리포트 화면" />
   </template>
   <template data-gallery-template="mtq">
+    <span data-gallery-video="2jrZPjJJ3KY" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg"></span>
     <img src="assets/images/gallery/mtq/main-page.png" alt="메인페이지" />
     <img src="assets/images/gallery/mtq/quest-map.png" alt="퀘스트맵" />
     <img src="assets/images/gallery/mtq/quest-page.png" alt="퀘스트페이지" />
@@ -533,7 +539,9 @@
       const modalClose = projectModal?.querySelector('[data-modal-close]');
       const imageModal = document.querySelector('[data-image-modal]');
       const imageModalTitle = imageModal?.querySelector('[data-image-modal-title]');
+      const imageModalFigure = imageModal?.querySelector('[data-image-modal-figure]');
       const imageModalImg = imageModal?.querySelector('[data-image-modal-img]');
+      const imageModalVideo = imageModal?.querySelector('[data-image-modal-video]');
       const imageModalCaption = imageModal?.querySelector('[data-image-modal-caption]');
       const imageModalZoom = imageModal?.querySelector('[data-image-modal-zoom]');
       const imageModalThumbs = imageModal?.querySelector('[data-image-modal-thumbs]');
@@ -610,10 +618,23 @@
 
 
       const galleryData = Array.from(document.querySelectorAll('template[data-gallery-template]')).reduce((acc, template) => {
-        acc[template.dataset.galleryTemplate] = Array.from(template.content.querySelectorAll('img')).map((image) => ({
-          src: image.getAttribute('src'),
-          title: image.getAttribute('alt') || '프로젝트 이미지'
-        }));
+        acc[template.dataset.galleryTemplate] = Array.from(template.content.querySelectorAll('[data-gallery-video], img')).map((item) => {
+          if (item.matches('[data-gallery-video]')) {
+            const videoId = item.dataset.galleryVideo;
+            return {
+              type: 'video',
+              videoId,
+              thumb: item.dataset.thumb || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+              title: item.dataset.title || '서비스 소개 영상'
+            };
+          }
+          return {
+            type: 'image',
+            src: item.getAttribute('src'),
+            thumb: item.getAttribute('src'),
+            title: item.getAttribute('alt') || '프로젝트 이미지'
+          };
+        });
         return acc;
       }, {});
 
@@ -850,8 +871,9 @@
       function renderImageModalThumbs() {
         if (!imageModalThumbs) return;
         imageModalThumbs.innerHTML = imageModalItems.map((item, index) => `
-          <button class="image-modal-thumb${index === imageModalCurrentIndex ? ' is-active' : ''}" type="button" data-image-index="${index}" aria-pressed="${index === imageModalCurrentIndex}">
+          <button class="image-modal-thumb${item.type === 'video' ? ' is-video' : ''}${index === imageModalCurrentIndex ? ' is-active' : ''}" type="button" data-image-index="${index}" aria-pressed="${index === imageModalCurrentIndex}">
             <img alt="" loading="lazy" data-thumb-image />
+            ${item.type === 'video' ? '<span class="image-modal-thumb-play">▶</span>' : ''}
             <span>${escapeHtml(item.title)}</span>
           </button>
         `).join('');
@@ -859,7 +881,7 @@
         imageModalThumbs.querySelectorAll('[data-image-index]').forEach((button) => {
           const index = Number(button.dataset.imageIndex) || 0;
           const thumbImage = button.querySelector('[data-thumb-image]');
-          if (thumbImage) thumbImage.src = imageModalItems[index]?.src || '';
+          if (thumbImage) thumbImage.src = imageModalItems[index]?.thumb || imageModalItems[index]?.src || '';
           button.addEventListener('click', () => selectImageModalItem(index));
         });
       }
@@ -872,13 +894,33 @@
 
         hideImageZoom();
         imageModalTitle.textContent = title;
-        imageModalImg.src = item.src;
-        imageModalImg.alt = title;
         imageModalCaption.textContent = `${imageModalCurrentIndex + 1} / ${imageModalItems.length} · ${item.title}`;
-        if (imageModalZoom) {
-          imageModalZoom.style.backgroundImage = `url("${item.src}")`;
-          imageModalZoom.style.backgroundSize = '';
-          imageModalZoom.style.backgroundPosition = '';
+        imageModalFigure?.classList.toggle('has-video', item.type === 'video');
+
+        if (item.type === 'video') {
+          imageModalImg.hidden = true;
+          imageModalImg.removeAttribute('src');
+          if (imageModalVideo) {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.videoId)}?rel=0`;
+            iframe.title = title;
+            iframe.loading = 'lazy';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            imageModalVideo.hidden = false;
+            imageModalVideo.replaceChildren(iframe);
+          }
+        } else {
+          imageModalVideo?.replaceChildren();
+          if (imageModalVideo) imageModalVideo.hidden = true;
+          imageModalImg.hidden = false;
+          imageModalImg.src = item.src;
+          imageModalImg.alt = title;
+          if (imageModalZoom) {
+            imageModalZoom.style.backgroundImage = `url("${item.src}")`;
+            imageModalZoom.style.backgroundSize = '';
+            imageModalZoom.style.backgroundPosition = '';
+          }
         }
 
         imageModalThumbs?.querySelectorAll('[data-image-index]').forEach((button) => {
@@ -897,7 +939,7 @@
         const cardImages = Array.from(card.querySelectorAll('.project-preview-media img'));
         const imageIndex = Math.max(0, cardImages.indexOf(image));
 
-        imageModalItems = gallery.length ? gallery : [{ src: image.currentSrc || image.src, title: fallbackTitle }];
+        imageModalItems = gallery.length ? gallery : [{ type: 'image', src: image.currentSrc || image.src, thumb: image.currentSrc || image.src, title: fallbackTitle }];
         imageModalCurrentIndex = Math.min(imageIndex, imageModalItems.length - 1);
         imageModalProjectTitle = card.dataset.title || card.querySelector('strong')?.textContent?.trim() || '프로젝트';
         imageModalLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -921,7 +963,13 @@
         const finish = () => {
           if (imageModal.open) imageModal.close();
           hideImageZoom();
-          if (imageModalImg) imageModalImg.removeAttribute('src');
+          imageModalFigure?.classList.remove('has-video');
+          imageModalVideo?.replaceChildren();
+          if (imageModalVideo) imageModalVideo.hidden = true;
+          if (imageModalImg) {
+            imageModalImg.hidden = false;
+            imageModalImg.removeAttribute('src');
+          }
           if (imageModalThumbs) imageModalThumbs.innerHTML = '';
           imageModalItems = [];
           imageModalCurrentIndex = 0;
@@ -956,8 +1004,9 @@
       cards.forEach((card) => {
         card.addEventListener('click', (event) => {
           event.preventDefault();
-          const previewImage = event.target instanceof Element ? event.target.closest('.project-preview-media img') : null;
-          if (previewImage && card.contains(previewImage) && openPreviewImageModal(previewImage, card)) return;
+          const previewMedia = event.target instanceof Element ? event.target.closest('.project-preview-media') : null;
+          const previewImage = previewMedia?.querySelector('img');
+          if (previewMedia && previewImage && card.contains(previewMedia) && openPreviewImageModal(previewImage, card)) return;
 
           const caseId = card.dataset.case;
           cleanCaseHash();
