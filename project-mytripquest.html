@@ -70,17 +70,21 @@
     </section>
 
     <section class="project-page-content" id="content" aria-label="프로젝트 상세 내용">
-      <section class="project-page-section tone-stack">
-        <h2>✔️ 기술 스택</h2>
-        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>JWT</span><span>OAuth2</span><span>TourAPI</span><span>Docker</span></div>
-      </section>
       <section class="project-page-section">
         <h2>✔️ 구현 사항</h2>
         <ul><li>공공 <mark class="project-page-highlight">관광지 정보</mark>를 받아와 퀘스트 장소와 화면에서 사용할 수 있는 데이터로 연결했습니다.</li><li>사용자의 현재 위치가 관광지 근처인지 확인해 퀘스트 완료 조건의 첫 단계를 판단했습니다.</li><li>방문 인증 사진을 AI 판정 흐름과 연결해 위치 확인 이후의 추가 인증 단계로 분리했습니다.</li><li><mark class="project-page-highlight">도착 확인</mark>과 <mark class="project-page-highlight">사진 인증</mark> 결과에 따라 퀘스트 진행 상태가 바뀌도록 흐름을 나눴습니다.</li><li>퀘스트 완료 이후 <mark class="project-page-highlight">보상</mark>, 아바타, 랭킹으로 이어지는 사용자 <mark class="project-page-highlight">보상</mark> 흐름을 구성했습니다.</li><li>사용자 <mark class="project-page-highlight">로그인</mark> 이후 토큰 기반으로 접근 <mark class="project-page-highlight">권한</mark>을 확인하는 인증 흐름을 구성했습니다.</li></ul>
       </section>
+      <section class="project-page-section tone-solve">
+        <h2>✔️ 문제 해결</h2>
+        <ul class="project-page-problem-list"><li><strong>문제</strong>퀘스트 완료를 단순 버튼 클릭이 아니라 실제 방문 여부에 가깝게 판단해야 했습니다.</li><li><strong>선택지</strong>GPS만 사용하는 방식, 사진만 사용하는 방식, GPS 확인 후 AI <mark class="project-page-highlight">사진 인증</mark>을 추가하는 방식을 비교했습니다.</li><li><strong>해결</strong><mark class="project-page-highlight">위치 도착 확인</mark>과 <mark class="project-page-highlight">사진 인증</mark>을 단계별 조건으로 나누고, 결과에 따라 <mark class="project-page-highlight">퀘스트 상태</mark>가 변경되도록 구성했습니다.</li><li><strong>배운 점</strong>인증 기능은 조건을 한 번에 묶기보다 단계별로 나누는 것이 예외 처리와 설명에 유리하다는 점을 배웠습니다.</li></ul>
+      </section>
       <section class="project-page-section">
         <h2>✔️ 담당 역할</h2>
         <ul><li><mark class="project-page-highlight">관광지 정보</mark> 연동과 <mark class="project-page-highlight">위치 도착 확인</mark> 흐름 구현에 참여했습니다.</li><li><mark class="project-page-highlight">사진 인증</mark> 결과를 <mark class="project-page-highlight">퀘스트 상태</mark> 변경과 <mark class="project-page-highlight">보상</mark> 처리 흐름으로 연결했습니다.</li><li><mark class="project-page-highlight">JWT</mark>/<mark class="project-page-highlight">OAuth2</mark> 기반 <mark class="project-page-highlight">로그인</mark> 이후 접근 <mark class="project-page-highlight">권한</mark> 처리 흐름에 참여했습니다.</li></ul>
+      </section>
+      <section class="project-page-section tone-stack">
+        <h2>✔️ 기술 스택</h2>
+        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>JWT</span><span>OAuth2</span><span>TourAPI</span><span>Docker</span></div>
       </section>
       <section class="project-page-section">
         <h2>✔️ 기술 선정 이유</h2>
@@ -95,7 +99,6 @@
         <ul><li>지금이라면 테스트 실행 환경을 분리하고 위치·<mark class="project-page-highlight">사진 인증</mark> 실패 케이스를 더 많이 검증하겠습니다.</li><li><mark class="project-page-highlight">OAuth2</mark> <mark class="project-page-highlight">로그인</mark> 이후 토큰 전달 방식은 URL 전달보다 <mark class="project-page-highlight">HttpOnly Cookie</mark>나 <mark class="project-page-highlight">일회성 code</mark> 방식으로 개선하겠습니다.</li></ul>
       </section>
     </section>
-
     <div class="project-page-bottom-nav">
       <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
     </div>

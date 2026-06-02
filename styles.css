@@ -1400,6 +1400,23 @@ body.modal-open {
   font-weight: 720;
   line-height: 1.65;
 }
+
+.project-page-section.tone-solve {
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(247,244,238,.72));
+}
+.project-page-problem-list li strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  margin-right: 10px;
+  border-radius: 999px;
+  background: var(--page-accent-soft);
+  color: var(--page-accent-text);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.7;
+}
 .project-page-section li::before {
   content: "";
   position: absolute;

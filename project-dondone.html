@@ -66,17 +66,21 @@
     </section>
 
     <section class="project-page-content" id="content" aria-label="프로젝트 상세 내용">
-      <section class="project-page-section tone-stack">
-        <h2>✔️ 기술 스택</h2>
-        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>Redis</span><span>Docker</span><span>Jenkins</span><span>NGINX</span></div>
-      </section>
       <section class="project-page-section">
         <h2>✔️ 구현 사항</h2>
         <ul><li>근무자의 <mark class="project-page-highlight">출근·퇴근 기록</mark>을 이후 <mark class="project-page-highlight">급여 확인</mark>과 <mark class="project-page-highlight">문서</mark> 흐름에서 다시 쓸 수 있는 기준 데이터로 정리했습니다.</li><li>GPS 위치가 근무지 기준과 맞는지 확인하고, 예외 상황을 바로 버리지 않도록 흐름을 나눴습니다.</li><li>위치 기준을 벗어난 퇴근 기록을 실패로 끝내지 않고 관리자가 확인할 수 있는 상태로 남겼습니다.</li><li><mark class="project-page-highlight">급여 확인</mark> 시점의 <mark class="project-page-highlight">근무 증빙</mark>을 고정해, 나중에 <mark class="project-page-highlight">문서</mark>와 <mark class="project-page-highlight">클레임</mark>에서 같은 기준을 재사용할 수 있게 했습니다.</li><li><mark class="project-page-highlight">출퇴근 기록</mark>을 <mark class="project-page-highlight">문서</mark> 생성과 <mark class="project-page-highlight">클레임</mark> 준비 흐름에 연결해, 기능마다 다른 기준을 쓰지 않도록 했습니다.</li><li>사업장 등록 검토와 선지급 승인처럼 관리자가 확인해야 하는 요청 흐름 일부를 구성했습니다.</li></ul>
       </section>
+      <section class="project-page-section tone-solve">
+        <h2>✔️ 문제 해결</h2>
+        <ul class="project-page-problem-list"><li><strong>문제</strong><mark class="project-page-highlight">출퇴근 기록</mark>이 <mark class="project-page-highlight">급여 확인</mark>, <mark class="project-page-highlight">문서</mark>, <mark class="project-page-highlight">클레임</mark>에서 각각 다르게 쓰이면 기준 데이터가 흔들릴 수 있었습니다.</li><li><strong>선택지</strong>기능마다 별도 데이터를 둘지, <mark class="project-page-highlight">WorkProof</mark> 기록을 공통 <mark class="project-page-highlight">증빙</mark> 기준으로 둘지 비교했습니다.</li><li><strong>해결</strong><mark class="project-page-highlight">출퇴근 기록</mark>을 기준 데이터로 정리하고, <mark class="project-page-highlight">급여 확인</mark> snapshot과 <mark class="project-page-highlight">문서</mark>·<mark class="project-page-highlight">클레임</mark> 흐름에 연결했습니다.</li><li><strong>배운 점</strong>돈과 <mark class="project-page-highlight">문서</mark>가 연결되는 기능에서는 데이터 기준이 흔들리지 않는 구조가 중요하다는 점을 배웠습니다.</li></ul>
+      </section>
       <section class="project-page-section">
         <h2>✔️ 담당 역할</h2>
         <ul><li><mark class="project-page-highlight">WorkProof</mark> 출퇴근, <mark class="project-page-highlight">위치 검증</mark>, 검토 상태 흐름 구현에 참여했습니다.</li><li><mark class="project-page-highlight">급여 확인</mark> 기록과 <mark class="project-page-highlight">문서</mark>/<mark class="project-page-highlight">클레임</mark> <mark class="project-page-highlight">증빙</mark> 연결 흐름을 구성했습니다.</li><li>사업장 검토와 <mark class="project-page-highlight">관리자 승인</mark>처럼 운영자가 확인해야 하는 일부 흐름에 참여했습니다.</li></ul>
+      </section>
+      <section class="project-page-section tone-stack">
+        <h2>✔️ 기술 스택</h2>
+        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>Redis</span><span>Docker</span><span>Jenkins</span><span>NGINX</span></div>
       </section>
       <section class="project-page-section">
         <h2>✔️ 기술 선정 이유</h2>
@@ -91,7 +95,6 @@
         <ul><li>지금이라면 <mark class="project-page-highlight">WorkProof</mark> → Wage → Documents/Claim 흐름을 기능 단위 테스트로 더 촘촘히 검증하겠습니다.</li><li>선지급 요청처럼 중복 요청 위험이 있는 기능은 <mark class="project-page-highlight">Idempotency-Key</mark> 정책을 더 명확히 <mark class="project-page-highlight">문서</mark>화하겠습니다.</li></ul>
       </section>
     </section>
-
     <div class="project-page-bottom-nav">
       <a class="button ghost" href="index.html#projects">프로젝트 선택으로 돌아가기</a>
     </div>
