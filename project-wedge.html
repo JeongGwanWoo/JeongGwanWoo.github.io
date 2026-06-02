@@ -82,27 +82,27 @@
     <section class="project-page-content" id="content" aria-label="프로젝트 상세 내용">
       <section class="project-page-section tone-stack">
         <h2>✔️ 기술 스택</h2>
-        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>PostgreSQL</span><span>Redis</span><span>RabbitMQ</span><span>Docker</span><span>Jenkins</span><span>AWS S3</span></div>
+        <div class="modal-stack"><span>Java</span><span><mark class="project-page-highlight">Spring Boot</mark></span><span><mark class="project-page-highlight">JPA</mark></span><span><mark class="project-page-highlight">PostgreSQL</mark></span><span><mark class="project-page-highlight">Redis</mark></span><span><mark class="project-page-highlight">RabbitMQ</mark></span><span><mark class="project-page-highlight">Docker</mark></span><span><mark class="project-page-highlight">Jenkins</mark></span><span><mark class="project-page-highlight">AWS S3</mark></span></div>
       </section>
       <section class="project-page-section">
         <h2>✔️ 구현 사항</h2>
-        <ul><li>브라우저 실행 중 들어온 단계별 이벤트를 전체 실행 상태와 개별 단계 상태로 나누어 기록했습니다.</li><li>분석 요청을 바로 보내지 않고 먼저 저장한 뒤, 트랜잭션이 끝난 후 안전하게 발행되도록 분리했습니다.</li><li>분석 요청 발행이 실패해도 누락되지 않도록, 남은 요청을 다시 처리하는 재시도 흐름을 구성했습니다.</li><li>리포트 공유 링크의 만료, 회수, 활성 링크 재사용 기준을 나누어 접근 경계를 관리했습니다.</li><li>같은 공유 링크를 여러 요청이 동시에 바꿀 때 데이터가 꼬이지 않도록 잠금 기준을 두었습니다.</li></ul>
+        <ul><li><mark class="project-page-highlight">브라우저 실행</mark> 중 들어온 <mark class="project-page-highlight">단계별 이벤트</mark>를 전체 실행 상태와 개별 단계 상태로 나누어 기록했습니다.</li><li><mark class="project-page-highlight">분석 요청</mark>을 바로 보내지 않고 먼저 저장한 뒤, 트랜잭션이 끝난 후 안전하게 발행되도록 분리했습니다.</li><li><mark class="project-page-highlight">분석 요청</mark> 발행이 실패해도 누락되지 않도록, 남은 요청을 다시 처리하는 <mark class="project-page-highlight">재시도</mark> 흐름을 구성했습니다.</li><li><mark class="project-page-highlight">리포트</mark> <mark class="project-page-highlight">공유 링크</mark>의 만료, 회수, 활성 링크 재사용 기준을 나누어 <mark class="project-page-highlight">접근 경계</mark>를 관리했습니다.</li><li>같은 <mark class="project-page-highlight">공유 링크</mark>를 여러 요청이 동시에 바꿀 때 데이터가 꼬이지 않도록 잠금 기준을 두었습니다.</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 담당 역할</h2>
-        <ul><li>Spring Core Backend 역할로 Run/Step 상태 매핑 흐름에 참여했습니다.</li><li>Analysis request 저장, 발행, 재시도 흐름 일부를 구현했습니다.</li><li>Report share token의 접근 정책과 동시 수정 방지 기준 구현에 참여했습니다.</li></ul>
+        <ul><li>Spring Core Backend 역할로 <mark class="project-page-highlight">Run/Step</mark> 상태 매핑 흐름에 참여했습니다.</li><li><mark class="project-page-highlight">Analysis request</mark> 저장, 발행, <mark class="project-page-highlight">재시도</mark> 흐름 일부를 구현했습니다.</li><li><mark class="project-page-highlight">Report share token</mark>의 접근 정책과 <mark class="project-page-highlight">동시 수정 방지</mark> 기준 구현에 참여했습니다.</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 기술 선정 이유</h2>
-        <ul><li>RabbitMQ는 브라우저 실행 이후 분석 요청을 느슨하게 분리하기 위해 사용했습니다.</li><li>Redis는 실행 중간 상태나 임시 데이터를 빠르게 다루기 위해 사용했습니다.</li><li>PostgreSQL은 실행 결과와 리포트 데이터를 안정적으로 보관하기 위해 사용했습니다.</li></ul>
+        <ul><li><mark class="project-page-highlight">RabbitMQ</mark>는 <mark class="project-page-highlight">브라우저 실행</mark> 이후 <mark class="project-page-highlight">분석 요청</mark>을 느슨하게 분리하기 위해 사용했습니다.</li><li><mark class="project-page-highlight">Redis</mark>는 실행 중간 상태나 임시 데이터를 빠르게 다루기 위해 사용했습니다.</li><li><mark class="project-page-highlight">PostgreSQL</mark>은 실행 결과와 <mark class="project-page-highlight">리포트</mark> 데이터를 안정적으로 보관하기 위해 사용했습니다.</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 프로젝트 성과</h2>
-        <ul><li>비동기 실행 실패 지점을 상태 기준으로 추적할 수 있는 구조를 경험했습니다.</li><li>트랜잭션 이후 이벤트 발행과 재시도 흐름을 분리하는 필요성을 학습했습니다.</li><li>공개 링크처럼 외부에 노출되는 기능은 만료와 회수 정책이 중요하다는 점을 확인했습니다.</li></ul>
+        <ul><li><mark class="project-page-highlight">비동기 실행</mark> 실패 지점을 <mark class="project-page-highlight">상태 기준</mark>으로 추적할 수 있는 구조를 경험했습니다.</li><li><mark class="project-page-highlight">트랜잭션 이후</mark> <mark class="project-page-highlight">이벤트 발행</mark>과 <mark class="project-page-highlight">재시도</mark> 흐름을 분리하는 필요성을 학습했습니다.</li><li>공개 링크처럼 외부에 노출되는 기능은 만료와 회수 정책이 중요하다는 점을 확인했습니다.</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 프로젝트 리뷰</h2>
-        <ul><li>지금이라면 중복 callback, terminal 상태 이후 이벤트 거부, outbox 재시도 케이스를 테스트로 더 보강하겠습니다.</li><li>비동기 흐름은 구현보다 운영 중 관찰 가능한 로그와 상태 설계가 더 중요하다는 점을 배웠습니다.</li></ul>
+        <ul><li>지금이라면 중복 callback, terminal 상태 이후 이벤트 거부, <mark class="project-page-highlight">outbox</mark> <mark class="project-page-highlight">재시도</mark> 케이스를 테스트로 더 보강하겠습니다.</li><li>비동기 흐름은 구현보다 운영 중 관찰 가능한 로그와 상태 설계가 더 중요하다는 점을 배웠습니다.</li></ul>
       </section>
     </section>
 

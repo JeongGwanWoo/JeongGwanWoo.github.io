@@ -1175,6 +1175,39 @@ body.modal-open {
 }
 
 /* Standalone project detail pages */
+
+.project-detail-page {
+  --page-accent: #0F766E;
+  --page-accent-soft: rgba(15, 118, 110, .10);
+  --page-accent-text: #0B5F59;
+}
+.project-detail-page[data-project="wedge"] {
+  --page-accent: #0F766E;
+  --page-accent-soft: rgba(15, 118, 110, .10);
+  --page-accent-text: #0B5F59;
+}
+.project-detail-page[data-project="dondone"] {
+  --page-accent: #6D5DF6;
+  --page-accent-soft: rgba(109, 93, 246, .10);
+  --page-accent-text: #5142C7;
+}
+.project-detail-page[data-project="dnc"] {
+  --page-accent: #7A8F4B;
+  --page-accent-soft: rgba(122, 143, 75, .11);
+  --page-accent-text: #596A2E;
+}
+.project-detail-page[data-project="mtq"] {
+  --page-accent: #3BA5D9;
+  --page-accent-soft: rgba(59, 165, 217, .10);
+  --page-accent-text: #1E7FA8;
+}
+.project-page-highlight {
+  border-radius: 5px;
+  background: linear-gradient(180deg, transparent 44%, var(--page-accent-soft) 44%);
+  color: var(--page-accent-text);
+  font-weight: 760;
+  padding: 0 .07em;
+}
 .project-detail-page {
   background:
     radial-gradient(circle at top left, rgba(15,118,110,.08), transparent 32%),
