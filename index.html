@@ -454,6 +454,7 @@
         <button class="image-modal-nav prev" type="button" data-image-modal-prev aria-label="이전 이미지">‹</button>
         <figure class="image-modal-figure">
           <img alt="" data-image-modal-img />
+          <div class="image-modal-zoom" data-image-modal-zoom aria-hidden="true"></div>
           <figcaption data-image-modal-caption></figcaption>
         </figure>
         <button class="image-modal-nav next" type="button" data-image-modal-next aria-label="다음 이미지">›</button>
@@ -463,14 +464,14 @@
   </dialog>
 
   <template data-gallery-template="wedge">
-    <img src="assets/images/gallery/wedge/report-web.png" alt="리포트 웹 화면" />
-    <img src="assets/images/gallery/wedge/report-pdf.png" alt="리포트 PDF 화면" />
     <img src="assets/images/gallery/wedge/home.png" alt="메인 홈" />
-    <img src="assets/images/gallery/wedge/analysis-progress.png" alt="분석 진행 화면" />
     <img src="assets/images/gallery/wedge/scenario-select.png" alt="시나리오 선택" />
-    <img src="assets/images/gallery/wedge/architecture.png" alt="아키텍처" />
+    <img src="assets/images/gallery/wedge/analysis-progress.png" alt="분석 진행 화면" />
     <img src="assets/images/gallery/wedge/test-running.png" alt="테스트 실행" />
     <img src="assets/images/gallery/wedge/test-done.png" alt="테스트 완료" />
+    <img src="assets/images/gallery/wedge/report-web.png" alt="리포트 웹 화면" />
+    <img src="assets/images/gallery/wedge/report-pdf.png" alt="리포트 PDF 화면" />
+    <img src="assets/images/gallery/wedge/architecture.png" alt="아키텍처" />
   </template>
   <template data-gallery-template="dondone">
     <img src="assets/images/gallery/dondone/attendance.png" alt="출퇴근" />
@@ -479,22 +480,17 @@
     <img src="assets/images/gallery/dondone/report-pdf.png" alt="리포트 PDF" />
   </template>
   <template data-gallery-template="dnc">
-    <img src="assets/images/gallery/dnc/glucose-home-crop.png" alt="실시간 혈당 홈" />
     <img src="assets/images/gallery/dnc/glucose-clean.png" alt="실시간 혈당 화면" />
-    <img src="assets/images/gallery/dnc/glucose.png" alt="실시간 혈당 원본" />
     <img src="assets/images/gallery/dnc/predicted-clean.png" alt="예상 혈당 화면" />
-    <img src="assets/images/gallery/dnc/predicted.png" alt="예상 혈당 원본" />
     <img src="assets/images/gallery/dnc/analysis-clean.png" alt="분석 촬영 화면" />
-    <img src="assets/images/gallery/dnc/analysis.png" alt="분석 촬영 원본" />
     <img src="assets/images/gallery/dnc/report-clean.png" alt="리포트 화면" />
-    <img src="assets/images/gallery/dnc/report.png" alt="리포트 원본" />
   </template>
   <template data-gallery-template="mtq">
+    <img src="assets/images/gallery/mtq/main-page.png" alt="메인페이지" />
     <img src="assets/images/gallery/mtq/quest-map.png" alt="퀘스트맵" />
     <img src="assets/images/gallery/mtq/quest-page.png" alt="퀘스트페이지" />
-    <img src="assets/images/gallery/mtq/quest-status.png" alt="퀘스트 현황" />
-    <img src="assets/images/gallery/mtq/main-page.png" alt="메인페이지" />
     <img src="assets/images/gallery/mtq/character-customizing.png" alt="캐릭터 커스터마이징" />
+    <img src="assets/images/gallery/mtq/quest-status.png" alt="퀘스트 현황" />
   </template>
 
   <nav class="side-project-nav" data-side-nav aria-label="다른 프로젝트 선택" aria-hidden="true" inert>
@@ -535,6 +531,7 @@
       const imageModalTitle = imageModal?.querySelector('[data-image-modal-title]');
       const imageModalImg = imageModal?.querySelector('[data-image-modal-img]');
       const imageModalCaption = imageModal?.querySelector('[data-image-modal-caption]');
+      const imageModalZoom = imageModal?.querySelector('[data-image-modal-zoom]');
       const imageModalThumbs = imageModal?.querySelector('[data-image-modal-thumbs]');
       const imageModalPrev = imageModal?.querySelector('[data-image-modal-prev]');
       const imageModalNext = imageModal?.querySelector('[data-image-modal-next]');
@@ -546,6 +543,7 @@
       let imageModalItems = [];
       let imageModalCurrentIndex = 0;
       let imageModalProjectTitle = '프로젝트';
+      const IMAGE_ZOOM_SCALE = 2.7;
 
       const modalData = {
         wedge: {
@@ -805,6 +803,46 @@
         }
       }
 
+      function hideImageZoom() {
+        imageModalZoom?.classList.remove('is-visible');
+      }
+
+      function getContainedImageRect(image) {
+        const rect = image.getBoundingClientRect();
+        const naturalRatio = image.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : rect.width / rect.height;
+        const boxRatio = rect.width / rect.height;
+        let width = rect.width;
+        let height = rect.height;
+        let left = rect.left;
+        let top = rect.top;
+
+        if (naturalRatio > boxRatio) {
+          height = rect.width / naturalRatio;
+          top = rect.top + (rect.height - height) / 2;
+        } else {
+          width = rect.height * naturalRatio;
+          left = rect.left + (rect.width - width) / 2;
+        }
+        return { left, top, width, height };
+      }
+
+      function updateImageZoom(event) {
+        if (!imageModalImg || !imageModalZoom || !imageModalImg.naturalWidth) return;
+        const content = getContainedImageRect(imageModalImg);
+        const zoomRect = imageModalZoom.getBoundingClientRect();
+        const x = Math.min(1, Math.max(0, (event.clientX - content.left) / content.width));
+        const y = Math.min(1, Math.max(0, (event.clientY - content.top) / content.height));
+        const backgroundWidth = content.width * IMAGE_ZOOM_SCALE;
+        const backgroundHeight = content.height * IMAGE_ZOOM_SCALE;
+        const backgroundX = -(x * backgroundWidth - zoomRect.width / 2);
+        const backgroundY = -(y * backgroundHeight - zoomRect.height / 2);
+
+        imageModalZoom.style.backgroundImage = `url("${imageModalImg.currentSrc || imageModalImg.src}")`;
+        imageModalZoom.style.backgroundSize = `${backgroundWidth}px ${backgroundHeight}px`;
+        imageModalZoom.style.backgroundPosition = `${backgroundX}px ${backgroundY}px`;
+        imageModalZoom.classList.add('is-visible');
+      }
+
       function renderImageModalThumbs() {
         if (!imageModalThumbs) return;
         imageModalThumbs.innerHTML = imageModalItems.map((item, index) => `
@@ -828,10 +866,16 @@
         const item = imageModalItems[imageModalCurrentIndex];
         const title = `${imageModalProjectTitle} · ${item.title}`;
 
+        hideImageZoom();
         imageModalTitle.textContent = title;
         imageModalImg.src = item.src;
         imageModalImg.alt = title;
         imageModalCaption.textContent = `${imageModalCurrentIndex + 1} / ${imageModalItems.length} · ${item.title}`;
+        if (imageModalZoom) {
+          imageModalZoom.style.backgroundImage = `url("${item.src}")`;
+          imageModalZoom.style.backgroundSize = '';
+          imageModalZoom.style.backgroundPosition = '';
+        }
 
         imageModalThumbs?.querySelectorAll('[data-image-index]').forEach((button) => {
           const active = Number(button.dataset.imageIndex) === imageModalCurrentIndex;
@@ -872,6 +916,7 @@
 
         const finish = () => {
           if (imageModal.open) imageModal.close();
+          hideImageZoom();
           if (imageModalImg) imageModalImg.removeAttribute('src');
           if (imageModalThumbs) imageModalThumbs.innerHTML = '';
           imageModalItems = [];
@@ -939,6 +984,9 @@
         imageModalClose?.addEventListener('click', () => closePreviewImageModal());
         imageModalPrev?.addEventListener('click', () => selectImageModalItem(imageModalCurrentIndex - 1));
         imageModalNext?.addEventListener('click', () => selectImageModalItem(imageModalCurrentIndex + 1));
+        imageModalImg?.addEventListener('mousemove', updateImageZoom);
+        imageModalImg?.addEventListener('mouseenter', updateImageZoom);
+        imageModalImg?.addEventListener('mouseleave', hideImageZoom);
         imageModal.addEventListener('cancel', (event) => {
           event.preventDefault();
           closePreviewImageModal();
