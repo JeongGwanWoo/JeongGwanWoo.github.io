@@ -560,6 +560,9 @@ h1 { margin-top: 14px; max-width: 760px; font-size: clamp(38px, 4.8vw, 52px); li
   background: #fff;
   box-shadow: 0 10px 22px rgba(31, 41, 51, .08);
 }
+.project-preview-media img {
+  cursor: zoom-in;
+}
 
 /* Case-study tab behavior */
 .case-study {
@@ -795,6 +798,70 @@ body.modal-open {
   color: #084D49;
 }
 
+/* Project image modal */
+.image-modal {
+  width: min(1120px, calc(100% - 28px));
+  max-height: min(92vh, 980px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  opacity: 0;
+  transform: translateY(18px) scale(.98);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.image-modal.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.image-modal::backdrop {
+  background: rgba(31, 41, 51, .56);
+  backdrop-filter: blur(8px);
+}
+.image-modal-card {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  max-height: min(92vh, 980px);
+  overflow: auto;
+  border: 1px solid rgba(222, 214, 200, .95);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .98);
+  padding: 24px;
+  box-shadow: 0 28px 80px rgba(31, 41, 51, .28);
+}
+.image-modal-head {
+  padding-right: 48px;
+}
+.image-modal-head h2 {
+  margin-top: 8px;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -.05em;
+}
+.image-modal-figure {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+.image-modal-figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 72vh;
+  margin: 0 auto;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-muted);
+}
+.image-modal-figure figcaption {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
 /* Side project selector shown while reading case studies */
 .side-project-nav {
   position: fixed;
@@ -905,11 +972,15 @@ body.modal-open {
 }
 
 @media (max-width: 720px) {
-  .project-modal { width: min(100% - 18px, 980px); }
-  .project-modal-card { padding: 22px 16px 18px; border-radius: 20px; }
+  .project-modal,
+  .image-modal { width: min(100% - 18px, 980px); }
+  .project-modal-card,
+  .image-modal-card { padding: 22px 16px 18px; border-radius: 20px; }
   .project-modal-content { grid-template-columns: 1fr; }
   .modal-section.wide { grid-column: auto; }
-  .project-modal-head h2 { font-size: 27px; }
+  .project-modal-head h2,
+  .image-modal-head h2 { font-size: 27px; }
+  .image-modal-figure img { max-height: 70vh; border-radius: 14px; }
   .project-modal-actions { justify-content: stretch; }
   .modal-primary, .modal-secondary { width: 100%; }
 }

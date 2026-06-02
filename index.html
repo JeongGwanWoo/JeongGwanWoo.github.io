@@ -443,6 +443,20 @@
     </div>
   </dialog>
 
+  <dialog class="image-modal" data-image-modal aria-labelledby="image-modal-title">
+    <div class="image-modal-card">
+      <button class="project-modal-close image-modal-close" type="button" data-image-modal-close aria-label="원본 이미지 닫기">×</button>
+      <div class="image-modal-head">
+        <p class="eyebrow">원본 이미지</p>
+        <h2 id="image-modal-title" data-image-modal-title>프로젝트 이미지</h2>
+      </div>
+      <figure class="image-modal-figure">
+        <img alt="" data-image-modal-img />
+        <figcaption data-image-modal-caption></figcaption>
+      </figure>
+    </div>
+  </dialog>
+
   <nav class="side-project-nav" data-side-nav aria-label="다른 프로젝트 선택" aria-hidden="true" inert>
     <button class="side-project-button prev" type="button" data-side-action="prev">
       <span>이전 프로젝트</span>
@@ -477,8 +491,15 @@
       const modalPdf = projectModal?.querySelector('[data-modal-pdf]');
       const modalDetail = projectModal?.querySelector('[data-modal-detail]');
       const modalClose = projectModal?.querySelector('[data-modal-close]');
+      const imageModal = document.querySelector('[data-image-modal]');
+      const imageModalTitle = imageModal?.querySelector('[data-image-modal-title]');
+      const imageModalImg = imageModal?.querySelector('[data-image-modal-img]');
+      const imageModalCaption = imageModal?.querySelector('[data-image-modal-caption]');
+      const imageModalClose = imageModal?.querySelector('[data-image-modal-close]');
       let modalLastFocus = null;
       let modalCloseTimer = 0;
+      let imageModalLastFocus = null;
+      let imageModalCloseTimer = 0;
 
       const modalData = {
         wedge: {
@@ -730,6 +751,46 @@
         }
       }
 
+      function openPreviewImageModal(image, card) {
+        if (!imageModal || !imageModalImg || !imageModalTitle || !imageModalCaption) return false;
+        const images = Array.from(card.querySelectorAll('.project-preview-media img'));
+        const imageIndex = Math.max(0, images.indexOf(image));
+        const projectTitle = card.dataset.title || card.querySelector('strong')?.textContent?.trim() || '프로젝트';
+        const title = images.length > 1 ? `${projectTitle} 원본 이미지 ${imageIndex + 1}` : `${projectTitle} 원본 이미지`;
+
+        imageModalLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        imageModalTitle.textContent = title;
+        imageModalImg.src = image.currentSrc || image.src;
+        imageModalImg.alt = image.alt?.trim() || title;
+        imageModalCaption.textContent = `${projectTitle} 프로젝트 선택 이미지 원본입니다.`;
+
+        window.clearTimeout(imageModalCloseTimer);
+        if (!imageModal.open) imageModal.showModal();
+        document.body.classList.add('modal-open');
+        window.requestAnimationFrame(() => imageModal.classList.add('is-open'));
+        imageModalClose?.focus({ preventScroll: true });
+        return true;
+      }
+
+      function closePreviewImageModal({ immediate = false } = {}) {
+        if (!imageModal || !imageModal.open) return;
+        window.clearTimeout(imageModalCloseTimer);
+        imageModal.classList.remove('is-open');
+        document.body.classList.remove('modal-open');
+
+        const finish = () => {
+          if (imageModal.open) imageModal.close();
+          if (imageModalImg) imageModalImg.removeAttribute('src');
+          imageModalLastFocus?.focus?.({ preventScroll: true });
+        };
+
+        if (immediate) {
+          finish();
+        } else {
+          imageModalCloseTimer = window.setTimeout(finish, 180);
+        }
+      }
+
       function activate(caseId) {
         if (!known.has(caseId)) caseId = 'wedge';
         updateSideNav(caseId);
@@ -751,6 +812,9 @@
       cards.forEach((card) => {
         card.addEventListener('click', (event) => {
           event.preventDefault();
+          const previewImage = event.target instanceof Element ? event.target.closest('.project-preview-media img') : null;
+          if (previewImage && card.contains(previewImage) && openPreviewImageModal(previewImage, card)) return;
+
           const caseId = card.dataset.case;
           cleanCaseHash();
           activate(caseId);
@@ -773,6 +837,17 @@
           cleanCaseHash();
           activate(caseId);
           scrollToCaseSection();
+        });
+      }
+
+      if (imageModal) {
+        imageModalClose?.addEventListener('click', () => closePreviewImageModal());
+        imageModal.addEventListener('cancel', (event) => {
+          event.preventDefault();
+          closePreviewImageModal();
+        });
+        imageModal.addEventListener('click', (event) => {
+          if (event.target === imageModal) closePreviewImageModal();
         });
       }
 
