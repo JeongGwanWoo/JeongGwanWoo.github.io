@@ -83,7 +83,7 @@ main { display: grid; gap: var(--section-gap); padding: var(--main-top-gap) 0 va
 .hero, .section { width: 100%; margin: 0; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) 360px;
   gap: 24px; align-items: stretch; }
-.hero-copy, .profile-card, .debug-log, .focus-card, .project-card, .case-study, .note-card, .working, .evidence-strip, .about-card {
+.hero-copy, .profile-card, .debug-log, .focus-card, .project-card, .case-study, .working, .evidence-strip, .about-card {
   border: 1px solid var(--border);
   border-radius: 18px;
   background: rgba(255, 255, 255, .88);
@@ -382,11 +382,6 @@ h1 { margin-top: 14px; max-width: 760px; font-size: clamp(38px, 4.8vw, 52px); li
 
 
 .note-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-.note-card { padding: 20px; }
-.note-card span { color: var(--primary); font-size: 12px; font-weight: 950; text-transform: uppercase; }
-.note-card h3 { margin-top: 10px; font-size: 18px; line-height: 1.35; letter-spacing: -.04em; }
-.note-card p { margin-top: 10px; color: var(--text-secondary); font-size: 14px; font-weight: 650; }
-.note-card small { display: inline-flex; margin-top: 14px; color: var(--accent); font-weight: 900; }
 
 .working { padding: 28px; display: grid; grid-template-columns: 1fr .8fr; gap: 24px; }
 .working h2, .contact h2 { margin-top: 8px; font-size: 36px; letter-spacing: -.055em; line-height: 1.2; }
