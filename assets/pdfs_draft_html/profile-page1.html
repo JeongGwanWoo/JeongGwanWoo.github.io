@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile Page 1 Draft</title>
+    <style>
+      :root {
+        --ink: #111827;
+        --sub: #334155;
+        --muted: #94a3b8;
+        --blue: #0b83c5;
+        --blue-2: #2fb0e5;
+        --line: #dfe7ef;
+        --soft: #f6fbff;
+        --fs-name: 32px;
+        --fs-role: 18.75px;
+        --fs-section: 21px;
+        --fs-subsection: 16.5px;
+        --fs-title: 13.5px;
+        --fs-project-title: 15.75px;
+        --fs-body: 12.5px;
+        --fs-meta: 10.5px;
+        --fs-caption: 9px;
+        --gap-xxs: 4px;
+        --gap-xs: 8px;
+        --gap-sm: 12px;
+        --gap-md: 16px;
+        --gap-lg: 24px;
+        --gap-xl: 32px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #eef2f7;
+        color: var(--ink);
+        font-family:
+          "Malgun Gothic",
+          "맑은 고딕",
+          "Noto Sans KR",
+          "Apple SD Gothic Neo",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      .deck {
+        width: min(100%, 1152px);
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      .slide {
+        position: relative;
+        width: 1152px;
+        height: 648px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
+        transform-origin: top center;
+      }
+
+      .top-rule {
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 4.5px;
+        background: linear-gradient(
+          90deg,
+          #5ec5ef 0%,
+          #84d2f3 18%,
+          #dff4fd 48%,
+          rgba(255, 255, 255, 0) 82%
+        );
+      }
+
+      .left-line-top,
+      .left-line-bottom {
+        position: absolute;
+        left: 449px;
+        top: 0;
+        width: 1px;
+        height: 648px;
+        background: var(--line);
+      }
+      .left-line-bottom {
+        display: none;
+      }
+
+      .profile-panel {
+        position: absolute;
+        left: 39px;
+        top: 36px;
+        width: 340px;
+        color: var(--ink);
+      }
+
+      .kicker {
+        margin: 0;
+        color: var(--blue);
+        font-size: var(--fs-meta);
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .photo-frame {
+        margin: 14px 0 16px;
+        width: 136px;
+        height: 150px;
+        overflow: hidden;
+        border: 1px solid #d8e1eb;
+        border-radius: 14px;
+        background: #e8eef8;
+        box-shadow: 0 3px 0 rgba(148, 163, 184, 0.45);
+      }
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 22%;
+        display: block;
+      }
+
+      .identity {
+        margin: 0 0 15px;
+      }
+      .name {
+        margin: 0;
+        color: var(--blue);
+        font-size: var(--fs-name);
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+      }
+
+      .role {
+        margin: 6px 0 0;
+        color: var(--ink);
+        font-size: var(--fs-role);
+        line-height: 1.12;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+
+      .profile-group {
+        margin: 0 0 16px;
+      }
+      .profile-group:last-child {
+        margin-bottom: 0;
+      }
+      .profile-heading {
+        margin: 0 0 10px;
+        color: #64748b;
+        font-size: var(--fs-subsection);
+        line-height: 1.12;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+      .profile-heading.contact-spacer {
+        display: none;
+      }
+
+      .contact,
+      .stack {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        row-gap: 5px;
+        width: 340px;
+        margin: 0;
+        font-size: var(--fs-body);
+        line-height: 1.2;
+        letter-spacing: -0.035em;
+      }
+      .contact dt,
+      .stack dt {
+        margin: 0;
+        color: var(--blue);
+        font-weight: 900;
+      }
+      .stack dt {
+        color: var(--ink);
+      }
+      .contact dd,
+      .stack dd {
+        margin: 0;
+        color: #334155;
+        font-weight: 800;
+      }
+
+      .pills {
+        display: flex;
+        gap: var(--gap-xs);
+        align-items: center;
+      }
+      .pill {
+        min-width: 37px;
+        padding: 7px 11px;
+        border: 1px solid #dce8f2;
+        border-radius: 999px;
+        background: #f8fbfe;
+        color: #334155;
+        font-size: var(--fs-meta);
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        box-shadow: 0 1px 0 rgba(203, 213, 225, 0.5) inset;
+      }
+
+      .main {
+        position: absolute;
+        left: 492px;
+        top: 0;
+        width: 620px;
+      }
+
+      .hero {
+        position: absolute;
+        left: 0;
+        top: 42px;
+        width: 620px;
+        text-align: center;
+      }
+      .hero h1 {
+        margin: 0;
+        color: var(--ink);
+        font-size: var(--fs-section);
+        line-height: 1.12;
+        font-weight: 900;
+        letter-spacing: -0.055em;
+      }
+      .hero p {
+        margin: 10px 0 0;
+        color: #334155;
+        font-size: var(--fs-body);
+        line-height: 1.3;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .hero .brace {
+        position: absolute;
+        top: 6px;
+        color: var(--blue-2);
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 900;
+      }
+      .hero .brace.left-brace {
+        left: -1px;
+      }
+      .hero .brace.right-brace {
+        right: -1px;
+      }
+      .hero-rule {
+        position: absolute;
+        left: 0;
+        top: 106px;
+        width: 620px;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .column-rule {
+        position: absolute;
+        height: 1px;
+        background: var(--line);
+      }
+      .rule-edu,
+      .rule-proj {
+        display: none;
+      }
+      .rule-cert {
+        left: 0;
+        top: 374px;
+        width: 302px;
+      }
+
+      .section {
+        position: absolute;
+        margin: 0;
+      }
+      .section-title {
+        margin: 0 0 var(--gap-md);
+        color: var(--ink);
+        font-size: var(--fs-section);
+        line-height: 1.1;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        white-space: nowrap;
+      }
+      .section-title .brace {
+        color: var(--blue-2);
+        font-size: 24px;
+        font-weight: 900;
+        vertical-align: -1px;
+      }
+      .education {
+        left: 13px;
+        top: 132px;
+        width: 285px;
+      }
+      .certifications {
+        left: 13px;
+        top: 388px;
+        width: 285px;
+      }
+      .projects {
+        left: 329px;
+        top: 132px;
+        width: 300px;
+      }
+
+      .timeline {
+        position: relative;
+        margin-left: 20px;
+        padding-left: 28px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 9px;
+        bottom: 8px;
+        width: 1px;
+        background: var(--line);
+      }
+      .timeline.compact::before {
+        bottom: 13px;
+      }
+      .item {
+        position: relative;
+        margin: 0 0 24px;
+      }
+      .education .item {
+        margin-bottom: var(--gap-xl);
+      }
+      .certifications .item {
+        margin-bottom: var(--gap-xl);
+      }
+      .projects .item {
+        margin-bottom: var(--gap-lg);
+      }
+      .dot {
+        position: absolute;
+        left: -34px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 3px solid var(--blue-2);
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(47, 176, 229, 0.1);
+      }
+      .projects .dot {
+        left: -35px;
+        top: 6px;
+        width: 13px;
+        height: 13px;
+        border-width: 4px;
+        box-shadow: 0 0 0 5px rgba(47, 176, 229, 0.13);
+      }
+      .date {
+        display: inline-block;
+        color: var(--blue);
+        font-size: var(--fs-meta);
+        line-height: 1.15;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        white-space: nowrap;
+      }
+      .projects .date {
+        font-size: var(--fs-meta);
+        letter-spacing: -0.035em;
+      }
+      .status {
+        margin-left: 4px;
+        color: var(--muted);
+        font-size: 8.5px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .item h3 {
+        margin: var(--gap-xs) 0 var(--gap-xxs);
+        color: var(--ink);
+        font-size: var(--fs-title);
+        line-height: 1.18;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+      }
+      .projects .item h3 {
+        margin-top: var(--gap-xs);
+        font-size: var(--fs-project-title);
+        line-height: 1.08;
+        letter-spacing: -0.07em;
+      }
+      .item p {
+        margin: 0;
+        color: #475569;
+        font-size: var(--fs-meta);
+        line-height: 1.3;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+      }
+      .projects .item p {
+        margin-top: var(--gap-xxs);
+        font-size: var(--fs-body);
+        line-height: 1.25;
+        letter-spacing: -0.055em;
+      }
+
+      .page-number {
+        position: absolute;
+        right: 24px;
+        bottom: 10px;
+        color: #c6cfdb;
+        font-size: var(--fs-caption);
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+      }
+
+      @media screen and (max-width: 1152px) {
+        .slide {
+          transform: scale(calc(100vw / 1152));
+        }
+        .deck {
+          height: calc(648px * (100vw / 1152));
+        }
+      }
+
+      @media print {
+        @page {
+          size: 1152px 648px;
+          margin: 0;
+        }
+        html,
+        body {
+          width: 1152px;
+          height: 648px;
+          background: #fff;
+        }
+        .deck {
+          width: 1152px;
+          padding: 0;
+        }
+        .slide {
+          box-shadow: none;
+        }
+      }
+    
+
+      /* Integrated portfolio iframe mode: clean profile slide without paper shadow. */
+      html.integrated-embed,
+      html.integrated-embed body {
+        width: 1152px !important;
+        height: 648px !important;
+        min-height: 648px !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        background: #fff !important;
+      }
+      html.integrated-embed .deck {
+        width: 1152px !important;
+        height: 648px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      html.integrated-embed .slide {
+        width: 1152px !important;
+        height: 648px !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+      }
+    </style>
+  
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (!params.has('embed')) return;
+      document.documentElement.classList.add('integrated-embed');
+      document.addEventListener('DOMContentLoaded', function () {
+        var targetId = (window.location.hash || '#slide-01').slice(1);
+        var slides = document.querySelectorAll('.slide');
+        slides.forEach(function (slide) {
+          slide.style.display = slide.id === targetId ? 'block' : 'none';
+        });
+      });
+    })();
+  </script>
+</head>
+  <body>
+    <main class="deck">
+      <section class="slide" aria-label="정관우 프로필 1페이지" id="slide-01">
+        <div class="top-rule" aria-hidden="true"></div>
+        <div class="left-line-top" aria-hidden="true"></div>
+        <div class="left-line-bottom" aria-hidden="true"></div>
+
+        <aside class="profile-panel" aria-label="프로필 요약">
+          <p class="kicker">PROFILE</p>
+          <figure class="photo-frame" aria-label="프로필 사진">
+            <img src="./profile-photo.jpg" alt="정관우 프로필 사진" />
+          </figure>
+
+          <div class="identity">
+            <h2 class="name">정관우</h2>
+            <p class="role">Backend Developer</p>
+          </div>
+
+          <section class="profile-group contact-group" aria-label="연락처">
+            <dl class="contact">
+              <dt>연락처</dt>
+              <dd>010-3361-1654</dd>
+              <dt>이메일</dt>
+              <dd>jkw4805@naver.com</dd>
+              <dt>GitHub</dt>
+              <dd>https://github.com/JeongGwanWoo</dd>
+            </dl>
+          </section>
+
+          <section class="profile-group stack-group" aria-label="주요 기술">
+            <h3 class="profile-heading">Main Stack</h3>
+            <dl class="stack">
+              <dt>언어</dt>
+              <dd>Java</dd>
+              <dt>서버</dt>
+              <dd>Spring Boot</dd>
+              <dt>DB</dt>
+              <dd>MySQL / PostgreSQL</dd>
+              <dt>인프라</dt>
+              <dd>Redis / Docker / Jenkins</dd>
+            </dl>
+          </section>
+
+          <section class="profile-group focus-group" aria-label="관심 영역">
+            <h3 class="profile-heading">Focus</h3>
+            <div class="pills">
+              <span class="pill">API</span>
+              <span class="pill">DB</span>
+              <span class="pill">상태 흐름</span>
+              <span class="pill">서비스 검증</span>
+            </div>
+          </section>
+        </aside>
+
+        <div class="main">
+          <header class="hero">
+            <span class="brace left-brace">{</span>
+            <h1>서비스 흐름을 안정적으로 연결하는 백엔드 개발자</h1>
+            <p>
+              사용자의 요청이 저장, 처리, 결과 확인까지 이어지는 과정을 데이터와
+              상태 기준으로 이해하고 구현합니다.
+            </p>
+            <span class="brace right-brace">}</span>
+          </header>
+          <div class="hero-rule" aria-hidden="true"></div>
+          <div class="column-rule rule-edu" aria-hidden="true"></div>
+          <div class="column-rule rule-proj" aria-hidden="true"></div>
+          <div class="column-rule rule-cert" aria-hidden="true"></div>
+
+          <section class="section education">
+            <h2 class="section-title">
+              <span class="brace">{</span> Education
+              <span class="brace">}</span>
+            </h2>
+            <div class="timeline">
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2025.07 ~ </span>
+                <h3>삼성청년SW·AI아카데미(SSAFY)</h3>
+                <p>SW·AI 실무 중심 개발자 교육 과정</p>
+              </article>
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2016.03 ~ 2022.02</span>
+                <h3>동신대학교</h3>
+                <p>디지털 콘텐츠 학과</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="section certifications">
+            <h2 class="section-title">
+              <span class="brace">{</span> Certifications
+              <span class="brace">}</span>
+            </h2>
+            <div class="timeline compact">
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2026.06</span
+                ><span class="status">120 (IM2)</span>
+                <h3>TOEIC® Speaking</h3>
+              </article>
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2021.08</span>
+                <h3>정보처리기사</h3>
+              </article>
+            </div>
+          </section>
+
+          <section class="section projects">
+            <h2 class="section-title">
+              <span class="brace">{</span> Projects <span class="brace">}</span>
+            </h2>
+            <div class="timeline">
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2026.04 ~ 2026.05</span>
+                <h3>Wedge</h3>
+                <p>브라우저 실행 기반 UX 진단 리포트 서비스</p>
+              </article>
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2026.03 ~ 2026.04</span>
+                <h3>DonDone</h3>
+                <p>외국인 근로자 급여 지갑 데모 MVP</p>
+              </article>
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2026.01 ~ 2026.02</span>
+                <h3>당낭콩(DNC)</h3>
+                <p>CGM 활동 데이터 기반 헬스케어 서비스</p>
+              </article>
+              <article class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="date">2025.12</span>
+                <h3>MyTripQuest</h3>
+                <p>위치 기반 퀘스트와 AI 사진 인증 여행 서비스</p>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <div class="page-number">PROFILE / 01</div>
+      </section>
+    </main>
+  </body>
+</html>

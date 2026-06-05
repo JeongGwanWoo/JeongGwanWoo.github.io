@@ -1,0 +1,1913 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DNC Portfolio Gallery Draft</title>
+    <style>
+      :root {
+        --ink: #161a22;
+        --sub: #424b5a;
+        --muted: #7b8794;
+        --blue: #efa66f;
+        --blue-dark: #b85f32;
+        --blue-soft: #fff1e4;
+        --red: #ef4b55;
+        --orange: #f36c21;
+        --line: #d7dde5;
+        --light-line: #e5e9ef;
+        --panel: #f8fafc;
+        --card-gray: #eef1f5;
+        --card-sky: #fff3e8;
+        --panel-blue: #fff1e4;
+        --yellow-soft: #fff6ed;
+        --red-soft: #f8ddc4;
+        --green-soft: #fff6ed;
+        --shadow: 0 8px 22px rgba(17, 24, 39, 0.12);
+        --slide-pad-y: 48px;
+        --left-pad-left: 52px;
+        --left-pad-right: 38px;
+        --right-pad-left: 58px;
+        --right-pad-right: 52px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        background: #eef2f7;
+        color: var(--ink);
+        font-family:
+          "Malgun Gothic",
+          "맑은 고딕",
+          "Noto Sans KR",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      .deck {
+        width: min(100%, 1620px);
+        margin: 0 auto;
+        padding: 0 0 40px;
+      }
+      .slide {
+        position: relative;
+        width: min(96vw, 1600px);
+        aspect-ratio: 16 / 9;
+        margin: 0 auto;
+        background: #fff;
+        box-shadow: 0 14px 38px rgba(15, 23, 42, 0.16);
+        overflow: hidden;
+      }
+      .slide::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          #f7d0ae 0%,
+          #efa66f 46%,
+          #f8ddc4 100%
+        );
+        z-index: 2;
+      }
+      .slide::after {
+        content: attr(data-page);
+        position: absolute;
+        right: 30px;
+        bottom: 14px;
+        color: #c7cdd6;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: 41px;
+        line-height: 1.18;
+        letter-spacing: -0.045em;
+      }
+      h2 {
+        font-size: 27px;
+        line-height: 1.18;
+        letter-spacing: -0.04em;
+      }
+      h3 {
+        font-size: 19px;
+        line-height: 1.28;
+        letter-spacing: -0.035em;
+      }
+      p,
+      li {
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .blue {
+        color: var(--blue-dark);
+        font-weight: 900;
+      }
+      .hot {
+        color: #c96b3c;
+        font-weight: 900;
+      }
+      .green {
+        color: #c96b3c;
+        font-weight: 900;
+      }
+      .orange {
+        color: #c96b3c;
+        font-weight: 900;
+      }
+      .mark-blue,
+      .mark-red,
+      .mark-green,
+      .mark-yellow {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #c96b3c;
+        font-weight: 900;
+      }
+      .brace {
+        color: var(--blue);
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1;
+      }
+      .slash {
+        color: var(--blue-dark);
+        font-weight: 900;
+      }
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 12px;
+        background: var(--blue);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+      .live {
+        display: inline-grid;
+        place-items: center;
+        height: 30px;
+        padding: 0 12px;
+        background: #ef4444;
+        color: #fff;
+        font-weight: 900;
+        font-size: 15px;
+      }
+      .corner-logo {
+        display: grid;
+        place-items: center;
+        width: 86px;
+        height: 72px;
+        background: #08111f;
+        color: #fff;
+        font-size: 14px;
+        line-height: 1.05;
+        font-weight: 900;
+        text-align: left;
+        padding: 10px;
+        clip-path: polygon(
+          0 0,
+          100% 0,
+          100% 72%,
+          68% 72%,
+          68% 100%,
+          46% 72%,
+          0 72%
+        );
+      }
+
+      /* template grid */
+      .template {
+        display: grid;
+        grid-template-columns: 31% 69%;
+        height: 100%;
+      }
+      .left {
+        position: relative;
+        padding: var(--slide-pad-y) var(--left-pad-right) var(--slide-pad-y)
+          var(--left-pad-left);
+        border-right: 1px solid var(--line);
+      }
+      .right {
+        position: relative;
+        padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y)
+          var(--right-pad-left);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+      }
+      .project-head {
+        margin-top: 0;
+      }
+      .project-head h1 {
+        margin-bottom: 8px;
+      }
+      .project-title {
+        color: #b85f32;
+      }
+      .subtitle {
+        font-size: 28px;
+        line-height: 1.25;
+        color: #202636;
+        letter-spacing: -0.035em;
+      }
+      .summary-lines {
+        margin-top: 34px;
+        display: grid;
+        gap: 13px;
+      }
+      .summary-line {
+        color: #2f3b4a;
+        font-weight: 800;
+        font-size: 17px;
+      }
+      .summary-line .slash {
+        margin-right: 6px;
+      }
+      .description {
+        position: absolute;
+        left: var(--left-pad-left);
+        right: var(--left-pad-right);
+        bottom: var(--slide-pad-y);
+      }
+      .description h2 {
+        margin: 14px 0 13px;
+        font-size: 25px;
+      }
+      .desc-block {
+        margin-bottom: 11px;
+      }
+      .desc-block b {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .desc-block p {
+        color: #202631;
+        font-weight: 650;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .stack {
+        color: #111827;
+        font-size: 13.5px;
+        line-height: 1.38;
+        font-weight: 750;
+      }
+
+      .right-top {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 14px;
+        height: 50px;
+      }
+      .hero-area {
+        display: grid;
+        grid-template-columns: minmax(0, 56%) minmax(0, 1fr);
+        gap: 28px;
+        align-items: center;
+        margin-top: 0;
+      }
+      .screen-card {
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card-gray);
+        box-shadow: none;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+      }
+      .screen-bar {
+        height: 26px;
+        background: #f6f8fb;
+        border-bottom: 1px solid #edf1f5;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 10px;
+        color: #91a0b1;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #cbd5e1;
+      }
+      .measure-shot {
+        height: 320px;
+      }
+      .measure-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 49% 18%;
+        display: block;
+      }
+      .cap-row {
+        display: flex;
+        gap: 18px;
+        margin-top: 12px;
+        color: #9ca3af;
+        font-size: 17px;
+        font-weight: 800;
+      }
+      .cap-row span::before {
+        content: "/ ";
+        color: #9ca3af;
+      }
+      .contribution {
+        padding-top: 8px;
+        min-width: 0;
+      }
+      .contribution .brace {
+        margin-bottom: 18px;
+      }
+      .contribution h2 {
+        margin-bottom: 18px;
+      }
+      .contribution-list {
+        display: grid;
+        gap: 15px;
+      }
+      .contrib-item b {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+      .contrib-item p {
+        font-size: 13px;
+        font-weight: 650;
+        color: #252d3a;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+      .contrib-item .blue {
+        font-weight: 900;
+      }
+      .divider {
+        height: 1px;
+        background: var(--line);
+        margin: 24px 0 18px;
+      }
+      .trouble-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+      .trouble-title {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        margin-bottom: -8px;
+      }
+      .trouble-title .slashes {
+        color: var(--orange);
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: -0.1em;
+      }
+      .trouble-title h2 {
+        font-size: 22px;
+        font-weight: 500;
+      }
+      .trouble-card {
+        min-height: 128px;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: none;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 22px 24px 19px;
+        display: grid;
+        gap: 14px;
+        position: relative;
+      }
+
+      .trouble-card h3 {
+        font-size: 18px;
+        margin-bottom: 2px;
+      }
+      .trouble-card ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .trouble-card li {
+        position: relative;
+        padding-left: 14px;
+        font-weight: 850;
+        font-size: 13px;
+        color: #252d38;
+        line-height: 1.48;
+      }
+      .trouble-card:not(.solve) {
+        border-bottom-color: #d6dde7;
+        background: var(--card-gray);
+      }
+      .trouble-card:not(.solve) li {
+        color: #5f1729;
+      }
+      .trouble-card:not(.solve) .mark-blue {
+        color: #d92d5c;
+      }
+      .trouble-card li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.7em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #ef4770;
+      }
+      .trouble-card.solve {
+        border-bottom-color: #d6dde7;
+        background: var(--card-gray);
+      }
+      .trouble-card.solve li::before {
+        content: "";
+        background: #94a3b8;
+        border: 0;
+      }
+      .takeaway {
+        margin-top: 18px;
+        margin-bottom: 0;
+        padding: 16px 24px 13px;
+        border-radius: 14px;
+        background: var(--card-sky);
+        box-shadow: none;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        color: #1e293b;
+        display: grid;
+        grid-template-columns: 10px 1fr;
+        column-gap: 10px;
+        align-items: start;
+      }
+      .takeaway-text {
+        display: block;
+        font-size: 16px;
+        font-weight: 850;
+        line-height: 1.55;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+      .takeaway-text .mark-blue {
+        display: inline;
+      }
+      .bullet-mark,
+      .pin {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c96b3c;
+        display: inline-block;
+        margin-top: 10px;
+        flex: 0 0 auto;
+        font-size: 0;
+        line-height: 0;
+      }
+
+      .project-meta {
+        margin-top: 36px;
+        display: grid;
+        gap: 14px;
+      }
+      .meta-row {
+        display: grid;
+        grid-template-columns: 82px 1fr;
+        gap: 12px;
+        align-items: baseline;
+      }
+      .meta-label {
+        color: #111827;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.035em;
+      }
+      .meta-value {
+        color: #2f3b4a;
+        font-size: 18px;
+        line-height: 1.38;
+        font-weight: 850;
+        letter-spacing: -0.035em;
+        word-break: keep-all;
+      }
+      .role-detail {
+        margin-top: 7px;
+        display: grid;
+        gap: 4px;
+      }
+      .role-detail span {
+        position: relative;
+        display: block;
+        padding-left: 12px;
+        color: #334155;
+        font-size: 15px;
+        line-height: 1.32;
+        font-weight: 760;
+        letter-spacing: -0.035em;
+      }
+      .role-detail span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.62em;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #c96b3c;
+      }
+      .env-title {
+        margin: 46px 0 15px;
+        color: #64748b;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+      .stack-table {
+        display: grid;
+        gap: 11px;
+      }
+      .stack-row {
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 10px;
+        align-items: baseline;
+      }
+      .stack-label {
+        color: #111827;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.035em;
+      }
+      .stack-value {
+        color: #334155;
+        font-size: 16px;
+        line-height: 1.34;
+        font-weight: 780;
+        letter-spacing: -0.105em;
+        white-space: nowrap;
+        transform: scaleX(0.88);
+        transform-origin: left center;
+      }
+
+      .gallery-page .template {
+        grid-template-columns: 39% 61%;
+      }
+      .gallery-page .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: var(--left-pad-left);
+        padding-right: 28px;
+      }
+      .gallery-page .summary-lines,
+      .gallery-page .description {
+        display: none;
+      }
+      .gallery-page .project-title {
+        font-size: 44px;
+      }
+      .gallery-page .subtitle {
+        font-size: 31px;
+      }
+      .gallery-page .meta-row {
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 12px;
+      }
+      .gallery-page .meta-label,
+      .gallery-page .meta-value {
+        font-size: 21px;
+      }
+      .gallery-page .role-detail span {
+        font-size: 18px;
+        white-space: nowrap;
+        letter-spacing: -0.06em;
+      }
+      .gallery-page .env-title {
+        font-size: 25px;
+      }
+      .gallery-page .stack-row {
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 12px;
+      }
+      .gallery-page .stack-label {
+        font-size: 21px;
+      }
+      .gallery-page .stack-value {
+        font-size: 18px;
+        transform: none;
+        letter-spacing: -0.035em;
+        white-space: normal;
+      }
+
+      /* page1 screenshot version */
+      .flow-bar {
+        height: 26px;
+        background: #f6f8fb;
+        border-bottom: 1px solid #edf1f5;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        color: #8b99aa;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: -0.01em;
+      }
+      .flow-bar b {
+        color: #c96b3c;
+        margin-right: 8px;
+        font-size: 13px;
+      }
+      .single-showcase {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .single-card {
+        width: 92%;
+        margin: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+      }
+      .single-shot {
+        aspect-ratio: 2876 / 1491;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .single-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
+        background: #fff;
+      }
+
+      /* page2 */
+      .page2-main {
+        display: grid;
+        grid-template-columns: 31% 69%;
+        gap: 0;
+        height: 100%;
+      }
+      .impl-left {
+        border-right: 1px solid var(--line);
+        padding: var(--slide-pad-y) var(--left-pad-right) var(--slide-pad-y)
+          var(--left-pad-left);
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      .impl-left .brace {
+        margin-bottom: 12px;
+      }
+      .impl-left h2 {
+        margin-bottom: 16px;
+      }
+      .impl-section {
+        margin: 12px 0 16px;
+      }
+      .impl-section h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+      .impl-section p {
+        font-size: 12px;
+        font-weight: 700;
+        color: #27303e;
+        line-height: 1.45;
+      }
+      .tech-panel {
+        margin-top: auto;
+        border-radius: 14px;
+        background: var(--card-gray);
+        box-shadow: none;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        overflow: hidden;
+      }
+      .tech-head {
+        padding: 12px 18px;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 18px;
+        font-weight: 800;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .tech-list {
+        padding: 16px 22px 18px;
+        display: grid;
+        gap: 12px;
+      }
+      .tech-list article {
+        display: grid;
+        grid-template-columns: 12px 1fr;
+        gap: 8px;
+      }
+
+      .tech-list b {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+      .tech-list p {
+        font-size: 12px;
+        color: #313946;
+        font-weight: 650;
+        line-height: 1.42;
+      }
+      .impl-right {
+        padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y)
+          var(--right-pad-left);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+      }
+      .metric-panel {
+        margin: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+      .metric-panel h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      .metric-panel > p {
+        font-size: 16px;
+        color: #475569;
+        font-weight: 750;
+        margin-bottom: 18px;
+        max-width: 980px;
+      }
+      .metric-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 56%) minmax(0, 1fr);
+        gap: 28px;
+        align-items: stretch;
+        margin-top: 0;
+      }
+      .metric-card {
+        height: 352px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+      }
+      .metric-shot {
+        height: calc(100% - 26px);
+        overflow: hidden;
+        background: #f8fafc;
+      }
+      .metric-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 18%;
+        display: block;
+      }
+      .metric-row {
+        height: 352px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: stretch;
+        gap: 16px;
+      }
+      .metric-box {
+        min-height: 0;
+        border-radius: 14px;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        padding: 18px 22px 16px;
+      }
+      .metric-box .label {
+        color: #64748b;
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .metric-box .value {
+        color: #b85f32;
+        font-size: 32px;
+        line-height: 1.05;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+      .metric-box .desc {
+        margin-top: 10px;
+        color: #334155;
+        font-size: 15px;
+        font-weight: 750;
+        line-height: 1.42;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+      .metric-box .metric-percent {
+        display: block;
+        margin-top: 4px;
+        color: #c96b3c;
+        font-weight: 900;
+      }
+
+      .retrospect {
+        border-top: 1px solid var(--line);
+        padding-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-top: 24px;
+        width: 100%;
+      }
+      .retro-box {
+        border-radius: 14px;
+        background: var(--card-sky);
+        box-shadow: none;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 26px 32px 23px;
+      }
+      .retro-box h2 {
+        font-size: 21px;
+        margin-bottom: 14px;
+      }
+      .retro-line {
+        display: grid;
+        grid-template-columns: 12px 1fr;
+        gap: 8px;
+        align-items: start;
+        margin: 13px 0;
+      }
+      .retro-line p {
+        font-size: 14px;
+        font-weight: 760;
+        color: #1f2937;
+      }
+
+      /* detail implementation page */
+      .detail-main {
+        display: grid;
+        grid-template-columns: 39% 61%;
+        height: 100%;
+      }
+      .detail-left {
+        border-right: 1px solid var(--line);
+        padding: var(--slide-pad-y) 42px var(--slide-pad-y) var(--left-pad-left);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .detail-right {
+        padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y)
+          58px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .detail-kicker {
+        color: var(--blue);
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      .detail-left h2 {
+        font-size: 30px;
+        margin-bottom: 26px;
+      }
+      .detail-section {
+        padding: 0 0 24px;
+        margin-bottom: 24px;
+        border-bottom: 0;
+      }
+      .detail-section:last-of-type {
+        margin-bottom: 0;
+      }
+      .detail-section h3 {
+        font-size: 23px;
+        margin-bottom: 14px;
+        color: #c96b3c;
+      }
+      .detail-section ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+      .detail-section li {
+        position: relative;
+        padding-left: 14px;
+        font-size: 16.5px;
+        line-height: 1.5;
+        color: #263241;
+        font-weight: 760;
+        word-break: keep-all;
+      }
+      .detail-section li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.72em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c96b3c;
+      }
+      .system-map {
+        border-radius: 16px;
+        background: #f8fafc;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 30px 34px;
+      }
+      .system-map h2 {
+        font-size: 25px;
+        margin-bottom: 8px;
+      }
+      .system-map > p {
+        font-size: 16px;
+        color: #475569;
+        font-weight: 760;
+        margin-bottom: 22px;
+      }
+      .flow-steps {
+        display: grid;
+        grid-template-columns: 1fr 28px 1fr;
+        gap: 14px;
+        align-items: center;
+      }
+      .flow-node {
+        min-height: 82px;
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .flow-node b {
+        display: block;
+        font-size: 18px;
+        color: #111827;
+        margin-bottom: 5px;
+      }
+      .flow-node span {
+        font-size: 14.5px;
+        line-height: 1.35;
+        color: #475569;
+        font-weight: 720;
+      }
+      .flow-arrow {
+        color: #c96b3c;
+        font-size: 24px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .flow-wide {
+        grid-column: 1 / -1;
+      }
+      .flow-note {
+        margin-top: 22px;
+        border-radius: 14px;
+        background: var(--card-sky);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 18px 22px;
+        display: grid;
+        grid-template-columns: 10px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+      .flow-note p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #1f2937;
+        font-weight: 800;
+      }
+
+      /* page4 problem solving and architecture */
+      .final-main {
+        display: grid;
+        grid-template-columns: 39% 61%;
+        height: 100%;
+      }
+      .final-left {
+        border-right: 1px solid var(--line);
+        padding: var(--slide-pad-y) 42px var(--slide-pad-y) var(--left-pad-left);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .final-right {
+        padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y)
+          58px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .final-left h2 {
+        font-size: 30px;
+        margin-bottom: 24px;
+      }
+      .solve-case {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        padding: 0 0 24px;
+        margin-bottom: 24px;
+      }
+      .solve-case h3 {
+        font-size: 23px;
+        margin-bottom: 14px;
+        color: #c96b3c;
+      }
+      .solve-case ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+      .solve-case li {
+        position: relative;
+        padding-left: 14px;
+        font-size: 16.5px;
+        line-height: 1.5;
+        color: #263241;
+        font-weight: 760;
+        word-break: keep-all;
+      }
+      .solve-case li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.72em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c96b3c;
+      }
+      .reflection-card {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+      }
+      .reflection-card h3 {
+        font-size: 23px;
+        margin-bottom: 14px;
+        color: #c96b3c;
+      }
+      .reflection-card p {
+        font-size: 16.5px;
+        line-height: 1.55;
+        color: #1f2937;
+        font-weight: 780;
+        word-break: keep-all;
+      }
+
+      .detail-right .metric-panel {
+        width: 100%;
+      }
+      .detail-right .metric-layout {
+        grid-template-columns: minmax(0, 56%) minmax(0, 1fr);
+      }
+      .arch-image-card {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        overflow: visible;
+      }
+      .arch-image-card .flow-bar {
+        display: none;
+      }
+      .arch-image-wrap {
+        background: #fff;
+        padding: 0;
+      }
+      .arch-image-wrap img {
+        width: 100%;
+        display: block;
+        object-fit: contain;
+      }
+      .architecture-box {
+        border-radius: 16px;
+        background: #f8fafc;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 30px 34px;
+      }
+      .architecture-box h2 {
+        font-size: 25px;
+        margin-bottom: 8px;
+      }
+      .architecture-box > p {
+        font-size: 14px;
+        color: #475569;
+        font-weight: 760;
+        margin-bottom: 22px;
+      }
+      .arch-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .arch-node {
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 17px 16px;
+        min-height: 112px;
+      }
+      .arch-node.main {
+        background: var(--card-sky);
+      }
+      .arch-node b {
+        display: block;
+        font-size: 16px;
+        color: #111827;
+        margin-bottom: 7px;
+      }
+      .arch-node span {
+        display: block;
+        font-size: 12.5px;
+        line-height: 1.38;
+        color: #475569;
+        font-weight: 720;
+      }
+      .arch-arrow-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        margin: 12px 0;
+        color: #c96b3c;
+        font-size: 22px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .arch-bottom {
+        margin-top: 16px;
+        border-radius: 14px;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 18px 22px;
+      }
+      .arch-bottom p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #1f2937;
+        font-weight: 800;
+      }
+
+      /* DNC draft additions: rough image slots + backend diagrams */
+      .dnc-image-note {
+        display: none;
+      }
+      .dnc-mini-image {
+        margin-top: 18px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+      }
+      .dnc-mini-image .mini-shot {
+        height: 154px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .dnc-mini-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
+        background: #fff;
+      }
+      .dnc-flow-note {
+        margin-top: 18px;
+        border-radius: 14px;
+        background: var(--card-sky);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 17px 20px;
+        display: grid;
+        grid-template-columns: 10px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+      .dnc-flow-note p {
+        font-size: 15px;
+        line-height: 1.5;
+        color: #1f2937;
+        font-weight: 820;
+        word-break: keep-all;
+      }
+      .dnc-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 185px);
+        gap: 18px;
+        justify-content: center;
+        align-items: start;
+        margin-bottom: 20px;
+      }
+      .dnc-phone-card {
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+      }
+      .dnc-phone-shot {
+        height: 410px;
+        background: #fff;
+        display: block;
+        overflow: hidden;
+      }
+      .dnc-phone-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        display: block;
+        background: #fff;
+      }
+      .dnc-card-title {
+        padding: 12px 14px 13px;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 900;
+        background: #f8fafc;
+        border-top: 1px solid #e5e9ef;
+      }
+      .dnc-flow-compact {
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 18px 22px;
+      }
+      .dnc-flow-compact h3 {
+        margin-bottom: 12px;
+        color: #111827;
+        font-size: 18px;
+      }
+      .compact-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .compact-step {
+        min-height: 72px;
+        border-radius: 12px;
+        background: #fff;
+        border: 1px solid #dde6ef;
+        padding: 12px 13px;
+      }
+      .compact-step b {
+        display: block;
+        color: #c96b3c;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .compact-step span {
+        display: block;
+        color: #475569;
+        font-size: 12.5px;
+        line-height: 1.36;
+        font-weight: 720;
+      }
+      .dnc-arch-box {
+        border-radius: 16px;
+        background: #f8fafc;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 28px 32px;
+      }
+      .dnc-arch-box h2 {
+        font-size: 25px;
+        margin-bottom: 8px;
+      }
+      .dnc-arch-box > p {
+        font-size: 14.5px;
+        color: #475569;
+        font-weight: 760;
+        margin-bottom: 20px;
+        word-break: keep-all;
+      }
+      .dnc-arch-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+      .dnc-arch-node {
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 16px 15px;
+        min-height: 108px;
+      }
+      .dnc-arch-node.main {
+        background: var(--card-sky);
+      }
+      .dnc-arch-node b {
+        display: block;
+        font-size: 16px;
+        color: #111827;
+        margin-bottom: 7px;
+      }
+      .dnc-arch-node span {
+        display: block;
+        color: #475569;
+        font-size: 12.5px;
+        line-height: 1.38;
+        font-weight: 730;
+      }
+      .dnc-architecture-figure {
+        width: 100%;
+        margin: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        box-shadow: none;
+      }
+      .dnc-architecture-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .dnc-ops {
+        margin-top: 18px;
+        border-radius: 14px;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+        padding: 16px 20px;
+      }
+      .dnc-ops h3 {
+        font-size: 17px;
+        color: #111827;
+        margin-bottom: 9px;
+      }
+      .dnc-ops p {
+        font-size: 14px;
+        color: #334155;
+        font-weight: 760;
+        word-break: keep-all;
+      }
+
+      .dnc-page1-phones {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 34px;
+        align-items: center;
+        justify-items: center;
+      }
+      .dnc-page1-phone-card {
+        width: min(100%, 300px);
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--card-gray);
+        border: 1px solid #dde6ef;
+        border-bottom: 4px solid #cbd5e1;
+      }
+      .dnc-page1-phone-shot {
+        height: 610px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .dnc-page1-phone-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
+        background: #fff;
+      }
+      .dnc-page1-caption {
+        padding: 12px 14px 13px;
+        color: #334155;
+        font-size: 16px;
+        font-weight: 900;
+        background: #f8fafc;
+        border-top: 1px solid #e5e9ef;
+        text-align: center;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .deck {
+          padding: 0;
+          width: 100%;
+        }
+        .slide {
+          width: 100vw;
+          height: 100vh;
+          margin: 0;
+          box-shadow: none;
+          page-break-after: always;
+        }
+      }
+    
+
+    /* Integrated portfolio iframe mode: show one clean 16:9 slide per iframe. */
+    html.integrated-embed,
+    html.integrated-embed body {
+      width: 1600px !important;
+      height: 900px !important;
+      min-height: 900px !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+    html.integrated-embed .deck {
+      width: 1600px !important;
+      height: 900px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+    html.integrated-embed .slide {
+      width: 1600px !important;
+      height: 900px !important;
+      max-width: none !important;
+      aspect-ratio: auto !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: hidden !important;
+    }
+  </style>
+  
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (!params.has('embed')) return;
+      document.documentElement.classList.add('integrated-embed');
+      document.addEventListener('DOMContentLoaded', function () {
+        var targetId = (window.location.hash || '#slide-01').slice(1);
+        var slides = document.querySelectorAll('.slide');
+        slides.forEach(function (slide) {
+          slide.style.display = slide.id === targetId ? 'block' : 'none';
+        });
+      });
+    })();
+  </script>
+</head>
+  <body>
+    <main class="deck">
+      <!-- Page 1: project overview + representative result screen -->
+      <section class="slide gallery-page" data-page="01 / 04" id="slide-01">
+        <div class="template">
+          <aside class="left">
+            <div class="project-head">
+              <h1 class="project-title">당낭콩(DNC)</h1>
+              <div class="subtitle">
+                AI 기반 개인화 혈당 예측·식단<br />코칭 헬스케어 서비스
+              </div>
+            </div>
+
+            <div class="project-meta">
+              <div class="meta-row">
+                <div class="meta-label">개발 기간</div>
+                <div class="meta-value">2026.01 ~ 2026.02</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-label">플랫폼</div>
+                <div class="meta-value">Mobile App</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-label">개발 인원</div>
+                <div class="meta-value">팀 프로젝트</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-label">담당 역할</div>
+                <div class="meta-value">
+                  Backend + Infra
+                  <div class="role-detail">
+                    <span>혈당 데이터 저장 흐름</span
+                    ><span>AI 식단·리포트 연결</span
+                    ><span>승인 배포/결과 공유 흐름</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="env-title">개발 환경</div>
+            <div class="stack-table">
+              <div class="stack-row">
+                <div class="stack-label">언어</div>
+                <div class="stack-value">Java 17 / Python / TypeScript</div>
+              </div>
+              <div class="stack-row">
+                <div class="stack-label">서버</div>
+                <div class="stack-value">Spring Boot 3.5.9 / FastAPI</div>
+              </div>
+              <div class="stack-row">
+                <div class="stack-label">모바일</div>
+                <div class="stack-value">React Native / Expo</div>
+              </div>
+              <div class="stack-row">
+                <div class="stack-label">DB/Cache</div>
+                <div class="stack-value">MySQL / Redis</div>
+              </div>
+              <div class="stack-row">
+                <div class="stack-label">외부연동</div>
+                <div class="stack-value">Dexcom OAuth / Gemini / FCM / S3</div>
+              </div>
+              <div class="stack-row">
+                <div class="stack-label">인프라</div>
+                <div class="stack-value">Docker / Jenkins / Nginx</div>
+              </div>
+            </div>
+          </aside>
+
+          <section class="right">
+            <div class="single-showcase" aria-label="DNC 모바일 주요 화면">
+              <div class="dnc-page1-phones">
+                <figure class="dnc-page1-phone-card">
+                  <div class="flow-bar"><b>01</b> 실시간 혈당</div>
+                  <div class="dnc-page1-phone-shot">
+                    <img
+                      src="../참고자료/c105/실시간 혈당-clean.png"
+                      alt="DNC 실시간 혈당 화면"
+                    />
+                  </div>
+                  <figcaption class="dnc-page1-caption">
+                    CGM 혈당 기록 확인
+                  </figcaption>
+                </figure>
+                <figure class="dnc-page1-phone-card">
+                  <div class="flow-bar"><b>02</b> 하루 리포트</div>
+                  <div class="dnc-page1-phone-shot">
+                    <img
+                      src="../참고자료/c105/리포트-clean.png"
+                      alt="DNC 하루 리포트 화면"
+                    />
+                  </div>
+                  <figcaption class="dnc-page1-caption">
+                    혈당·식단 기록 요약
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Page 2: CGM backend pipeline -->
+      <section class="slide" data-page="02 / 04" id="slide-02">
+        <div class="detail-main">
+          <aside class="detail-left">
+            <div class="detail-kicker">{</div>
+            <h2>세부 구현사항 1</h2>
+
+            <section class="detail-section">
+              <h3>외부 혈당 데이터 수집</h3>
+              <ul>
+                <li>
+                  외부 혈당 측정 서비스에서
+                  <span class="mark-blue">5분마다</span> 새 혈당 기록을
+                  가져왔습니다.
+                </li>
+                <li>
+                  인증이 만료되면 갱신 후 다시 요청하고, 가져온 데이터는 임시
+                  저장 공간을 거쳐 DB에 저장했습니다.
+                </li>
+              </ul>
+            </section>
+
+            <section class="detail-section">
+              <h3>사용자별 혈당 기록 분리</h3>
+              <ul>
+                <li>
+                  사용자별 임시 저장 공간을 분리해 혈당 기록이 섞이지 않도록
+                  했습니다.
+                </li>
+                <li>
+                  같은 혈당 기록이 반복 저장되지 않도록 사용자와 외부 기록 ID를
+                  함께 확인했습니다.
+                </li>
+              </ul>
+            </section>
+
+            <section class="detail-section">
+              <h3>센서 상태 전환</h3>
+              <ul>
+                <li>연동 직후에는 센서를 대기 상태로 관리했습니다.</li>
+                <li>
+                  첫 혈당 데이터가 들어오면 실제 센서 정보를 연결해 사용 가능
+                  상태로 전환했습니다.
+                </li>
+              </ul>
+            </section>
+            <div class="detail-kicker">}</div>
+          </aside>
+
+          <section class="detail-right">
+            <div class="system-map">
+              <h2>외부 혈당 데이터가 사용자 기록이 되는 흐름</h2>
+              <p>
+                외부 혈당 데이터를 그대로 저장하지 않고, 사용자별 임시 저장
+                공간·중복 기록 확인·센서 상태 전환 기준을 두어 서비스 기록으로
+                연결했습니다.
+              </p>
+              <div class="flow-steps">
+                <div class="flow-node">
+                  <b>외부 혈당 측정 서비스</b
+                  ><span>5분마다 새 혈당 기록 제공</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                  <b>주기적 수집 작업</b
+                  ><span>사용자별 혈당 기록 가져오기</span>
+                </div>
+
+                <div class="flow-arrow flow-wide">↓</div>
+
+                <div class="flow-node">
+                  <b>인증 갱신 후 재요청</b
+                  ><span>권한 만료 시 새 인증으로 다시 호출</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                  <b>사용자별 임시 저장 공간</b
+                  ><span>Redis에 사용자 ID 기준으로 분리</span>
+                </div>
+
+                <div class="flow-arrow flow-wide">↓</div>
+
+                <div class="flow-node">
+                  <b>중복 기록 확인</b
+                  ><span>사용자와 외부 기록 ID를 함께 확인</span>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                  <b>DB 저장 / 센서 상태 변경</b
+                  ><span>혈당 저장, 대기 → 사용 가능 전환</span>
+                </div>
+              </div>
+              <div class="dnc-flow-note">
+                <span class="bullet-mark"></span>
+                <p>
+                  핵심은 <span class="mark-blue">사용자별 저장 기준</span>과
+                  <span class="mark-blue">중복 기록 확인 기준</span>을 명확히 한
+                  것입니다. 실제 장애 감소 수치는 확인되지 않아 정량 성과로 쓰지
+                  않습니다.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Page 3: AI result to domain data -->
+      <section class="slide" data-page="03 / 04" id="slide-03">
+        <div class="detail-main">
+          <aside class="detail-left">
+            <div class="detail-kicker">{</div>
+            <h2>세부 구현사항 2</h2>
+
+            <section class="detail-section">
+              <h3>식단 분석 결과 연결</h3>
+              <ul>
+                <li>
+                  식단 사진을 음식 분석 서버로 보내 음식명과 양 정보를
+                  받았습니다.
+                </li>
+                <li>
+                  분석 결과를 음식 정보와 매칭해 식단 기록과 영양 계산에 사용할
+                  수 있도록 변환했습니다.
+                </li>
+              </ul>
+            </section>
+
+            <section class="detail-section">
+              <h3>예상 혈당 저장</h3>
+              <ul>
+                <li>섭취량 단계를 계산 가능한 음식 양 비율로 변환했습니다.</li>
+                <li>
+                  사용자 정보, 최근 혈당, 식단 정보를 조합해 예상 혈당 결과를
+                  저장했습니다.
+                </li>
+              </ul>
+            </section>
+
+            <section class="detail-section">
+              <h3>AI 요약과 기본 안내</h3>
+              <ul>
+                <li>
+                  요약 문구가 과장되거나 없는 정보를 추정하지 않도록 출력 조건을
+                  제한했습니다.
+                </li>
+                <li>
+                  데이터 부족이나 외부 호출 실패 시 기본 안내 문구를 보여주도록
+                  처리했습니다.
+                </li>
+              </ul>
+            </section>
+            <div class="detail-kicker">}</div>
+          </aside>
+
+          <section class="detail-right">
+            <div class="metric-panel">
+              <h2>AI 분석 결과를 사용자 기록으로 변환</h2>
+              <p>
+                AI 모델 성능이 아니라, 음식 분석 서버의 결과를 식단 기록·예상
+                혈당·요약 리포트로 연결한 백엔드 흐름에 집중했습니다.
+              </p>
+              <div class="dnc-gallery">
+                <div class="dnc-phone-card">
+                  <div class="flow-bar"><b>01</b> 식단 촬영</div>
+                  <div class="dnc-phone-shot">
+                    <img
+                      src="../참고자료/c105/분석촬영-clean.png"
+                      alt="식단 분석 촬영 화면"
+                    />
+                  </div>
+                  <div class="dnc-card-title">식단 사진 업로드</div>
+                </div>
+                <div class="dnc-phone-card">
+                  <div class="flow-bar"><b>02</b> 예상 혈당</div>
+                  <div class="dnc-phone-shot">
+                    <img
+                      src="../참고자료/c105/에상혈당-clean.png"
+                      alt="예상 혈당 화면"
+                    />
+                  </div>
+                  <div class="dnc-card-title">예상 혈당 결과</div>
+                </div>
+                <div class="dnc-phone-card">
+                  <div class="flow-bar"><b>03</b> 리포트</div>
+                  <div class="dnc-phone-shot">
+                    <img
+                      src="../참고자료/c105/리포트-clean.png"
+                      alt="리포트 화면"
+                    />
+                  </div>
+                  <div class="dnc-card-title">하루 요약 리포트</div>
+                </div>
+              </div>
+              <div class="dnc-flow-compact">
+                <h3>백엔드 처리 흐름</h3>
+                <div class="compact-steps">
+                  <div class="compact-step">
+                    <b>앱 요청 수신</b
+                    ><span>식단 사진 업로드와 분석 요청 처리</span>
+                  </div>
+                  <div class="compact-step">
+                    <b>이미지 저장 / 음식 분석</b
+                    ><span>저장소 보관 후 음식 분석 서버 호출</span>
+                  </div>
+                  <div class="compact-step">
+                    <b>식단 기록 변환</b
+                    ><span>음식 정보 매칭, 양 보정, 예상 혈당 저장</span>
+                  </div>
+                  <div class="compact-step">
+                    <b>요약 문구 생성</b
+                    ><span>출력 조건 제한과 실패 시 기본 안내</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Page 4: problem solving, verification limits, architecture -->
+      <section class="slide" data-page="04 / 04" id="slide-04">
+        <div class="final-main">
+          <aside class="final-left">
+            <div class="detail-kicker">{</div>
+            <h2>문제 해결과 운영 흐름</h2>
+
+            <article class="solve-case">
+              <h3>문제 해결 관점</h3>
+              <ul>
+                <li>
+                  혈당 데이터는 사용자별 저장 기준과 중복 확인 기준을 두어
+                  섞이지 않도록 처리했습니다.
+                </li>
+                <li>
+                  음식 분석 결과는 식단 기록, 영양 정보, 예상 혈당, 요약 문구로
+                  변환했습니다.
+                </li>
+                <li>
+                  외부 호출 실패나 데이터 부족 상황에서는 기본 안내 문구를
+                  제공하도록 처리했습니다.
+                </li>
+              </ul>
+            </article>
+
+            <article class="solve-case">
+              <h3>인프라/협업 흐름</h3>
+              <ul>
+                <li>
+                  서비스별 변경 여부를 확인한 뒤 승인 단계를 거쳐 배포하도록
+                  구성했습니다.
+                </li>
+                <li>
+                  컨테이너 기반 배포 후 결과를 팀 채널에 공유하는 흐름 구성에
+                  참여했습니다.
+                </li>
+                <li>
+                  Backend, AI Server, Mobile이 함께 배포되는 구조에서 변경
+                  범위와 결과 공유를 맞췄습니다.
+                </li>
+              </ul>
+            </article>
+
+            <article class="reflection-card">
+              <h3>프로젝트 회고</h3>
+              <p>
+                외부 서비스와 AI 서버를 연결할 때는 단순 호출보다 사용자별 저장
+                기준, 실패 시 기본 응답, 중복 방지 기준이 중요하다는 점을
+                배웠습니다.
+              </p>
+            </article>
+            <div class="detail-kicker" style="margin-top: 20px">}</div>
+          </aside>
+
+          <section class="final-right">
+            <figure
+              class="dnc-architecture-figure"
+              aria-label="DNC 서비스 아키텍처 이미지"
+            >
+              <img
+                src="../images/gallery/dnc/dnc_architecture.png"
+                alt="DNC 서비스 아키텍처"
+              />
+            </figure>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

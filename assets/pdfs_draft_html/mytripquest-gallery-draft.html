@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyTripQuest Gallery Draft</title>
+  <style>
+    :root {
+      --ink: #161a22;
+      --sub: #424b5a;
+      --muted: #7b8794;
+      --blue: #28a8e8;
+      --blue-dark: #0b74b7;
+      --blue-soft: #eaf6ff;
+      --red: #ef4b55;
+      --orange: #f36c21;
+      --line: #d7dde5;
+      --light-line: #e5e9ef;
+      --panel: #f8fafc;
+      --card-gray: #eef1f5;
+      --card-sky: #eef8ff;
+      --panel-blue: #eaf3ff;
+      --yellow-soft: #f0f9ff;
+      --red-soft: #e0f2fe;
+      --green-soft: #f0f9ff;
+      --shadow: 0 8px 22px rgba(17, 24, 39, .12);
+      --slide-pad-y: 48px;
+      --left-pad-left: 52px;
+      --left-pad-right: 38px;
+      --right-pad-left: 58px;
+      --right-pad-right: 52px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #eef2f7; color: var(--ink); font-family: "Malgun Gothic", "맑은 고딕", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .deck { width: min(100%, 1620px); margin: 0 auto; padding: 0 0 40px; }
+    .slide {
+      position: relative;
+      width: min(96vw, 1600px);
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 14px 38px rgba(15, 23, 42, .16);
+      overflow: hidden;
+    }
+    .slide::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #7dd3fc 0%, #28a8e8 46%, #e0f2fe 100%);
+      z-index: 2;
+    }
+    .slide::after {
+      content: attr(data-page);
+      position: absolute;
+      right: 30px;
+      bottom: 14px;
+      color: #c7cdd6;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 41px; line-height: 1.18; letter-spacing: -.045em; }
+    h2 { font-size: 27px; line-height: 1.18; letter-spacing: -.04em; }
+    h3 { font-size: 19px; line-height: 1.28; letter-spacing: -.035em; }
+    p, li { font-size: 14px; line-height: 1.55; }
+    .blue { color: var(--blue-dark); font-weight: 900; }
+    .hot { color: #0284c7; font-weight: 900; }
+    .green { color: #0284c7; font-weight: 900; }
+    .orange { color: #0284c7; font-weight: 900; }
+    .mark-blue, .mark-red, .mark-green, .mark-yellow { padding: 0; border-radius: 0; background: transparent; color: #0284c7; font-weight: 900; }
+    .brace { color: var(--blue); font-size: 30px; font-weight: 900; line-height: 1; }
+    .slash { color: var(--blue-dark); font-weight: 900; }
+    .small { font-size: 13px; color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; justify-content: center; padding: 7px 12px; background: var(--blue); color: #fff; border-radius: 8px; font-size: 16px; font-weight: 900; letter-spacing: -.02em; }
+    .live { display: inline-grid; place-items: center; height: 30px; padding: 0 12px; background: #ef4444; color: #fff; font-weight: 900; font-size: 15px; }
+    .corner-logo { display: grid; place-items: center; width: 86px; height: 72px; background: #08111f; color: #fff; font-size: 14px; line-height: 1.05; font-weight: 900; text-align: left; padding: 10px; clip-path: polygon(0 0,100% 0,100% 72%,68% 72%,68% 100%,46% 72%,0 72%); }
+
+    /* template grid */
+    .template { display: grid; grid-template-columns: 31% 69%; height: 100%; }
+    .left { position: relative; padding: var(--slide-pad-y) var(--left-pad-right) var(--slide-pad-y) var(--left-pad-left); border-right: 1px solid var(--line); }
+    .right { position: relative; padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y) var(--right-pad-left); display: flex; flex-direction: column; justify-content: center; min-height: 100%; }
+    .project-head { margin-top: 0; }
+    .project-head h1 { margin-bottom: 8px; }
+    .project-title { color: #0b74b7; }
+    .subtitle { font-size: 28px; line-height: 1.25; color: #202636; letter-spacing: -.035em; }
+    .summary-lines { margin-top: 34px; display: grid; gap: 13px; }
+    .summary-line { color: #2f3b4a; font-weight: 800; font-size: 17px; }
+    .summary-line .slash { margin-right: 6px; }
+    .description { position: absolute; left: var(--left-pad-left); right: var(--left-pad-right); bottom: var(--slide-pad-y); }
+    .description h2 { margin: 14px 0 13px; font-size: 25px; }
+    .desc-block { margin-bottom: 11px; }
+    .desc-block b { display: block; font-size: 16px; margin-bottom: 5px; }
+    .desc-block p { color: #202631; font-weight: 650; font-size: 14px; line-height: 1.5; }
+    .stack { color: #111827; font-size: 13.5px; line-height: 1.38; font-weight: 750; }
+
+    .right-top { display: flex; justify-content: flex-end; align-items: flex-start; gap: 14px; height: 50px; }
+    .hero-area { display: grid; grid-template-columns: minmax(0, 56%) minmax(0, 1fr); gap: 28px; align-items: center; margin-top: 0; }
+    .screen-card { border-radius: 14px; overflow: hidden; background: var(--card-gray); box-shadow: none; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; }
+    .screen-bar { height: 26px; background: #f6f8fb; border-bottom: 1px solid #edf1f5; display: flex; align-items: center; gap: 6px; padding: 0 10px; color: #91a0b1; font-size: 11px; font-weight: 800; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #cbd5e1; }
+    .measure-shot { height: 320px; }
+    .measure-shot img { width: 100%; height: 100%; object-fit: cover; object-position: 49% 18%; display: block; }
+    .cap-row { display: flex; gap: 18px; margin-top: 12px; color: #9ca3af; font-size: 17px; font-weight: 800; }
+    .cap-row span::before { content: "/ "; color: #9ca3af; }
+    .contribution { padding-top: 8px; min-width: 0; }
+    .contribution .brace { margin-bottom: 18px; }
+    .contribution h2 { margin-bottom: 18px; }
+    .contribution-list { display: grid; gap: 15px; }
+    .contrib-item b { display: block; font-size: 15px; margin-bottom: 5px; }
+    .contrib-item p { font-size: 13px; font-weight: 650; color: #252d3a; word-break: keep-all; overflow-wrap: break-word; }
+    .contrib-item .blue { font-weight: 900; }
+    .divider { height: 1px; background: var(--line); margin: 24px 0 18px; }
+    .trouble-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    .trouble-title { grid-column: 1 / -1; display: flex; align-items: flex-end; gap: 8px; margin-bottom: -8px; }
+    .trouble-title .slashes { color: var(--orange); font-size: 26px; font-weight: 900; letter-spacing: -.1em; }
+    .trouble-title h2 { font-size: 22px; font-weight: 500; }
+    .trouble-card { min-height: 128px; border-radius: 14px; background: #fff; box-shadow: none; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 22px 24px 19px; display: grid; gap: 14px; position: relative; }
+
+    .trouble-card h3 { font-size: 18px; margin-bottom: 2px; }
+    .trouble-card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; position: relative; z-index: 1; }
+    .trouble-card li { position: relative; padding-left: 14px; font-weight: 850; font-size: 13px; color: #252d38; line-height: 1.48; }
+    .trouble-card:not(.solve) { border-bottom-color: #d6dde7; background: var(--card-gray); }
+    .trouble-card:not(.solve) li { color: #5f1729; }
+    .trouble-card:not(.solve) .mark-blue { color: #d92d5c; }
+    .trouble-card li::before { content: ""; position: absolute; left: 0; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: #ef4770; }
+    .trouble-card.solve { border-bottom-color: #d6dde7; background: var(--card-gray); }
+    .trouble-card.solve li::before { content: ""; background: #94a3b8; border: 0; }
+    .takeaway { margin-top: 18px; margin-bottom: 0; padding: 16px 24px 13px; border-radius: 14px; background: var(--card-sky); box-shadow: none; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; color: #1e293b; display: grid; grid-template-columns: 10px 1fr; column-gap: 10px; align-items: start; }
+    .takeaway-text { display: block; font-size: 16px; font-weight: 850; line-height: 1.55; word-break: keep-all; overflow-wrap: break-word; }
+    .takeaway-text .mark-blue { display: inline; }
+    .bullet-mark, .pin { width: 5px; height: 5px; border-radius: 50%; background: #0284c7; display: inline-block; margin-top: 10px; flex: 0 0 auto; font-size: 0; line-height: 0; }
+
+
+
+
+    .project-meta {
+      margin-top: 36px;
+      display: grid;
+      gap: 14px;
+    }
+    .meta-row {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .meta-label {
+      color: #111827;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -.035em;
+    }
+    .meta-value {
+      color: #2f3b4a;
+      font-size: 18px;
+      line-height: 1.38;
+      font-weight: 850;
+      letter-spacing: -.035em;
+      word-break: keep-all;
+    }
+    .role-detail {
+      margin-top: 7px;
+      display: grid;
+      gap: 4px;
+    }
+    .role-detail span {
+      position: relative;
+      display: block;
+      padding-left: 12px;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.32;
+      font-weight: 760;
+      letter-spacing: -.035em;
+    }
+    .role-detail span::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .62em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #0284c7;
+    }
+    .env-title {
+      margin: 46px 0 15px;
+      color: #64748b;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+    .stack-table {
+      display: grid;
+      gap: 11px;
+    }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+    }
+    .stack-label {
+      color: #111827;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -.035em;
+    }
+    .stack-value {
+      color: #334155;
+      font-size: 16px;
+      line-height: 1.34;
+      font-weight: 780;
+      letter-spacing: -.105em;
+      white-space: nowrap;
+      transform: scaleX(.88);
+      transform-origin: left center;
+    }
+
+    .gallery-page .template { grid-template-columns: 39% 61%; }
+    .gallery-page .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: var(--left-pad-left);
+      padding-right: 28px;
+    }
+    .gallery-page .summary-lines,
+    .gallery-page .description { display: none; }
+    .gallery-page .project-title { font-size: 44px; }
+    .gallery-page .subtitle { font-size: 31px; }
+    .gallery-page .meta-row { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+    .gallery-page .meta-label,
+    .gallery-page .meta-value { font-size: 21px; }
+    .gallery-page .role-detail span { font-size: 18px; white-space: nowrap; letter-spacing: -.06em; }
+    .gallery-page .env-title { font-size: 25px; }
+    .gallery-page .stack-row { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+    .gallery-page .stack-label { font-size: 21px; }
+    .gallery-page .stack-value { font-size: 18px; transform: none; letter-spacing: -.035em; white-space: normal; }
+
+    /* page1 screenshot version */
+    .flow-bar {
+      height: 26px;
+      background: #f6f8fb;
+      border-bottom: 1px solid #edf1f5;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      color: #8b99aa;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+    .flow-bar b { color: #0284c7; margin-right: 8px; font-size: 13px; }
+    .single-showcase {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .single-card {
+      width: 92%;
+      margin: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--card-gray);
+      border: 1px solid #dde6ef;
+      border-bottom: 4px solid #cbd5e1;
+    }
+    .single-shot {
+      aspect-ratio: 2876 / 1491;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .single-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      background: #fff;
+    }
+
+    /* page2 */
+    .page2-main { display: grid; grid-template-columns: 31% 69%; gap: 0; height: 100%; }
+    .impl-left { border-right: 1px solid var(--line); padding: var(--slide-pad-y) var(--left-pad-right) var(--slide-pad-y) var(--left-pad-left); display: flex; flex-direction: column; min-height: 100%; }
+    .impl-left .brace { margin-bottom: 12px; }
+    .impl-left h2 { margin-bottom: 16px; }
+    .impl-section { margin: 12px 0 16px; }
+    .impl-section h3 { font-size: 16px; margin-bottom: 6px; }
+    .impl-section p { font-size: 12px; font-weight: 700; color: #27303e; line-height: 1.45; }
+    .tech-panel { margin-top: auto; border-radius: 14px; background: var(--card-gray); box-shadow: none; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; overflow: hidden; }
+    .tech-head { padding: 12px 18px; border-bottom: 1px solid #e5e7eb; font-size: 18px; font-weight: 800; display: flex; gap: 8px; align-items: center; }
+    .tech-list { padding: 16px 22px 18px; display: grid; gap: 12px; }
+    .tech-list article { display: grid; grid-template-columns: 12px 1fr; gap: 8px; }
+    
+    .tech-list b { display: block; font-size: 14px; margin-bottom: 2px; }
+    .tech-list p { font-size: 12px; color: #313946; font-weight: 650; line-height: 1.42; }
+    .impl-right { padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y) var(--right-pad-left); display: flex; flex-direction: column; justify-content: center; min-height: 100%; }
+    .metric-panel { margin: 0; background: transparent; border: 0; box-shadow: none; padding: 0; }
+    .metric-panel h2 { font-size: 24px; margin-bottom: 8px; }
+    .metric-panel > p { font-size: 16px; color: #475569; font-weight: 750; margin-bottom: 18px; max-width: 980px; }
+    .metric-layout { display: grid; grid-template-columns: minmax(0, 56%) minmax(0, 1fr); gap: 28px; align-items: stretch; margin-top: 0; }
+    .metric-card { height: 352px; border-radius: 14px; overflow: hidden; background: var(--card-gray); border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; }
+    .metric-shot { height: calc(100% - 26px); overflow: hidden; background: #f8fafc; }
+    .metric-shot { padding: 14px; }
+    .metric-shot img { width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block; border: 2px solid #dbe4ee; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.65), 0 8px 16px rgba(15,23,42,.12); }
+    .metric-row { height: 352px; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; align-items: stretch; gap: 16px; }
+    .metric-box { min-height: 0; border-radius: 14px; background: var(--card-gray); border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; display: flex; flex-direction: column; justify-content: center; text-align: left; padding: 18px 22px 16px; }
+    .metric-box .label { color: #64748b; font-size: 15px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+    .metric-box .value { color: #0b74b7; font-size: 32px; line-height: 1.05; font-weight: 900; letter-spacing: -.04em; }
+    .metric-box .desc { margin-top: 10px; color: #334155; font-size: 15px; font-weight: 750; line-height: 1.42; word-break: keep-all; overflow-wrap: break-word; }
+    .metric-box .metric-percent { display: block; margin-top: 4px; color: #0284c7; font-weight: 900; }
+    
+    .retrospect { border-top: 1px solid var(--line); padding-top: 24px; display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 24px; width: 100%; }
+    .retro-box { border-radius: 14px; background: var(--card-sky); box-shadow: none; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 26px 32px 23px; }
+    .retro-box h2 { font-size: 21px; margin-bottom: 14px; }
+    .retro-line { display: grid; grid-template-columns: 12px 1fr; gap: 8px; align-items: start; margin: 13px 0; }
+    .retro-line p { font-size: 14px; font-weight: 760; color: #1f2937; }
+    
+
+    /* detail implementation page */
+    .detail-main { display: grid; grid-template-columns: 39% 61%; height: 100%; }
+    .detail-left { border-right: 1px solid var(--line); padding: var(--slide-pad-y) 42px var(--slide-pad-y) var(--left-pad-left); display: flex; flex-direction: column; justify-content: center; }
+    .detail-right { padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y) 58px; display: flex; flex-direction: column; justify-content: center; }
+    .detail-kicker { color: var(--blue); font-size: 30px; font-weight: 900; line-height: 1; margin-bottom: 12px; }
+    .detail-left h2 { font-size: 30px; margin-bottom: 26px; }
+    .detail-section { padding: 0 0 24px; margin-bottom: 24px; border-bottom: 0; }
+    .detail-section:last-of-type { margin-bottom: 0; }
+    .detail-section h3 { font-size: 23px; margin-bottom: 14px; color: #0284c7; }
+    .detail-section ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .detail-section li { position: relative; padding-left: 14px; font-size: 16.5px; line-height: 1.5; color: #263241; font-weight: 760; word-break: keep-all; }
+    .detail-section li::before { content: ""; position: absolute; left: 0; top: .72em; width: 5px; height: 5px; border-radius: 50%; background: #0284c7; }
+    .system-map { border-radius: 16px; background: #f8fafc; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 30px 34px; }
+    .system-map h2 { font-size: 25px; margin-bottom: 8px; }
+    .system-map > p { font-size: 16px; color: #475569; font-weight: 760; margin-bottom: 22px; }
+    .flow-steps { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 14px; align-items: center; }
+    .flow-node { min-height: 82px; border-radius: 14px; background: #fff; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; }
+    .flow-node b { display: block; font-size: 18px; color: #111827; margin-bottom: 5px; }
+    .flow-node span { font-size: 14.5px; line-height: 1.35; color: #475569; font-weight: 720; }
+    .flow-arrow { color: #0284c7; font-size: 24px; font-weight: 900; text-align: center; }
+    .flow-wide { grid-column: 1 / -1; }
+    .flow-note { margin-top: 22px; border-radius: 14px; background: var(--card-sky); border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 18px 22px; display: grid; grid-template-columns: 10px 1fr; gap: 10px; align-items: start; }
+    .flow-note p { font-size: 16px; line-height: 1.5; color: #1f2937; font-weight: 800; }
+
+
+    /* page4 problem solving and architecture */
+    .final-main { display: grid; grid-template-columns: 39% 61%; height: 100%; }
+    .final-left { border-right: 1px solid var(--line); padding: var(--slide-pad-y) 42px var(--slide-pad-y) var(--left-pad-left); display: flex; flex-direction: column; justify-content: center; }
+    .final-right { padding: var(--slide-pad-y) var(--right-pad-right) var(--slide-pad-y) 58px; display: flex; flex-direction: column; justify-content: center; }
+    .final-left h2 { font-size: 30px; margin-bottom: 24px; }
+    .solve-case { background: transparent; border: 0; border-radius: 0; padding: 0 0 24px; margin-bottom: 24px; }
+    .solve-case h3 { font-size: 23px; margin-bottom: 14px; color: #0284c7; }
+    .solve-case ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .solve-case li { position: relative; padding-left: 14px; font-size: 16.5px; line-height: 1.5; color: #263241; font-weight: 760; word-break: keep-all; }
+    .solve-case li::before { content: ""; position: absolute; left: 0; top: .72em; width: 5px; height: 5px; border-radius: 50%; background: #0284c7; }
+    .reflection-card { background: transparent; border: 0; border-radius: 0; padding: 0; }
+    .reflection-card h3 { font-size: 23px; margin-bottom: 14px; color: #0284c7; }
+    .reflection-card p { font-size: 16.5px; line-height: 1.55; color: #1f2937; font-weight: 780; word-break: keep-all; }
+
+    .detail-right .metric-panel { width: 100%; }
+    .detail-right .metric-layout { grid-template-columns: minmax(0, 56%) minmax(0, 1fr); }
+    .arch-image-card { background: transparent; border: 0; border-radius: 0; overflow: visible; }
+    .arch-image-card .flow-bar { display: none; }
+    .arch-image-wrap { background: #fff; padding: 0; }
+    .arch-image-wrap img { width: 100%; display: block; object-fit: contain; }
+    .architecture-box { border-radius: 16px; background: #f8fafc; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 30px 34px; }
+    .architecture-box h2 { font-size: 25px; margin-bottom: 8px; }
+    .architecture-box > p { font-size: 14px; color: #475569; font-weight: 760; margin-bottom: 22px; }
+    .arch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: stretch; }
+    .arch-node { border-radius: 14px; background: #fff; border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 17px 16px; min-height: 112px; }
+    .arch-node.main { background: var(--card-sky); }
+    .arch-node b { display: block; font-size: 16px; color: #111827; margin-bottom: 7px; }
+    .arch-node span { display: block; font-size: 12.5px; line-height: 1.38; color: #475569; font-weight: 720; }
+    .arch-arrow-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 12px 0; color: #0284c7; font-size: 22px; font-weight: 900; text-align: center; }
+    .arch-bottom { margin-top: 16px; border-radius: 14px; background: var(--card-gray); border: 1px solid #dde6ef; border-bottom: 4px solid #cbd5e1; padding: 18px 22px; }
+    .arch-bottom p { font-size: 14px; line-height: 1.5; color: #1f2937; font-weight: 800; }
+
+
+
+    /* MyTripQuest gallery draft additions */
+    .mtq-showcase-card { width:76%; max-width:650px; }
+    .mtq-gallery-shot { aspect-ratio: 1600 / 980; padding:28px 30px 22px; background:#fff; }
+    .mtq-hero-shot { aspect-ratio: 1 / 1; padding: 16px; background: #fff; }
+    .single-shot .mtq-hero-image { width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block; border: 2px solid #dbe4ee; border-radius: 14px; background:#fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.65), 0 8px 16px rgba(15,23,42,.12); }
+    .mtq-gallery { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; align-items:start; width:100%; height:100%; }
+    .mtq-phone-slot { border-radius:16px; background:#eef1f5; border:1px solid #dde6ef; border-bottom:4px solid #cbd5e1; padding:12px 12px 10px; min-height:0; height:100%; display:flex; flex-direction:column; justify-content:center; }
+    .mtq-phone { width:auto; height:min(440px, calc(100% - 42px)); aspect-ratio:391/844; margin:0 auto; border:7px solid #27313f; border-radius:28px; overflow:hidden; background:#27313f; box-shadow:0 10px 20px rgba(15,23,42,.22); position:relative; flex:0 0 auto; padding:5px; }
+    .mtq-phone::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#111;z-index:3;box-shadow:0 0 0 2px rgba(255,255,255,.12);}
+    .mtq-phone::after{content:"";position:absolute;inset:5px;border:1px solid rgba(255,255,255,.28);border-radius:21px;pointer-events:none;z-index:2;}
+    .mtq-phone img { width:100%; height:100%; object-fit:contain; object-position:center top; display:block; background:#fff; border-radius:19px; border:1px solid #dbe4ee; }
+    .mtq-caption { margin-top:10px; color:#8b99aa; font-size:14px; line-height:1.25; font-weight:850; text-align:center; word-break:keep-all; }
+    .mtq-caption::before { content:"/ "; color:#9ca3af; }
+    .placeholder-box { min-height:260px; border:2px dashed #9ecae7; border-radius:16px; background:#f8fbff; display:grid; place-items:center; text-align:center; color:#0b74b7; font-weight:900; padding:18px; line-height:1.5; }
+    .placeholder-box small { display:block; margin-top:8px; color:#64748b; font-weight:750; }
+    .mtq-flow { display:grid; grid-template-columns:1fr 28px 1fr; gap:14px; align-items:center; }
+    .mtq-flow .flow-node { min-height:78px; }
+    .mtq-flow-title { margin-bottom:16px; font-size:24px; }
+    .mtq-keyword-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px; }
+    .mtq-key-card { border-radius:14px; background:#eef1f5; border:1px solid #dde6ef; border-bottom:4px solid #cbd5e1; padding:18px 20px; min-height:130px; }
+    .mtq-key-card b { display:block; font-size:18px; color:#0b74b7; margin-bottom:8px; }
+    .mtq-key-card span { color:#334155; font-size:14px; line-height:1.45; font-weight:760; }
+    .mtq-image-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; }
+    .mtq-image-row .mtq-phone-slot { min-height:430px; padding:12px; }
+    .mtq-image-row .mtq-caption { font-size:13px; }
+    .architecture-placeholder { min-height:620px; }
+    .mtq-architecture-figure {
+      width: 100%;
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #dde6ef;
+      border-bottom: 4px solid #cbd5e1;
+      box-shadow: none;
+    }
+    .mtq-architecture-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .mtq-image-row .mtq-phone-slot { min-height: 250px; padding: 8px; }
+    .mtq-image-row .mtq-phone { height: 210px; aspect-ratio: auto; border-width: 5px; border-radius: 22px; padding:4px; }
+    .mtq-image-row .mtq-phone::after{inset:4px;border-radius:17px;}
+    .mtq-image-row .mtq-phone img { object-fit: cover; object-position: top center; border-radius:15px; }
+
+
+    @page { size: 16in 9in; margin: 0; }
+    @media print {
+      body { background: #fff; }
+      .deck { padding: 0; width: 100%; }
+      .slide { width: 100vw; height: 100vh; margin: 0; box-shadow: none; page-break-after: always; }
+    }
+  
+
+    /* Integrated portfolio iframe mode: show one clean 16:9 slide per iframe. */
+    html.integrated-embed,
+    html.integrated-embed body {
+      width: 1600px !important;
+      height: 900px !important;
+      min-height: 900px !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+    html.integrated-embed .deck {
+      width: 1600px !important;
+      height: 900px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+    html.integrated-embed .slide {
+      width: 1600px !important;
+      height: 900px !important;
+      max-width: none !important;
+      aspect-ratio: auto !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: hidden !important;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (!params.has('embed')) return;
+      document.documentElement.classList.add('integrated-embed');
+      document.addEventListener('DOMContentLoaded', function () {
+        var targetId = (window.location.hash || '#slide-01').slice(1);
+        var slides = document.querySelectorAll('.slide');
+        slides.forEach(function (slide) {
+          slide.style.display = slide.id === targetId ? 'block' : 'none';
+        });
+      });
+    })();
+  </script>
+</head>
+<body>
+  <main class="deck">
+    <!-- Page 1: project summary + screen gallery -->
+    <section class="slide gallery-page" data-page="01 / 04" id="slide-01">
+      <div class="template">
+        <aside class="left">
+          <div class="project-head">
+            <h1 class="project-title">MyTripQuest</h1>
+            <div class="subtitle">위치 기반<br>여행 퀘스트 플랫폼</div>
+          </div>
+
+          <div class="project-meta">
+            <div class="meta-row"><div class="meta-label">개발 기간</div><div class="meta-value">2025.12</div></div>
+            <div class="meta-row"><div class="meta-label">플랫폼</div><div class="meta-value">Web / Mobile Web</div></div>
+            <div class="meta-row"><div class="meta-label">개발 인원</div><div class="meta-value">2명</div></div>
+            <div class="meta-row"><div class="meta-label">담당 역할</div><div class="meta-value">Backend / Frontend 구현 참여<div class="role-detail"><span>퀘스트 인증 흐름 구현 참여</span><span>AI 사진 인증·보상 흐름 구현 참여</span><span>인증/관리자 백엔드 구현 참여</span></div></div></div>
+          </div>
+
+          <div class="env-title">개발 환경</div>
+          <div class="stack-table">
+            <div class="stack-row"><div class="stack-label">언어</div><div class="stack-value">Java 17 / JavaScript</div></div>
+            <div class="stack-row"><div class="stack-label">서버</div><div class="stack-value">Spring Boot 3.5.8 / MyBatis</div></div>
+            <div class="stack-row"><div class="stack-label">프론트</div><div class="stack-value">Vue 3 / Vite / Pinia / Axios</div></div>
+            <div class="stack-row"><div class="stack-label">DB</div><div class="stack-value">MySQL</div></div>
+            <div class="stack-row"><div class="stack-label">인증</div><div class="stack-value">Spring Security / JWT / OAuth2</div></div>
+            <div class="stack-row"><div class="stack-label">외부 API</div><div class="stack-value">TourAPI / Gemini(GMS) API</div></div>
+          </div>
+        </aside>
+
+        <section class="right">
+          <div class="single-showcase" aria-label="MyTripQuest 서비스 진입 히어로 이미지">
+            <figure class="single-card mtq-showcase-card">
+              <div class="single-shot mtq-hero-shot">
+                <img class="mtq-hero-image" src="assets/mtq/main-hero.png" alt="MyTripQuest 메인 히어로 건물 이미지" />
+              </div>
+            </figure>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Page 2: visit verification implementation -->
+    <section class="slide" data-page="02 / 04" id="slide-02">
+      <div class="detail-main">
+        <aside class="detail-left">
+          <div class="detail-kicker">{</div>
+          <h2>구현 1. 위치·사진 인증 흐름</h2>
+
+          <section class="detail-section">
+            <h3>사용자가 실제 장소에 도착했는지 확인</h3>
+            <ul>
+              <li>사용자가 퀘스트를 시작하면 개인별 진행 상황을 저장하고, <span class="mark-blue">먼저 완료해야 하는 미션</span>이 있는지 확인했습니다.</li>
+              <li>사용자 위치와 관광지 위치 사이의 거리를 계산해 <span class="mark-blue">실제 장소 근처에 도착했는지</span> 판단했습니다.</li>
+              <li>조건을 만족하면 퀘스트를 완료 처리하고 경험치·포인트 지급, 활동 기록까지 이어지도록 연결했습니다.</li>
+            </ul>
+          </section>
+
+          <section class="detail-section">
+            <h3>사진만으로 완료되지 않도록 검증 조건 분리</h3>
+            <ul>
+              <li>사진 파일이 있는지, 사진에 포함된 위치 정보나 현재 위치가 있는지, 촬영 시간이 유효한지 순서대로 확인했습니다.</li>
+              <li>먼저 장소에 도착한 뒤 촬영했는지, 사진이 해당 관광지 주변에서 찍힌 것인지 검증했습니다.</li>
+              <li>마지막 단계에서 <span class="mark-blue">AI가 사진 속 장소가 목표 관광지와 맞는지</span> 확인하도록 연결했습니다.</li>
+            </ul>
+          </section>
+          <div class="detail-kicker">}</div>
+        </aside>
+
+        <section class="detail-right">
+          <div class="system-map">
+            <h2>사진 업로드만으로 완료하지 않는 검증 흐름</h2>
+            <p>사진을 올렸다는 사실만으로 성공 처리하지 않고, 퀘스트 진행 상태·실제 위치·촬영 시간·AI 장소 확인을 순서대로 거쳐 완료 처리했습니다.</p>
+            <div class="mtq-flow">
+              <div class="flow-node"><b>퀘스트 시작</b><span>진행 상황 저장 · 먼저 해야 할 미션 확인</span></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node"><b>실제 도착 확인</b><span>현재 위치가 관광지 근처인지 계산</span></div>
+
+              <div class="flow-arrow flow-wide">↓</div>
+
+              <div class="flow-node"><b>사진 정보 확인</b><span>사진 위치 정보와 촬영 시간 확인</span></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node"><b>위치·시간 조건 확인</b><span>도착 후 해당 장소 근처에서 찍은 사진인지 확인</span></div>
+
+              <div class="flow-arrow flow-wide">↓</div>
+
+              <div class="flow-node"><b>AI 장소 확인</b><span>사진 속 장소가 목표 관광지와 맞는지 확인</span></div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node"><b>완료·보상 지급</b><span>퀘스트 완료 처리 후 경험치·포인트 지급</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Page 3: content pipeline and reward loop -->
+    <section class="slide" data-page="03 / 04" id="slide-03">
+      <div class="detail-main">
+        <aside class="detail-left">
+          <div class="detail-kicker">{</div>
+          <h2>구현 2. 관광지 데이터 콘텐츠화</h2>
+
+          <section class="detail-section">
+            <h3>공공 관광지 데이터를 퀘스트로 변환</h3>
+            <ul>
+              <li>공공 관광지 데이터를 가져와 서비스에서 사용할 수 있는 장소 데이터로 변환했습니다.</li>
+              <li>각 장소에 대해 도착 미션과 사진 인증 미션을 만들고, 사용자가 <span class="mark-blue">순서대로 진행</span>할 수 있도록 연결했습니다.</li>
+              <li>지역별 장소 구분 기준과 장소별 인증 거리 정보를 함께 저장했습니다.</li>
+            </ul>
+          </section>
+
+          <section class="detail-section">
+            <h3>장소별 인증 거리와 보상 흐름 연결</h3>
+            <ul>
+              <li>관광지명과 주소를 기준으로 장소마다 적절한 인증 거리를 산정하고, 값이 없을 때는 기본값으로 보정했습니다.</li>
+              <li>퀘스트 완료 결과가 경험치·포인트 지급, 상점 구매, 아바타 장착, 랭킹 조회로 이어지도록 연결했습니다.</li>
+              <li>관리자 통계와 시스템 처리 기록은 운영 상황을 확인하는 보조 기능으로 정리할 수 있습니다.</li>
+            </ul>
+          </section>
+          <div class="detail-kicker">}</div>
+        </aside>
+
+        <section class="detail-right">
+          <div class="metric-panel">
+            <h2>관광지 데이터를 서비스 경험으로 전환</h2>
+            <p>공공 관광지 데이터를 그대로 보여주는 데서 끝내지 않고, 사용자가 수행할 수 있는 미션과 보상 흐름으로 연결했습니다.</p>
+            <div class="metric-layout">
+              <div>
+                <div class="metric-card">
+                  <div class="screen-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> 이미지 자리: 보상/상점/아바타 화면</div>
+                  <div class="metric-shot"><img src="assets/mtq/avatar.png" alt="아바타 커스터마이징 화면"></div>
+                </div>
+                <div class="cap-row"><span>아바타/상점 보상 흐름</span><span>추가 가능: shop.png / rankings.png</span></div>
+              </div>
+              <div class="metric-row">
+                <div class="metric-box">
+                  <div class="label">관광지 데이터 → 퀘스트 콘텐츠</div>
+                  <div class="value">장소 → 미션</div>
+                  <div class="desc">공공 관광지 정보 → 장소 저장 → 인증 거리 설정 → 도착/사진 미션 생성</div>
+                </div>
+                <div class="metric-box">
+                  <div class="label">퀘스트 완료 → 보상 경험</div>
+                  <div class="value">보상 · 아바타 · 랭킹</div>
+                  <div class="desc">경험치·포인트 지급 → 상점 구매 → 아바타 꾸미기 → 랭킹 확인</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Page 4: problem solving and retrospective -->
+    <section class="slide" data-page="04 / 04" id="slide-04">
+      <div class="final-main">
+        <aside class="final-left">
+          <div class="detail-kicker">{</div>
+          <h2>문제 해결 관점과 회고</h2>
+
+          <article class="solve-case">
+            <h3>문제 해결 관점</h3>
+            <ul>
+              <li>사진을 올렸다는 사실만으로는 사용자가 실제 관광지에 방문했는지 확인하기 어려웠습니다.</li>
+              <li>AI 사진 확인만으로는 위치, 촬영 시간, 미션 진행 순서를 함께 보장하기 어려웠습니다.</li>
+              <li>외부 서비스와 AI 응답은 예상과 다른 형태로 올 수 있어 예외 상황을 고려해야 했습니다.</li>
+              <li>사용자가 미션 완료 결과를 확인하고 보상을 받는 흐름까지 끊기지 않아야 했습니다.</li>
+            </ul>
+          </article>
+
+          <article class="reflection-card">
+            <h3>프로젝트 회고</h3>
+            <p>AI 사진 인증 기능을 구현하며, 사용자 행동 검증은 AI 결과뿐 아니라 위치·시간·진행 상태·보상 처리까지 함께 연결해야 한다는 점을 경험했습니다. 2인 풀스택 프로젝트였기 때문에 공개 자료에서는 팀 성과와 개인 구현 참여 범위를 구분해 표현합니다.</p>
+          </article>
+          <div class="detail-kicker" style="margin-top:20px;">}</div>
+        </aside>
+
+        <section class="final-right">
+          <figure class="mtq-architecture-figure" aria-label="MyTripQuest 서비스 아키텍처 이미지">
+            <img src="../images/gallery/mtq/ArchitectureDiagram.png" alt="MyTripQuest 서비스 아키텍처" />
+          </figure>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
