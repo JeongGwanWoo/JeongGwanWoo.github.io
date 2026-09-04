@@ -65,6 +65,8 @@
     </section>
 
     <section class="project-page-content" id="content" aria-label="프로젝트 상세 내용">
+      <section class="project-page-section"><h2>✔️ 프로젝트 정보 및 구성</h2><ul><li>2026.01 ~ 2026.02 · 약 5주 · 6인 · Mobile</li><li><a href="https://github.com/JeongGwanWoo/DNC-Personalized-Glucose-Assistant" target="_blank" rel="noopener">GitHub Repository</a></li><li>백엔드: Java 17, Spring Boot 3.5, Spring Data JPA</li><li>AI: FastAPI, YOLOv8</li><li>모바일: React Native, Expo, TypeScript</li><li>데이터·외부 연동: MySQL, Redis, Dexcom OAuth, FCM, AWS S3</li><li>운영: Docker, NGINX, Jenkins</li></ul></section>
+      <section class="project-page-section"><h2>✔️ 담당 역할</h2><ul><li><mark class="project-page-highlight">Dexcom OAuth</mark> 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.</li><li>식단 이미지 분석 요청과 <mark class="project-page-highlight">AI 분석 결과</mark> 저장·처리를 구현했습니다.</li><li>식단 추천과 <mark class="project-page-highlight">Daily Report</mark> 생성·조회 흐름을 구현했습니다.</li></ul></section>
       <section class="project-page-section">
         <h2>✔️ 구현 사항</h2>
         <ul><li><mark class="project-page-highlight">Dexcom OAuth</mark>를 통해 CGM 데이터를 수집·조회하고, 사용자별 혈당 데이터를 서비스 흐름에 연결했습니다.</li><li>식단 이미지를 <mark class="project-page-highlight">S3 Presigned URL</mark>로 업로드한 뒤 FastAPI AI 서버에 분석을 요청하고 결과를 저장했습니다.</li><li>분석 결과를 바탕으로 <mark class="project-page-highlight">식단 추천</mark>을 생성하고, 최신 추천과 이전 추천을 조회할 수 있도록 구성했습니다.</li><li>혈당과 식단 정보를 <mark class="project-page-highlight">Daily Report</mark>로 정리하고, 사용자별 일일 리포트를 생성·조회하는 흐름을 구현했습니다.</li></ul>
@@ -72,18 +74,6 @@
       <section class="project-page-section tone-solve">
         <h2>✔️ 문제 해결</h2>
         <ul class="project-page-problem-list"><li><strong>문제</strong>Dexcom Sandbox 환경에서 <mark class="project-page-highlight">deviceId 중복</mark>으로 다른 사용자의 CGM 데이터가 섞일 수 있었습니다.</li><li><strong>원인</strong>외부 deviceId만으로는 서비스 내부 사용자를 구분하기 어려웠습니다.</li><li><strong>해결</strong><mark class="project-page-highlight">사용자 정보</mark>를 기준으로 CGM 데이터와 조회 범위를 분리하고, FastAPI endpoint·응답 DTO와 Controller 파라미터를 명시적으로 맞췄습니다.</li><li><strong>결과</strong>사용자별 조회 경계를 명확히 하고, AI 연동·API 바인딩 오류 가능성을 줄였습니다.</li></ul>
-      </section>
-      <section class="project-page-section">
-        <h2>✔️ 담당 역할</h2>
-        <ul><li><mark class="project-page-highlight">Dexcom OAuth</mark> 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.</li><li>식단 이미지 분석 요청과 <mark class="project-page-highlight">AI 분석 결과</mark> 저장·처리를 구현했습니다.</li><li>식단 추천과 <mark class="project-page-highlight">Daily Report</mark> 생성·조회 흐름을 구현했습니다.</li></ul>
-      </section>
-      <section class="project-page-section tone-stack">
-        <h2>✔️ 기술 스택</h2>
-        <div class="modal-stack"><span>Java 17</span><span>Spring Boot 3.5</span><span>Spring Data JPA</span><span>MySQL</span><span>Redis</span><span>FastAPI</span><span>YOLOv8</span><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Docker</span><span>NGINX</span><span>Jenkins</span><span>Dexcom OAuth</span><span>FCM</span><span>AWS S3</span></div>
-      </section>
-      <section class="project-page-section">
-        <h2>✔️ 프로젝트 구성</h2>
-        <ul><li><mark class="project-page-highlight">백엔드</mark>: Java 17, Spring Boot 3.5, Spring Data JPA</li><li><mark class="project-page-highlight">AI</mark>: FastAPI, YOLOv8</li><li><mark class="project-page-highlight">모바일</mark>: React Native, Expo, TypeScript</li><li><mark class="project-page-highlight">데이터·외부 연동</mark>: MySQL, Redis, Dexcom OAuth, FCM, AWS S3</li><li><mark class="project-page-highlight">운영</mark>: Docker, NGINX, Jenkins</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 프로젝트 성과</h2>

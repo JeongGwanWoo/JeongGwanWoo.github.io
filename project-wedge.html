@@ -81,6 +81,8 @@
     </section>
 
     <section class="project-page-content" id="content" aria-label="프로젝트 상세 내용">
+      <section class="project-page-section"><h2>✔️ 프로젝트 정보 및 구성</h2><ul><li>2026.04 ~ 2026.05 · 약 7주 · 6인 · Web</li><li><a href="https://github.com/JeongGwanWoo/WEDGE-Evidence-Based-UX-Diagnostics" target="_blank" rel="noopener">GitHub Repository</a></li><li>백엔드: Java 17, Spring Boot 3.5, MyBatis</li><li>웹: React, Vite, TypeScript</li><li>실행·분석: Node.js·Playwright Runner, FastAPI Analyzer</li><li>데이터·메시징: PostgreSQL, Redis, RabbitMQ</li><li>운영: Docker, NGINX, Jenkins, AWS S3</li></ul></section>
+      <section class="project-page-section"><h2>✔️ 담당 역할</h2><ul><li>Spring Boot 백엔드에서 <mark class="project-page-highlight">Run·Runner 실행 상태</mark>를 관리했습니다.</li><li><mark class="project-page-highlight">Analyzer 입력 구성</mark>과 비동기 요청 흐름을 구현했습니다.</li><li>분석 결과를 바탕으로 <mark class="project-page-highlight">리포트 생성</mark>과 상태 반영을 구현했습니다.</li></ul></section>
       <section class="project-page-section">
         <h2>✔️ 구현 사항</h2>
         <ul><li><mark class="project-page-highlight">Run 생성·시작</mark>부터 Runner callback, 단계 이벤트, checkpoint·capture, 실행 실패까지 상태가 이어지도록 구성했습니다.</li><li>Analyzer 요청 시점의 <mark class="project-page-highlight">입력값</mark>을 스냅샷으로 보관하고, 내부 API와 <mark class="project-page-highlight">서명 URL</mark>로 분석에 필요한 데이터를 제공했습니다.</li><li>분석 작업을 pending 상태로 생성한 뒤 <mark class="project-page-highlight">Outbox·재시도</mark> 흐름으로 요청을 발행하고, callback 중복을 방어했습니다.</li><li>완료된 분석 결과로 <mark class="project-page-highlight">리포트</mark>를 생성하고, 같은 Run의 중복 생성 방지와 최신 리포트 상태 반영을 처리했습니다.</li></ul>
@@ -88,18 +90,6 @@
       <section class="project-page-section tone-solve">
         <h2>✔️ 문제 해결</h2>
         <ul class="project-page-problem-list"><li><strong>문제</strong>DB 작업은 생성됐지만 <mark class="project-page-highlight">MQ 발행 실패</mark>로 분석 요청이 유실될 수 있었습니다.</li><li><strong>원인</strong>DB 저장과 메시지 발행이 분리되어 실패 추적과 재시도가 어려웠습니다.</li><li><strong>해결</strong>작업 생성과 <mark class="project-page-highlight">Outbox 저장</mark>을 같은 트랜잭션으로 처리하고, <mark class="project-page-highlight">eventId</mark> 중복 방어와 DLQ 실패 상태 전환을 적용했습니다.</li><li><strong>결과</strong>요청 유실 위험을 추적·재처리하고, 중복 callback과 Runner 실패를 정상적으로 상태에 반영했습니다.</li></ul>
-      </section>
-      <section class="project-page-section">
-        <h2>✔️ 담당 역할</h2>
-        <ul><li>Spring Boot 백엔드에서 <mark class="project-page-highlight">Run·Runner 실행 상태</mark>를 관리했습니다.</li><li><mark class="project-page-highlight">Analyzer 입력 구성</mark>과 비동기 요청 흐름을 구현했습니다.</li><li>분석 결과를 바탕으로 <mark class="project-page-highlight">리포트 생성</mark>과 상태 반영을 구현했습니다.</li></ul>
-      </section>
-      <section class="project-page-section tone-stack">
-        <h2>✔️ 기술 스택</h2>
-        <div class="modal-stack"><span>Java 17</span><span>Spring Boot 3.5</span><span>MyBatis</span><span>PostgreSQL</span><span>Redis</span><span>RabbitMQ</span><span>Node.js</span><span>Playwright</span><span>FastAPI</span><span>Docker</span><span>NGINX</span><span>Jenkins</span><span>AWS S3</span></div>
-      </section>
-      <section class="project-page-section">
-        <h2>✔️ 프로젝트 구성</h2>
-        <ul><li><mark class="project-page-highlight">백엔드</mark>: Java 17, Spring Boot 3.5, MyBatis</li><li><mark class="project-page-highlight">실행·분석</mark>: Node.js·Playwright Runner, FastAPI Analyzer</li><li><mark class="project-page-highlight">데이터·메시징</mark>: PostgreSQL, Redis, RabbitMQ</li><li><mark class="project-page-highlight">운영</mark>: Docker, NGINX, Jenkins, AWS S3</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 프로젝트 성과</h2>

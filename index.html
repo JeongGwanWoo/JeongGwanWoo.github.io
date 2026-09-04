@@ -108,8 +108,6 @@
         <p>각 프로젝트 PDF와 주요 캡처를 연결했습니다.</p>
       </div>
       <div class="evidence-links">
-        <a href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">DonDone PDF</a>
-        <a href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">MyTripQuest PDF</a>
         <a href="assets/pdfs/profile-2026-08.pdf" target="_blank" rel="noopener">프로필 PDF</a>
       </div>
     </section>
@@ -359,12 +357,11 @@
           title: 'Wedge',
           summary: 'Run 상태 관리, Analyzer 비동기 요청, 분석 결과 기반 리포트 생성을 연결한 브라우저 실행 기반 UX 진단 서비스입니다.',
           pdf: null,
-          stack: ['Java 17', 'Spring Boot 3.5', 'MyBatis', 'PostgreSQL', 'Redis', 'RabbitMQ', 'Node.js', 'Playwright', 'FastAPI', 'Docker', 'NGINX', 'Jenkins', 'AWS S3'],
           sections: [
+            { title: '프로젝트 정보 및 구성', items: ['2026.04 ~ 2026.05 · 약 7주 · 6인 · Web', 'GitHub Repository: github.com/JeongGwanWoo/WEDGE-Evidence-Based-UX-Diagnostics', '백엔드: Java 17, Spring Boot 3.5, MyBatis', '웹: React, Vite, TypeScript', '실행·분석: Node.js·Playwright Runner, FastAPI Analyzer', '데이터·메시징: PostgreSQL, Redis, RabbitMQ', '운영: Docker, NGINX, Jenkins, AWS S3'] },
+            { title: '담당 역할', items: ['Spring Boot 백엔드에서 Run·Runner 실행 상태를 관리했습니다.', 'Analyzer 입력 구성과 비동기 요청 흐름을 구현했습니다.', '분석 결과를 바탕으로 리포트를 생성하고 상태에 반영했습니다.'] },
             { title: '구현 사항', items: ['Run 생성·시작부터 Runner callback, 단계 이벤트, checkpoint·capture, 실행 실패까지 상태가 이어지도록 구성했습니다.', 'Analyzer 요청 시점의 입력값을 스냅샷으로 보관하고, 내부 API와 서명 URL로 분석에 필요한 데이터를 제공했습니다.', '분석 작업을 pending 상태로 생성한 뒤 Outbox·재시도 흐름으로 요청을 발행하고, callback 중복을 방어했습니다.', '완료된 분석 결과로 리포트를 생성하고, 같은 Run의 중복 생성 방지와 최신 리포트 상태 반영을 처리했습니다.'] },
             { title: '문제 해결', items: ['문제: DB 작업은 생성됐지만 MQ 발행 실패로 분석 요청이 유실될 수 있었습니다.', '원인: DB 저장과 메시지 발행이 분리되어 실패 추적과 재시도가 어려웠습니다.', '해결: 작업 생성과 Outbox 저장을 같은 트랜잭션으로 처리하고, eventId 중복 방어와 DLQ 실패 상태 전환을 적용했습니다.', '결과: 요청 유실 위험을 추적·재처리하고, 중복 callback과 Runner 실패를 정상적으로 상태에 반영했습니다.'] },
-            { title: '담당 역할', items: ['Spring Boot 백엔드에서 Run·Runner 실행 상태를 관리했습니다.', 'Analyzer 입력 구성과 비동기 요청 흐름을 구현했습니다.', '분석 결과를 바탕으로 리포트를 생성하고 상태에 반영했습니다.'] },
-            { title: '프로젝트 구성', items: ['백엔드: Java 17, Spring Boot 3.5, MyBatis', '실행·분석: Node.js·Playwright Runner, FastAPI Analyzer', '데이터·메시징: PostgreSQL, Redis, RabbitMQ', '운영: Docker, NGINX, Jenkins, AWS S3'] },
             { title: '프로젝트 성과', items: ['분석 요청 메시지 유실 위험을 기록·재시도 흐름으로 관리했습니다.', '외부 callback이 재수신되어도 상태와 결과가 중복 반영되지 않도록 방어했습니다.', 'Runner 실행 실패를 Run 실패 상태와 실패 정보로 연결해 사용자에게 노출했습니다.'] },
             { title: '프로젝트 리뷰', items: ['지금이라면 중복 callback, 완료 상태 이후 이벤트, Outbox 재시도 흐름을 테스트로 더 촘촘히 검증하겠습니다.', '비동기 흐름은 정상 처리뿐 아니라 재시도, 중복 방지, 실패 상태의 사용자 노출까지 함께 설계해야 한다는 점을 배웠습니다.'] }
           ]
@@ -373,13 +370,12 @@
           kicker: '02 · Backend',
           title: 'DonDone',
           summary: '외국인 근로자의 근무 기록을 급여 확인·미리받기 흐름과 연결한 급여 지갑 서비스입니다.',
-          pdf: 'assets/pdfs/dondone.pdf',
-          stack: ['Java 17', 'Spring Boot 3.2', 'Spring Data JPA', 'React', 'Vite', 'Android Kotlin', 'PostgreSQL', 'Redis', 'Solidity', 'Foundry', 'Web3j', 'Docker', 'NGINX', 'Jenkins'],
+          pdf: null,
           sections: [
-            { title: '프로젝트 정보', items: ['2026.02 ~ 2026.04 · 약 6주 · 5인 프로젝트', 'GitHub Repository: github.com/JeongGwanWoo/DonDone-Foreign-Worker-Wage-Wallet'] },
-            { title: '구현 사항', items: ['근무자의 출퇴근 기록을 급여 확인과 미리받기 흐름에서 재사용하는 기준 데이터로 정리했습니다.', 'WorkProof 출퇴근 기록과 근무 정정 요청 흐름을 구현했습니다.', '근무 정정 요청에 대한 고용주 승인·반려 흐름과 근무 기록 확정 처리를 구성했습니다.', '회사 등록 코드 기반 근로자 등록과 관리자·고용주용 승인 상태 조회 API를 구현했습니다.', 'GPS 위치 검증과 예외 상황의 검토 상태 처리 흐름을 구성했습니다.', '급여 확인 시점의 근무 증빙을 고정해 문서와 클레임 흐름에서도 같은 기준을 재사용할 수 있게 했습니다.'] },
+            { title: '프로젝트 정보 및 구성', items: ['2026.02 ~ 2026.04 · 약 6주 · 5인 프로젝트', 'GitHub Repository: github.com/JeongGwanWoo/DonDone-Foreign-Worker-Wage-Wallet', '백엔드: Java 17, Spring Boot 3.2, Spring Data JPA', '웹·모바일: React, Vite, Android Kotlin', '데이터: PostgreSQL, Redis', '블록체인: Solidity, Foundry, Web3j', '운영: Docker, NGINX, Jenkins'] },
             { title: '담당 역할', items: ['Spring Boot 기반 백엔드 API 구현에 참여했습니다.', '고용주·근로자·관리자 흐름 중 일부 기능을 구현했습니다.', 'WorkProof 출퇴근, 위치 검증, 검토 상태 흐름을 구현했습니다.'] },
-            { title: '기술 선정 이유', items: ['Spring Boot와 JPA는 근무 기록, 급여, 문서 도메인을 명확히 나누기 위해 사용했습니다.', 'PostgreSQL은 근무 기록과 검토 상태처럼 관계가 분명한 데이터를 저장했습니다.', 'Solidity, Foundry, Web3j를 미리받기 관련 블록체인 구성에 사용했습니다.'] },
+            { title: '구현 사항', items: ['근무자의 출퇴근 기록을 급여 확인과 미리받기 흐름에서 재사용하는 기준 데이터로 정리했습니다.', 'WorkProof 출퇴근 기록과 근무 정정 요청 흐름을 구현했습니다.', '근무 정정 요청에 대한 고용주 승인·반려 흐름과 근무 기록 확정 처리를 구성했습니다.', '회사 등록 코드 기반 근로자 등록과 관리자·고용주용 승인 상태 조회 API를 구현했습니다.', 'GPS 위치 검증과 예외 상황의 검토 상태 처리 흐름을 구성했습니다.', '급여 확인 시점의 근무 증빙을 고정해 문서와 클레임 흐름에서도 같은 기준을 재사용할 수 있게 했습니다.'] },
+            { title: '문제 해결', items: ['문제: 출퇴근 기록이 급여 확인, 문서, 클레임에서 각각 다르게 쓰이면 기준 데이터가 흔들릴 수 있었습니다.', '선택지: 기능마다 별도 데이터를 둘지, WorkProof 기록을 공통 증빙 기준으로 둘지 비교했습니다.', '해결: 출퇴근 기록을 기준 데이터로 정리하고, 급여 확인 snapshot과 문서·클레임 흐름에 연결했습니다.', '배운 점: 돈과 문서가 연결되는 기능에서는 데이터 기준이 흔들리지 않는 구조가 중요했습니다.'] },
             { title: '프로젝트 성과', items: ['하나의 출퇴근 기록을 여러 업무 흐름에서 재사용하는 데이터 기준을 경험했습니다.', '예외 상황을 실패로 끝내기보다 검토 가능한 상태로 남기는 설계의 필요성을 배웠습니다.', '문서와 클레임 기능에서는 기준 데이터가 흔들리지 않는 것이 중요하다는 점을 확인했습니다.'] },
             { title: '프로젝트 리뷰', items: ['지금이라면 WorkProof → Wage → Documents/Claim 흐름을 기능 단위 테스트로 더 촘촘히 검증하겠습니다.', '선지급 요청처럼 중복 요청 위험이 있는 기능은 Idempotency-Key 정책을 더 명확히 문서화하겠습니다.'] }
           ]
@@ -389,12 +385,11 @@
           title: 'DNC 당낭콩',
           summary: 'CGM 데이터 수집과 식단 이미지 분석 결과를 개인화 식단 추천 및 Daily Report 흐름으로 연결한 서비스입니다.',
           pdf: null,
-          stack: ['Java 17', 'Spring Boot 3.5', 'Spring Data JPA', 'MySQL', 'Redis', 'FastAPI', 'YOLOv8', 'React Native', 'Expo', 'TypeScript', 'Docker', 'NGINX', 'Jenkins', 'Dexcom OAuth', 'FCM', 'AWS S3'],
           sections: [
+            { title: '프로젝트 정보 및 구성', items: ['2026.01 ~ 2026.02 · 약 5주 · 6인 · Mobile', 'GitHub Repository: github.com/JeongGwanWoo/DNC-Personalized-Glucose-Assistant', '백엔드: Java 17, Spring Boot 3.5, Spring Data JPA', 'AI: FastAPI, YOLOv8', '모바일: React Native, Expo, TypeScript', '데이터·외부 연동: MySQL, Redis, Dexcom OAuth, FCM, AWS S3', '운영: Docker, NGINX, Jenkins'] },
+            { title: '담당 역할', items: ['Dexcom OAuth 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.', '식단 이미지 분석 요청과 AI 분석 결과 저장·처리를 구현했습니다.', '식단 추천과 Daily Report 생성·조회 흐름을 구현했습니다.'] },
             { title: '구현 사항', items: ['Dexcom OAuth를 통해 CGM 데이터를 수집·조회하고, 사용자별 혈당 데이터를 서비스 흐름에 연결했습니다.', '식단 이미지를 S3 Presigned URL로 업로드한 뒤 FastAPI AI 서버에 분석을 요청하고 결과를 저장했습니다.', '분석 결과를 바탕으로 식단 추천을 생성하고, 최신 추천과 이전 추천을 조회할 수 있도록 구성했습니다.', '혈당과 식단 정보를 Daily Report로 정리하고, 사용자별 일일 리포트를 생성·조회하는 흐름을 구현했습니다.'] },
             { title: '문제 해결', items: ['문제: Dexcom Sandbox 환경에서 deviceId가 중복되어 다른 사용자의 CGM 데이터가 섞일 수 있었습니다.', '원인: 외부 deviceId만으로는 서비스 내부 사용자를 구분하기 어려웠습니다.', '해결: 사용자 정보를 기준으로 CGM 데이터와 조회 범위를 분리하고, FastAPI endpoint·응답 DTO와 Controller 파라미터를 명시적으로 맞췄습니다.', '결과: 사용자별 조회 경계를 명확히 하고, AI 연동·API 바인딩 오류 가능성을 줄였습니다.'] },
-            { title: '담당 역할', items: ['Dexcom OAuth 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.', '식단 이미지 분석 요청과 AI 분석 결과 저장·처리를 구현했습니다.', '식단 추천과 Daily Report 생성·조회 흐름을 구현했습니다.'] },
-            { title: '프로젝트 구성', items: ['백엔드: Java 17, Spring Boot 3.5, Spring Data JPA', 'AI: FastAPI, YOLOv8', '모바일: React Native, Expo, TypeScript', '데이터·외부 연동: MySQL, Redis, Dexcom OAuth, FCM, AWS S3', '운영: Docker, NGINX, Jenkins'] },
             { title: '프로젝트 성과', items: ['외부 CGM 데이터와 식단 분석 결과를 사용자별 리포트 흐름으로 연결했습니다.', 'AI 서버 endpoint와 응답 DTO의 계약을 정리해 연동 오류 가능성을 줄였습니다.', 'Controller 파라미터 이름을 명시해 일부 API의 바인딩 오류와 500 응답 가능성을 줄였습니다.'] },
             { title: '프로젝트 리뷰', items: ['지금이라면 외부 API, Redis, AI 서버 실패에 대한 fallback과 모니터링 지표를 더 보강하겠습니다.', '건강 데이터는 사용자별 조회 경계와 공개 화면의 표현 범위를 더 엄격하게 관리하겠습니다.'] }
           ]
@@ -403,13 +398,12 @@
           kicker: '04 · Full Stack',
           title: 'MyTripQuest',
           summary: '관광지 정보, 위치 도착 확인, 사진 인증을 퀘스트 완료와 보상 흐름으로 연결한 여행 서비스입니다.',
-          pdf: 'assets/pdfs/mytripquest.pdf',
-          stack: ['Java 17', 'Spring Boot 3.5', 'MyBatis', 'Vue 3', 'Vite', 'MySQL', 'JWT', 'OAuth2', '한국관광공사 API'],
+          pdf: null,
           sections: [
-            { title: '프로젝트 정보', items: ['2025.12 ~ 2025.12 · 약 4주 · 2인 프로젝트', 'GitHub Repository: github.com/JeongGwanWoo/My_Trip_Quest'] },
-            { title: '구현 사항', items: ['한국관광공사 API를 연동해 관광지 데이터를 조회·저장하고 퀘스트 장소와 화면에서 사용할 수 있게 했습니다.', '사용자의 현재 위치가 관광지 근처인지 확인해 퀘스트 완료 조건의 첫 단계를 판단했습니다.', '방문 인증 사진을 위치 확인 이후의 추가 인증 단계로 분리했습니다.', '위치·사진 인증 결과에 따라 퀘스트 상태를 변경하고 완료 흐름을 구성했습니다.', '퀘스트 완료 후 포인트·랭킹 등 게이미피케이션 기능 일부를 구현했습니다.', '사용자 로그인 이후 토큰 기반으로 접근 권한을 확인하는 인증 흐름을 구성했습니다.'] },
+            { title: '프로젝트 정보 및 구성', items: ['2025.12 · 약 4주 · 2인 프로젝트', 'GitHub Repository: github.com/JeongGwanWoo/My_Trip_Quest', '백엔드: Java 17, Spring Boot 3.5, MyBatis', '웹: Vue 3, Vite', '데이터: MySQL', '인증: JWT, OAuth2', '외부 연동: 한국관광공사 API'] },
             { title: '담당 역할', items: ['Spring Boot 백엔드 API와 Vue 화면 구현에 참여했습니다.', '관광지 API 연동과 퀘스트 완료 흐름을 구현했습니다.', '사진 인증 결과를 퀘스트 상태 변경과 보상 처리 흐름으로 연결했습니다.'] },
-            { title: '기술 선정 이유', items: ['한국관광공사 API는 실제 관광지 데이터를 기반으로 여행 퀘스트를 구성하기 위해 사용했습니다.', 'JWT와 OAuth2는 로그인 이후 사용자별 퀘스트 접근을 분리하기 위해 사용했습니다.', 'Spring Boot와 MyBatis는 관광지, 퀘스트, 보상 데이터를 관리하기 위해 사용했습니다.'] },
+            { title: '구현 사항', items: ['한국관광공사 API를 연동해 관광지 데이터를 조회·저장하고 퀘스트 장소와 화면에서 사용할 수 있게 했습니다.', '사용자의 현재 위치가 관광지 근처인지 확인해 퀘스트 완료 조건의 첫 단계를 판단했습니다.', '방문 인증 사진을 위치 확인 이후의 추가 인증 단계로 분리했습니다.', '위치·사진 인증 결과에 따라 퀘스트 상태를 변경하고 완료 흐름을 구성했습니다.', '퀘스트 완료 후 포인트·랭킹 등 게이미피케이션 기능 일부를 구현했습니다.', '사용자 로그인 이후 토큰 기반으로 접근 권한을 확인하는 인증 흐름을 구성했습니다.'] },
+            { title: '문제 해결', items: ['문제: 퀘스트 완료를 단순 버튼 클릭이 아니라 실제 방문 여부에 가깝게 판단해야 했습니다.', '선택지: GPS만 사용하는 방식, 사진만 사용하는 방식, GPS 확인 후 사진 인증을 추가하는 방식을 비교했습니다.', '해결: 위치 도착 확인과 사진 인증을 단계별 조건으로 나누고, 결과에 따라 퀘스트 상태가 변경되도록 구성했습니다.', '배운 점: 인증 기능은 조건을 단계별로 나누는 것이 예외 처리와 설명에 유리했습니다.'] },
             { title: '프로젝트 성과', items: ['위치 확인과 사진 인증을 한 덩어리로 보지 않고 단계별 조건으로 나누어 구현했습니다.', '관광지 데이터, 사용자 행동, 보상 흐름이 연결되는 서비스 구조를 경험했습니다.', '2인 프로젝트에서 역할을 나누고 서로의 구현 흐름을 맞추는 협업 경험을 얻었습니다.'] },
             { title: '프로젝트 리뷰', items: ['지금이라면 테스트 실행 환경을 분리하고 위치·사진 인증 실패 케이스를 더 많이 검증하겠습니다.', 'OAuth2 로그인 이후 토큰 전달 방식은 URL 전달보다 HttpOnly Cookie나 일회성 code 방식으로 개선하겠습니다.'] }
           ]
@@ -599,12 +593,7 @@
           modalPdf.hidden = !data.pdf;
           if (data.pdf) modalPdf.href = data.pdf;
         }
-        modalContent.innerHTML = [
-          renderModalSection(data.sections[0]),
-          renderModalSection(data.sections[1]),
-          renderStackSection(data.stack),
-          ...data.sections.slice(2).map(renderModalSection)
-        ].join('');
+        modalContent.innerHTML = data.sections.map(renderModalSection).join('');
 
         window.clearTimeout(modalCloseTimer);
         if (!projectModal.open) projectModal.showModal();
