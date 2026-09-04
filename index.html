@@ -109,7 +109,6 @@
       </div>
       <div class="evidence-links">
         <a href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">DonDone PDF</a>
-        <a href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">DNC PDF</a>
         <a href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">MyTripQuest PDF</a>
         <a href="assets/pdfs/profile-2026-08.pdf" target="_blank" rel="noopener">프로필 PDF</a>
       </div>
@@ -387,15 +386,16 @@
         dnc: {
           kicker: '03 · Backend / Infra',
           title: 'DNC 당낭콩',
-          summary: '실시간 건강 데이터와 AI 분석 결과를 사용자별 식단 리포트 흐름으로 연결한 프로젝트입니다.',
-          pdf: 'assets/pdfs/dnc.pdf',
-          stack: ['Java', 'Spring Boot', 'JPA', 'MySQL', 'Redis', 'FastAPI', 'Gemini API', 'Docker'],
+          summary: 'CGM 데이터 수집과 식단 이미지 분석 결과를 개인화 식단 추천 및 Daily Report 흐름으로 연결한 서비스입니다.',
+          pdf: null,
+          stack: ['Java 17', 'Spring Boot 3.5', 'Spring Data JPA', 'MySQL', 'Redis', 'FastAPI', 'YOLOv8', 'React Native', 'Expo', 'TypeScript', 'Docker', 'NGINX', 'Jenkins', 'Dexcom OAuth', 'FCM', 'AWS S3'],
           sections: [
-            { title: '구현 사항', items: ['외부 서비스 연동이 끊기지 않도록 만료되는 접근 토큰을 갱신하는 흐름을 구성했습니다.', '사용자의 센서 데이터를 주기적으로 받아와 식단 기록과 리포트에서 쓸 수 있는 데이터 흐름으로 연결했습니다.', '사용자마다 데이터를 따로 임시 저장해, 서로의 데이터가 섞이지 않도록 분리했습니다.', '이미 저장된 외부 데이터가 다시 들어와도 중복 저장되지 않도록 사용자와 기록 ID 기준을 확인했습니다.', 'AI 서버가 돌려준 분석 결과를 서비스의 식단·리포트 데이터로 사용할 수 있게 매핑했습니다.', '수집 데이터와 AI 요약 결과가 사용자가 보는 리포트로 이어지도록 연결 흐름을 정리했습니다.'] },
-            { title: '담당 역할', items: ['토큰 갱신, 실시간 데이터 수집, 사용자별 임시 저장 흐름에 참여했습니다.', '중복 데이터 저장을 막기 위한 사용자와 기록 ID 기준 확인 흐름을 구성했습니다.', 'AI 분석 결과와 요약 내용을 리포트 흐름에 매핑했습니다.'] },
-            { title: '기술 선정 이유', items: ['Redis는 사용자별 실시간 데이터를 분리해 임시 저장하기 위해 사용했습니다.', 'FastAPI는 AI 분석 서버와 Spring Boot 서비스의 역할을 분리하기 위해 사용했습니다.', 'Gemini API는 리포트 요약처럼 사용자가 이해하기 쉬운 문장을 생성하기 위해 연동했습니다.'] },
-            { title: '프로젝트 성과', items: ['외부 API, 임시 저장소, AI 서버, 리포트가 이어지는 전체 연동 흐름을 경험했습니다.', '사용자별 데이터 격리와 중복 방지가 외부 데이터 연동에서 중요하다는 점을 배웠습니다.', 'AI 기능은 정확도 주장보다 실패 처리와 결과 매핑 기준이 중요하다는 점을 확인했습니다.'] },
-            { title: '프로젝트 리뷰', items: ['지금이라면 외부 API 실패, Redis 장애, AI 서버 실패에 대한 fallback과 모니터링 지표를 추가하겠습니다.', '건강 정보처럼 민감해 보이는 데이터는 공개 화면에서 더 강하게 익명화하고 표현 범위를 제한하겠습니다.'] }
+            { title: '구현 사항', items: ['Dexcom OAuth를 통해 CGM 데이터를 수집·조회하고, 사용자별 혈당 데이터를 서비스 흐름에 연결했습니다.', '식단 이미지를 S3 Presigned URL로 업로드한 뒤 FastAPI AI 서버에 분석을 요청하고 결과를 저장했습니다.', '분석 결과를 바탕으로 식단 추천을 생성하고, 최신 추천과 이전 추천을 조회할 수 있도록 구성했습니다.', '혈당과 식단 정보를 Daily Report로 정리하고, 사용자별 일일 리포트를 생성·조회하는 흐름을 구현했습니다.'] },
+            { title: '문제 해결', items: ['문제: Dexcom Sandbox 환경에서 deviceId가 중복되어 다른 사용자의 CGM 데이터가 섞일 수 있었습니다.', '원인: 외부 deviceId만으로는 서비스 내부 사용자를 구분하기 어려웠습니다.', '해결: 사용자 정보를 기준으로 CGM 데이터와 조회 범위를 분리하고, FastAPI endpoint·응답 DTO와 Controller 파라미터를 명시적으로 맞췄습니다.', '결과: 사용자별 조회 경계를 명확히 하고, AI 연동·API 바인딩 오류 가능성을 줄였습니다.'] },
+            { title: '담당 역할', items: ['Dexcom OAuth 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.', '식단 이미지 분석 요청과 AI 분석 결과 저장·처리를 구현했습니다.', '식단 추천과 Daily Report 생성·조회 흐름을 구현했습니다.'] },
+            { title: '프로젝트 구성', items: ['백엔드: Java 17, Spring Boot 3.5, Spring Data JPA', 'AI: FastAPI, YOLOv8', '모바일: React Native, Expo, TypeScript', '데이터·외부 연동: MySQL, Redis, Dexcom OAuth, FCM, AWS S3', '운영: Docker, NGINX, Jenkins'] },
+            { title: '프로젝트 성과', items: ['외부 CGM 데이터와 식단 분석 결과를 사용자별 리포트 흐름으로 연결했습니다.', 'AI 서버 endpoint와 응답 DTO의 계약을 정리해 연동 오류 가능성을 줄였습니다.', 'Controller 파라미터 이름을 명시해 일부 API의 바인딩 오류와 500 응답 가능성을 줄였습니다.'] },
+            { title: '프로젝트 리뷰', items: ['지금이라면 외부 API, Redis, AI 서버 실패에 대한 fallback과 모니터링 지표를 더 보강하겠습니다.', '건강 데이터는 사용자별 조회 경계와 공개 화면의 표현 범위를 더 엄격하게 관리하겠습니다.'] }
           ]
         },
         mtq: {

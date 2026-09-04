@@ -18,7 +18,6 @@
     <div class="nav-links">
       <a href="#media">영상·이미지</a>
       <a href="#content">구현 내용</a>
-      <a href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">PDF</a>
     </div>
   </nav>
   <main class="project-page-main">
@@ -26,7 +25,7 @@
       <p class="eyebrow">03 · Backend / Infra</p>
       <h1>DNC 당낭콩</h1>
       <p class="project-page-subtitle">AI 기반 개인화 혈당 예측·식단 코칭 헬스케어 서비스</p>
-      <p class="lead">실시간 건강 데이터와 AI 분석 결과를 사용자별 식단 리포트 흐름으로 연결한 프로젝트입니다.</p>
+      <p class="lead">CGM 데이터 수집과 식단 이미지 분석 결과를 개인화 식단 추천 및 Daily Report 흐름으로 연결한 서비스입니다.</p>
     </header>
 
     <section class="project-page-media" id="media" aria-label="프로젝트 미디어">
@@ -68,31 +67,31 @@
     <section class="project-page-content" id="content" aria-label="프로젝트 상세 내용">
       <section class="project-page-section">
         <h2>✔️ 구현 사항</h2>
-        <ul><li>외부 서비스 연동이 끊기지 않도록 만료되는 접근 토큰을 갱신하는 흐름을 구성했습니다.</li><li>사용자의 <mark class="project-page-highlight">센서 데이터</mark>를 주기적으로 받아와 식단 기록과 <mark class="project-page-highlight">리포트</mark>에서 쓸 수 있는 데이터 흐름으로 연결했습니다.</li><li>사용자마다 데이터를 따로 <mark class="project-page-highlight">임시 저장</mark>해, 서로의 데이터가 섞이지 않도록 분리했습니다.</li><li>이미 저장된 외부 데이터가 다시 들어와도 중복 저장되지 않도록 사용자와 기록 ID 기준을 확인했습니다.</li><li><mark class="project-page-highlight">AI 서버</mark>가 돌려준 분석 결과를 서비스의 식단·<mark class="project-page-highlight">리포트</mark> 데이터로 사용할 수 있게 매핑했습니다.</li><li>수집 데이터와 AI 요약 결과가 사용자가 보는 <mark class="project-page-highlight">리포트</mark>로 이어지도록 연결 흐름을 정리했습니다.</li></ul>
+        <ul><li><mark class="project-page-highlight">Dexcom OAuth</mark>를 통해 CGM 데이터를 수집·조회하고, 사용자별 혈당 데이터를 서비스 흐름에 연결했습니다.</li><li>식단 이미지를 <mark class="project-page-highlight">S3 Presigned URL</mark>로 업로드한 뒤 FastAPI AI 서버에 분석을 요청하고 결과를 저장했습니다.</li><li>분석 결과를 바탕으로 <mark class="project-page-highlight">식단 추천</mark>을 생성하고, 최신 추천과 이전 추천을 조회할 수 있도록 구성했습니다.</li><li>혈당과 식단 정보를 <mark class="project-page-highlight">Daily Report</mark>로 정리하고, 사용자별 일일 리포트를 생성·조회하는 흐름을 구현했습니다.</li></ul>
       </section>
       <section class="project-page-section tone-solve">
         <h2>✔️ 문제 해결</h2>
-        <ul class="project-page-problem-list"><li><strong>문제</strong>외부 건강 데이터와 <mark class="project-page-highlight">AI 분석</mark> 결과를 <mark class="project-page-highlight">사용자별</mark>로 분리하고 <mark class="project-page-highlight">리포트</mark>까지 연결해야 했습니다.</li><li><strong>선택지</strong>바로 DB에 저장하는 방식, <mark class="project-page-highlight">임시 저장</mark> 후 동기화하는 방식, <mark class="project-page-highlight">사용자별</mark> key와 <mark class="project-page-highlight">중복 체크</mark>를 두는 방식을 비교했습니다.</li><li><strong>해결</strong><mark class="project-page-highlight">사용자별</mark> <mark class="project-page-highlight">Redis</mark> key로 데이터를 분리하고, user + recordId 기준으로 중복 저장을 방지한 뒤 <mark class="project-page-highlight">AI 결과</mark>를 <mark class="project-page-highlight">리포트</mark> 흐름에 매핑했습니다.</li><li><strong>배운 점</strong><mark class="project-page-highlight">외부 API</mark>와 AI 기능은 정확도 주장보다 <mark class="project-page-highlight">데이터 격리</mark>, 실패 처리, <mark class="project-page-highlight">결과 매핑</mark> 기준이 중요하다는 점을 배웠습니다.</li></ul>
+        <ul class="project-page-problem-list"><li><strong>문제</strong>Dexcom Sandbox 환경에서 <mark class="project-page-highlight">deviceId 중복</mark>으로 다른 사용자의 CGM 데이터가 섞일 수 있었습니다.</li><li><strong>원인</strong>외부 deviceId만으로는 서비스 내부 사용자를 구분하기 어려웠습니다.</li><li><strong>해결</strong><mark class="project-page-highlight">사용자 정보</mark>를 기준으로 CGM 데이터와 조회 범위를 분리하고, FastAPI endpoint·응답 DTO와 Controller 파라미터를 명시적으로 맞췄습니다.</li><li><strong>결과</strong>사용자별 조회 경계를 명확히 하고, AI 연동·API 바인딩 오류 가능성을 줄였습니다.</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 담당 역할</h2>
-        <ul><li><mark class="project-page-highlight">토큰 갱신</mark>, <mark class="project-page-highlight">실시간 데이터</mark> 수집, <mark class="project-page-highlight">사용자별</mark> <mark class="project-page-highlight">임시 저장</mark> 흐름에 참여했습니다.</li><li><mark class="project-page-highlight">중복 데이터</mark> 저장을 막기 위한 사용자와 기록 ID 기준 확인 흐름을 구성했습니다.</li><li><mark class="project-page-highlight">AI 분석</mark> 결과와 요약 내용을 <mark class="project-page-highlight">리포트</mark> 흐름에 매핑했습니다.</li></ul>
+        <ul><li><mark class="project-page-highlight">Dexcom OAuth</mark> 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.</li><li>식단 이미지 분석 요청과 <mark class="project-page-highlight">AI 분석 결과</mark> 저장·처리를 구현했습니다.</li><li>식단 추천과 <mark class="project-page-highlight">Daily Report</mark> 생성·조회 흐름을 구현했습니다.</li></ul>
       </section>
       <section class="project-page-section tone-stack">
         <h2>✔️ 기술 스택</h2>
-        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>MySQL</span><span>Redis</span><span>FastAPI</span><span>Gemini API</span><span>Docker</span></div>
+        <div class="modal-stack"><span>Java 17</span><span>Spring Boot 3.5</span><span>Spring Data JPA</span><span>MySQL</span><span>Redis</span><span>FastAPI</span><span>YOLOv8</span><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Docker</span><span>NGINX</span><span>Jenkins</span><span>Dexcom OAuth</span><span>FCM</span><span>AWS S3</span></div>
       </section>
       <section class="project-page-section">
-        <h2>✔️ 기술 선정 이유</h2>
-        <ul><li><mark class="project-page-highlight">Redis</mark>는 <mark class="project-page-highlight">사용자별</mark> <mark class="project-page-highlight">실시간 데이터</mark>를 분리해 <mark class="project-page-highlight">임시 저장</mark>하기 위해 사용했습니다.</li><li><mark class="project-page-highlight">FastAPI</mark>는 <mark class="project-page-highlight">AI 분석</mark> 서버와 <mark class="project-page-highlight">Spring Boot</mark> 서비스의 역할을 분리하기 위해 사용했습니다.</li><li><mark class="project-page-highlight">Gemini API</mark>는 <mark class="project-page-highlight">리포트</mark> 요약처럼 사용자가 이해하기 쉬운 문장을 생성하기 위해 연동했습니다.</li></ul>
+        <h2>✔️ 프로젝트 구성</h2>
+        <ul><li><mark class="project-page-highlight">백엔드</mark>: Java 17, Spring Boot 3.5, Spring Data JPA</li><li><mark class="project-page-highlight">AI</mark>: FastAPI, YOLOv8</li><li><mark class="project-page-highlight">모바일</mark>: React Native, Expo, TypeScript</li><li><mark class="project-page-highlight">데이터·외부 연동</mark>: MySQL, Redis, Dexcom OAuth, FCM, AWS S3</li><li><mark class="project-page-highlight">운영</mark>: Docker, NGINX, Jenkins</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 프로젝트 성과</h2>
-        <ul><li><mark class="project-page-highlight">외부 API</mark>, <mark class="project-page-highlight">임시 저장</mark>소, <mark class="project-page-highlight">AI 서버</mark>, <mark class="project-page-highlight">리포트</mark>가 이어지는 전체 연동 흐름을 경험했습니다.</li><li><mark class="project-page-highlight">사용자별</mark> <mark class="project-page-highlight">데이터 격리</mark>와 중복 방지가 외부 데이터 연동에서 중요하다는 점을 배웠습니다.</li><li>AI 기능은 정확도 주장보다 실패 처리와 <mark class="project-page-highlight">결과 매핑</mark> 기준이 중요하다는 점을 확인했습니다.</li></ul>
+        <ul><li>외부 CGM 데이터와 식단 분석 결과를 <mark class="project-page-highlight">사용자별 리포트</mark> 흐름으로 연결했습니다.</li><li>AI 서버 endpoint와 응답 DTO의 <mark class="project-page-highlight">계약</mark>을 정리해 연동 오류 가능성을 줄였습니다.</li><li>Controller 파라미터 이름을 명시해 일부 API의 바인딩 오류와 <mark class="project-page-highlight">500 응답 가능성</mark>을 줄였습니다.</li></ul>
       </section>
       <section class="project-page-section">
         <h2>✔️ 프로젝트 리뷰</h2>
-        <ul><li>지금이라면 <mark class="project-page-highlight">외부 API</mark> 실패, <mark class="project-page-highlight">Redis</mark> 장애, <mark class="project-page-highlight">AI 서버</mark> 실패에 대한 <mark class="project-page-highlight">fallback</mark>과 <mark class="project-page-highlight">모니터링</mark> 지표를 추가하겠습니다.</li><li>건강 정보처럼 민감해 보이는 데이터는 공개 화면에서 더 강하게 익명화하고 표현 범위를 제한하겠습니다.</li></ul>
+        <ul><li>지금이라면 <mark class="project-page-highlight">외부 API</mark>, <mark class="project-page-highlight">Redis</mark>, <mark class="project-page-highlight">AI 서버</mark> 실패에 대한 fallback과 모니터링 지표를 더 보강하겠습니다.</li><li>건강 데이터는 사용자별 조회 경계와 공개 화면의 표현 범위를 더 엄격하게 관리하겠습니다.</li></ul>
       </section>
     </section>
     <div class="project-page-bottom-nav">
