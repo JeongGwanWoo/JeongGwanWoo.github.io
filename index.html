@@ -102,16 +102,6 @@
       </div>
     </section>
 
-    <section class="section evidence-strip" id="evidence" aria-labelledby="evidence-title">
-      <div class="section-head compact">
-        <h2 id="evidence-title">프로젝트별 원본 자료</h2>
-        <p>각 프로젝트 PDF와 주요 캡처를 연결했습니다.</p>
-      </div>
-      <div class="evidence-links">
-        <a href="assets/pdfs/profile-2026-08.pdf" target="_blank" rel="noopener">프로필 PDF</a>
-      </div>
-    </section>
-
     <section class="section" aria-labelledby="focus-title">
       <div class="section-head">
         <p class="eyebrow">백엔드 관심 영역</p>
@@ -120,23 +110,23 @@
       <div class="focus-grid">
         <article class="focus-card">
           <span>01</span>
-          <h3>API와 접근 경계</h3>
-          <p>public, authenticated, admin API 경계를 나누고 권한 조건과 실패 응답을 명확히 정리하는 데 관심이 있습니다.</p>
+          <h3>역할·인증·접근 경계</h3>
+          <p>고용주·근로자·관리자처럼 역할이 나뉜 흐름과 JWT·OAuth2 기반 인증에서 사용자별 접근 조건과 실패 응답을 명확히 정리합니다.</p>
         </article>
         <article class="focus-card">
           <span>02</span>
-          <h3>상태 전이와 정합성</h3>
-          <p>Run/Step, WorkProof, sensor status처럼 상태가 바뀌는 도메인에서 전이 조건과 예외 경로를 먼저 확인합니다.</p>
+          <h3>데이터 정합성과 상태 전이</h3>
+          <p>Run·Runner 실행 상태, WorkProof 정정 요청, 퀘스트 완료처럼 상태가 바뀌는 도메인에서 전이 조건과 중복·예외 경로를 먼저 확인합니다.</p>
         </article>
         <article class="focus-card">
           <span>03</span>
-          <h3>외부 API 연동</h3>
-          <p>Runner, Analyzer, Dexcom, FastAPI AI, TourAPI 같은 외부 결과를 내부 도메인 데이터로 안전하게 연결합니다.</p>
+          <h3>외부 연동과 실패 복구</h3>
+          <p>Runner·Analyzer, Dexcom OAuth, FastAPI, 한국관광공사 API처럼 외부 결과를 내부 데이터로 연결하고 재시도·중복 방어·응답 계약을 함께 설계합니다.</p>
         </article>
         <article class="focus-card">
           <span>04</span>
-          <h3>실행·검증 근거</h3>
-          <p>Docker, Jenkins/GitHub Actions, README, 테스트 로그를 통해 실행·검증 가능한 자료를 남기는 방식을 지향합니다.</p>
+          <h3>테스트와 실제 QA</h3>
+          <p>단위·통합·동시성 테스트와 테스트 서버 검증을 함께 수행해 정상 흐름뿐 아니라 실패·중복·경계 조건도 확인합니다.</p>
         </article>
       </div>
     </section>
@@ -214,15 +204,12 @@
         <p class="eyebrow">작업 방식</p>
         <h2 id="about-title">제가 일하는 방식</h2>
         <ol>
-          <li>요구사항을 API, 데이터 상태 변화, 실패 케이스로 먼저 나눕니다.</li>
-          <li>팀 결과와 개인 기여, 근거와 추론을 분리해 문장 강도를 조절합니다.</li>
-          <li>구현 후에는 README, 테스트 로그, 캡처처럼 다시 확인할 수 있는 근거를 남기려 합니다.</li>
-          <li>성능·품질·정확도는 수치 근거가 없으면 주장하지 않고, 개선 계획으로 남깁니다.</li>
+          <li><strong>데이터 정합성을 우선으로 설계합니다.</strong><span>트랜잭션, DB 제약, 동시성 테스트를 통해 중복·정원 초과 등의 오류를 방지합니다.</span></li>
+          <li><strong>외부 연동 실패에도 핵심 데이터를 안전하게 유지하도록 구현합니다.</strong><span>API 실패를 기록하고 재시도할 수 있게 하며, 실패가 이미 확정된 DB 상태를 되돌리지 않도록 설계합니다.</span></li>
+          <li><strong>구현 전에 구조와 테스트 범위를 먼저 설계합니다.</strong><span>사용자 흐름, 클래스 책임, 데이터 구조, 예외 상황을 정리한 뒤 작은 단위로 구현합니다.</span></li>
+          <li><strong>테스트와 실제 QA를 통해 동작을 검증합니다.</strong><span>단위·통합·동시성 테스트와 테스트 서버 검증을 함께 수행합니다.</span></li>
+          <li><strong>책임 분리와 기록을 중요하게 생각합니다.</strong><span>이벤트 처리, 비즈니스 로직, DB, 외부 API를 분리하고 중요한 결정과 이유를 문서로 남깁니다.</span></li>
         </ol>
-      </div>
-      <div class="about-card">
-        <h3>소개</h3>
-        <p>기능이 동작하는 것에서 멈추지 않고, 실패 케이스와 운영 관점까지 함께 고민하는 백엔드 개발자를 지향합니다. 이 포트폴리오는 프로젝트를 완벽하게 포장하기보다 판단 근거와 남은 한계를 함께 보여주는 방식으로 구성했습니다.</p>
       </div>
     </section>
 
@@ -230,7 +217,7 @@
 
   <footer class="footer">
     <p><strong>정관우 백엔드 포트폴리오</strong></p>
-    <p>초안 · 검증 자료 중심 · 문서형 디자인 · 2026.08.11</p>
+    <p>최근 갱신 · 2026.08.11</p>
     <a href="#top">맨 위로</a>
   </footer>
 
