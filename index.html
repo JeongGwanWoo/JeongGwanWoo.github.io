@@ -83,7 +83,7 @@
           <ul>
             <li>
               <strong>Wedge</strong>
-              <span>비동기 실행 상태 관리</span>
+              <span>비동기 분석 처리 안정성</span>
             </li>
             <li>
               <strong>DonDone</strong>
@@ -108,7 +108,6 @@
         <p>각 프로젝트 PDF와 주요 캡처를 연결했습니다.</p>
       </div>
       <div class="evidence-links">
-        <a href="assets/pdfs/wedge.pdf" target="_blank" rel="noopener">Wedge PDF</a>
         <a href="assets/pdfs/dondone.pdf" target="_blank" rel="noopener">DonDone PDF</a>
         <a href="assets/pdfs/dnc.pdf" target="_blank" rel="noopener">DNC PDF</a>
         <a href="assets/pdfs/mytripquest.pdf" target="_blank" rel="noopener">MyTripQuest PDF</a>
@@ -157,7 +156,7 @@
       <div class="project-scroll-stage" data-project-stage>
         <div class="project-viewport" data-project-viewport>
           <div class="project-picker" aria-label="프로젝트 선택 목록" data-project-track>
-        <button class="project-select-card project-preview main is-active" type="button" data-case="wedge" data-title="Wedge" data-desc="비동기 실행 상태 관리" data-page="project-wedge.html">
+        <button class="project-select-card project-preview main is-active" type="button" data-case="wedge" data-title="Wedge" data-desc="비동기 분석 처리 안정성" data-page="project-wedge.html">
           <div class="project-preview-media video-shot" aria-hidden="true">
             <img src="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
             <span class="project-preview-play" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg></span>
@@ -359,15 +358,16 @@
         wedge: {
           kicker: '01 · Backend',
           title: 'Wedge',
-          summary: '브라우저 실행 기반 UX 진단 결과를 분석 요청, 리포트, 공유 링크 흐름으로 연결한 프로젝트입니다.',
-          pdf: 'assets/pdfs/wedge.pdf',
-          stack: ['Java', 'Spring Boot', 'JPA', 'PostgreSQL', 'Redis', 'RabbitMQ', 'Docker', 'Jenkins', 'AWS S3'],
+          summary: 'Run 상태 관리, Analyzer 비동기 요청, 분석 결과 기반 리포트 생성을 연결한 브라우저 실행 기반 UX 진단 서비스입니다.',
+          pdf: null,
+          stack: ['Java 17', 'Spring Boot 3.5', 'MyBatis', 'PostgreSQL', 'Redis', 'RabbitMQ', 'Node.js', 'Playwright', 'FastAPI', 'Docker', 'NGINX', 'Jenkins', 'AWS S3'],
           sections: [
-            { title: '구현 사항', items: ['브라우저 실행 중 들어온 단계별 이벤트를 전체 실행 상태와 개별 단계 상태로 나누어 기록했습니다.', '분석 요청을 바로 보내지 않고 먼저 저장한 뒤, 트랜잭션이 끝난 후 안전하게 발행되도록 분리했습니다.', '분석 요청 발행이 실패해도 누락되지 않도록, 남은 요청을 다시 처리하는 재시도 흐름을 구성했습니다.', '리포트 공유 링크의 만료, 회수, 활성 링크 재사용 기준을 나누어 접근 경계를 관리했습니다.', '같은 공유 링크를 여러 요청이 동시에 바꿀 때 데이터가 꼬이지 않도록 잠금 기준을 두었습니다.'] },
-            { title: '담당 역할', items: ['Spring Core Backend 역할로 Run/Step 상태 매핑 흐름에 참여했습니다.', 'Analysis request 저장, 발행, 재시도 흐름 일부를 구현했습니다.', 'Report share token의 접근 정책과 동시 수정 방지 기준 구현에 참여했습니다.'] },
-            { title: '기술 선정 이유', items: ['RabbitMQ는 브라우저 실행 이후 분석 요청을 느슨하게 분리하기 위해 사용했습니다.', 'Redis는 실행 중간 상태나 임시 데이터를 빠르게 다루기 위해 사용했습니다.', 'PostgreSQL은 실행 결과와 리포트 데이터를 안정적으로 보관하기 위해 사용했습니다.'] },
-            { title: '프로젝트 성과', items: ['비동기 실행 실패 지점을 상태 기준으로 추적할 수 있는 구조를 경험했습니다.', '트랜잭션 이후 이벤트 발행과 재시도 흐름을 분리하는 필요성을 학습했습니다.', '공개 링크처럼 외부에 노출되는 기능은 만료와 회수 정책이 중요하다는 점을 확인했습니다.'] },
-            { title: '프로젝트 리뷰', items: ['지금이라면 중복 callback, terminal 상태 이후 이벤트 거부, outbox 재시도 케이스를 테스트로 더 보강하겠습니다.', '비동기 흐름은 구현보다 운영 중 관찰 가능한 로그와 상태 설계가 더 중요하다는 점을 배웠습니다.'] }
+            { title: '구현 사항', items: ['Run 생성·시작부터 Runner callback, 단계 이벤트, checkpoint·capture, 실행 실패까지 상태가 이어지도록 구성했습니다.', 'Analyzer 요청 시점의 입력값을 스냅샷으로 보관하고, 내부 API와 서명 URL로 분석에 필요한 데이터를 제공했습니다.', '분석 작업을 pending 상태로 생성한 뒤 Outbox·재시도 흐름으로 요청을 발행하고, callback 중복을 방어했습니다.', '완료된 분석 결과로 리포트를 생성하고, 같은 Run의 중복 생성 방지와 최신 리포트 상태 반영을 처리했습니다.'] },
+            { title: '문제 해결', items: ['문제: DB 작업은 생성됐지만 MQ 발행 실패로 분석 요청이 유실될 수 있었습니다.', '원인: DB 저장과 메시지 발행이 분리되어 실패 추적과 재시도가 어려웠습니다.', '해결: 작업 생성과 Outbox 저장을 같은 트랜잭션으로 처리하고, eventId 중복 방어와 DLQ 실패 상태 전환을 적용했습니다.', '결과: 요청 유실 위험을 추적·재처리하고, 중복 callback과 Runner 실패를 정상적으로 상태에 반영했습니다.'] },
+            { title: '담당 역할', items: ['Spring Boot 백엔드에서 Run·Runner 실행 상태를 관리했습니다.', 'Analyzer 입력 구성과 비동기 요청 흐름을 구현했습니다.', '분석 결과를 바탕으로 리포트를 생성하고 상태에 반영했습니다.'] },
+            { title: '프로젝트 구성', items: ['백엔드: Java 17, Spring Boot 3.5, MyBatis', '실행·분석: Node.js·Playwright Runner, FastAPI Analyzer', '데이터·메시징: PostgreSQL, Redis, RabbitMQ', '운영: Docker, NGINX, Jenkins, AWS S3'] },
+            { title: '프로젝트 성과', items: ['분석 요청 메시지 유실 위험을 기록·재시도 흐름으로 관리했습니다.', '외부 callback이 재수신되어도 상태와 결과가 중복 반영되지 않도록 방어했습니다.', 'Runner 실행 실패를 Run 실패 상태와 실패 정보로 연결해 사용자에게 노출했습니다.'] },
+            { title: '프로젝트 리뷰', items: ['지금이라면 중복 callback, 완료 상태 이후 이벤트, Outbox 재시도 흐름을 테스트로 더 촘촘히 검증하겠습니다.', '비동기 흐름은 정상 처리뿐 아니라 재시도, 중복 방지, 실패 상태의 사용자 노출까지 함께 설계해야 한다는 점을 배웠습니다.'] }
           ]
         },
         dondone: {
@@ -593,7 +593,10 @@
         modalKicker.textContent = data.kicker;
         modalTitle.textContent = data.title;
         modalSummary.textContent = data.summary;
-        modalPdf.href = data.pdf;
+        if (modalPdf) {
+          modalPdf.hidden = !data.pdf;
+          if (data.pdf) modalPdf.href = data.pdf;
+        }
         modalContent.innerHTML = [
           renderModalSection(data.sections[0]),
           renderModalSection(data.sections[1]),
