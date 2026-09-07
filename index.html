@@ -1,938 +1,1719 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="정관우 백엔드 개발자 포트폴리오 — 기술 이력서, 설계 사례집, 문제 해결 로그 중심의 백엔드 포트폴리오" />
-  <title>정관우 | 백엔드 포트폴리오</title>
-  <script>
-    (() => {
-      const value = location.hash.replace(/^#/, '');
-      const caseId = value.startsWith('case-') ? value.slice(5) : value.split('-')[0];
-      if (['wedge', 'dondone', 'dnc', 'mtq'].includes(caseId)) {
-        window.__initialCase = caseId;
-        history.replaceState(null, '', `${location.pathname}${location.search}`);
-      }
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <a class="skip-link" href="index.html#main">본문으로 이동</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="정관우 백엔드 개발자 포트폴리오 — 기술 이력서, 설계 사례집, 문제 해결 로그 중심의 백엔드 포트폴리오"
+    />
+    <title>정관우 | 백엔드 포트폴리오</title>
+    <script>
+      (() => {
+        const value = location.hash.replace(/^#/, "");
+        const caseId = value.startsWith("case-")
+          ? value.slice(5)
+          : value.split("-")[0];
+        if (["wedge", "dondone", "dnc", "mtq"].includes(caseId)) {
+          window.__initialCase = caseId;
+          history.replaceState(
+            null,
+            "",
+            `${location.pathname}${location.search}`,
+          );
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="index.html#main">본문으로 이동</a>
 
-  <header class="site-header">
-    <nav class="nav" aria-label="주요 메뉴">
-      <div class="nav-left">
-        <button class="brand" type="button" data-scroll-top aria-label="맨 위로 이동">정관우</button>
-        <a class="nav-cta" href="assets/pdfs/profile-2026-08.pdf" target="_blank" rel="noopener">프로필 PDF</a>
-      </div>
-      <div class="nav-links">
-        <a href="index.html#projects">프로젝트</a>
-        <a href="index.html#about">소개</a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <h1 id="hero-title">Java / Spring 백엔드 개발자</h1>
-        <p class="lead">
-          Spring Boot 기반 백엔드 API를 구현하며,<br />
-          외부 서비스 연동, 상태 관리, 데이터 저장 흐름을 경험했습니다.
-        </p>
-      </div>
-
-      <div class="hero-profile">
-        <aside class="profile-card" aria-label="프로필 요약">
-          <img src="assets/images/profile-photo.jpg" width="1984" height="2550" alt="정관우 프로필 사진" />
-          <div class="profile-copy">
-            <p class="card-label">백엔드 개발자</p>
-            <h2>정관우</h2>
-            <p>Java / Spring 기반 API 서버와 외부 연동 흐름을 구현했습니다.</p>
-            <dl class="profile-contact">
-              <div><dt>연락처</dt><dd>010-3361-1654</dd></div>
-              <div><dt>Email</dt><dd><a href="mailto:rhksdn1654@gmail.com">rhksdn1654@gmail.com</a></dd></div>
-              <div><dt>GitHub</dt><dd><a href="https://github.com/JeongGwanWoo" target="_blank" rel="noopener">@JeongGwanWoo</a></dd></div>
-            </dl>
-          </div>
-        </aside>
-
-      </div>
-
-      <div class="hero-lower-grid">
-        <aside class="tech-stack-card" aria-label="최근 프로젝트 기준 기술스택">
-          <h3>기술스택</h3>
-          <ul class="tech-stack-list">
-            <li><img src="assets/icons/tech/java.svg" width="24" height="24" alt="" loading="lazy" /><span>Java</span></li>
-            <li><img src="assets/icons/tech/spring.svg" width="24" height="24" alt="" loading="lazy" /><span>Spring Boot</span></li>
-            <li><img src="assets/icons/tech/jpa.webp" width="24" height="24" alt="" loading="lazy" /><span>JPA</span></li>
-            <li><img src="assets/icons/tech/mysql.svg" width="24" height="24" alt="" loading="lazy" /><span>MySQL</span></li>
-            <li><img src="assets/icons/tech/postgresql.svg" width="24" height="24" alt="" loading="lazy" /><span>PostgreSQL</span></li>
-            <li><img src="assets/icons/tech/redis.svg" width="24" height="24" alt="" loading="lazy" /><span>Redis</span></li>
-            <li><img src="assets/icons/tech/rabbitmq.svg" width="24" height="24" alt="" loading="lazy" /><span>RabbitMQ</span></li>
-            <li><img src="assets/icons/tech/docker.svg" width="24" height="24" alt="" loading="lazy" /><span>Docker</span></li>
-            <li><img src="assets/icons/tech/jenkins.svg" width="24" height="24" alt="" loading="lazy" /><span>Jenkins</span></li>
-            <li><img src="assets/icons/tech/nginx.svg" width="24" height="24" alt="" loading="lazy" /><span>NGINX</span></li>
-            <li><img src="assets/icons/tech/s3.svg" width="24" height="24" alt="" loading="lazy" /><span>AWS S3</span></li>
-          </ul>
-        </aside>
-
-        <aside class="project-summary-card" aria-label="대표 프로젝트 요약">
-          <h3>대표 프로젝트</h3>
-          <ul>
-            <li>
-              <strong>Wedge</strong>
-              <span>비동기 분석 처리 안정성</span>
-            </li>
-            <li>
-              <strong>DonDone</strong>
-              <span>근무 증빙 데이터 재사용</span>
-            </li>
-            <li>
-              <strong>DNC</strong>
-              <span>AI 식단 분석·리포트 흐름</span>
-            </li>
-            <li>
-              <strong>MyTripQuest</strong>
-              <span>지도 API 기반 여행 퀘스트</span>
-            </li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="focus-title">
-      <div class="section-head">
-        <p class="eyebrow">백엔드 관심 영역</p>
-        <h2 id="focus-title">제가 다룬 백엔드 문제</h2>
-      </div>
-      <div class="focus-grid">
-        <article class="focus-card">
-          <span>01</span>
-          <h3>역할·인증·접근 경계</h3>
-          <p>고용주·근로자·관리자처럼 역할이 나뉜 흐름과 JWT·OAuth2 기반 인증에서 사용자별 접근 조건과 실패 응답을 명확히 정리합니다.</p>
-        </article>
-        <article class="focus-card">
-          <span>02</span>
-          <h3>데이터 정합성과 상태 전이</h3>
-          <p>Run·Runner 실행 상태, WorkProof 정정 요청, 퀘스트 완료처럼 상태가 바뀌는 도메인에서 전이 조건과 중복·예외 경로를 먼저 확인합니다.</p>
-        </article>
-        <article class="focus-card">
-          <span>03</span>
-          <h3>외부 연동과 실패 복구</h3>
-          <p>Runner·Analyzer, Dexcom OAuth, 외부 분석 서버, 한국관광공사 API처럼 외부 결과를 내부 데이터로 연결하고 재시도·중복 방어·응답 계약을 함께 설계합니다.</p>
-        </article>
-        <article class="focus-card">
-          <span>04</span>
-          <h3>테스트와 실제 QA</h3>
-          <p>단위·통합·동시성 테스트와 테스트 서버 검증을 함께 수행해 정상 흐름뿐 아니라 실패·중복·경계 조건도 확인합니다.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="section-head split">
-        <div>
-          <p class="eyebrow">대표 프로젝트</p>
-          <h2 id="projects-title">프로젝트 선택</h2>
+    <header class="site-header">
+      <nav class="nav" aria-label="주요 메뉴">
+        <div class="nav-left">
+          <button
+            class="brand"
+            type="button"
+            data-scroll-top
+            aria-label="맨 위로 이동"
+          >
+            정관우
+          </button>
+          <a
+            class="nav-cta"
+            href="assets/pdfs/profile-2026-08.pdf"
+            target="_blank"
+            rel="noopener"
+            >프로필 PDF</a
+          >
         </div>
-        <p class="section-note">클릭하면 해당 프로젝트 상세 페이지로 이동합니다.</p>
-      </div>
+        <div class="nav-links">
+          <a href="index.html#projects">프로젝트</a>
+          <a href="index.html#about">소개</a>
+        </div>
+      </nav>
+    </header>
 
-      <div class="project-scroll-stage" data-project-stage>
-        <div class="project-viewport" data-project-viewport>
-          <div class="project-picker" aria-label="프로젝트 선택 목록" data-project-track>
-        <button class="project-select-card project-preview main is-active" type="button" data-case="wedge" data-title="Wedge" data-desc="비동기 분석 처리 안정성" data-page="project-wedge.html">
-          <div class="project-preview-media video-shot" aria-hidden="true">
-            <img src="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
-            <span class="project-preview-play" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg></span>
-          </div>
-          <div class="project-preview-copy">
-            <span class="project-index">01 · 백엔드</span>
-            <strong>Wedge</strong>
-            <p>브라우저 실행 기반 UX 진단 리포트 서비스입니다.</p>
-            <small>상세 보기 →</small>
-          </div>
-        </button>
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Java / Spring 백엔드 개발자</h1>
+          <p class="lead">
+            Spring Boot 기반으로 외부 서비스와 비동기 작업을 연결하고,<br />
+            실패·재시도·중복 상황에서도 데이터 흐름이 일관되도록 구현해
+            왔습니다.
+          </p>
+        </div>
 
-        <button class="project-select-card project-preview main" type="button" data-case="dondone" data-title="DonDone" data-desc="근무 증빙 데이터 재사용" data-page="project-dondone.html">
-          <div class="project-preview-media video-shot" aria-hidden="true">
-            <img src="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
-            <span class="project-preview-play" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg></span>
-          </div>
-          <div class="project-preview-copy">
-            <span class="project-index">02 · 백엔드</span>
-            <strong>DonDone</strong>
-            <p>외국인 근로자를 위한 근무 기록 기반 급여 지갑입니다.</p>
-            <small>상세 보기 →</small>
-          </div>
-        </button>
+        <div class="hero-profile">
+          <aside class="profile-card" aria-label="프로필 요약">
+            <img
+              src="assets/images/profile-photo.jpg"
+              width="1984"
+              height="2550"
+              alt="정관우 프로필 사진"
+            />
+            <div class="profile-copy">
+              <p class="card-label">백엔드 개발자</p>
+              <h2>정관우</h2>
+              <dl class="profile-contact">
+                <div>
+                  <dt>연락처</dt>
+                  <dd>010-3361-1654</dd>
+                </div>
+                <div>
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:rhksdn1654@gmail.com"
+                      >rhksdn1654@gmail.com</a
+                    >
+                  </dd>
+                </div>
+                <div>
+                  <dt>GitHub</dt>
+                  <dd>
+                    <a
+                      href="https://github.com/JeongGwanWoo"
+                      target="_blank"
+                      rel="noopener"
+                      >@JeongGwanWoo</a
+                    >
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </aside>
+        </div>
 
-        <button class="project-select-card project-preview" type="button" data-case="dnc" data-title="DNC" data-desc="외부 API·AI 분석 연동" data-page="project-dnc.html">
-          <div class="project-preview-media video-shot" aria-hidden="true">
-            <img src="https://img.youtube.com/vi/sQhA71Rfi8A/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
-            <span class="project-preview-play" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg></span>
-          </div>
-          <div class="project-preview-copy">
-            <span class="project-index">03 · 백엔드 / 인프라</span>
-            <strong>DNC 당낭콩</strong>
-            <p>AI 기반 개인화 혈당 예측·식단 코칭 헬스케어 서비스입니다.</p>
-            <small>상세 보기 →</small>
-          </div>
-        </button>
+        <div class="hero-lower-grid">
+          <aside
+            class="tech-stack-card"
+            aria-label="최근 프로젝트 기준 기술스택"
+          >
+            <h3>기술스택</h3>
+            <ul class="tech-stack-list">
+              <li>
+                <img
+                  src="assets/icons/tech/java.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>Java</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/spring.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>Spring Boot</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/jpa.webp"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>JPA</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/mysql.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>MySQL</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/postgresql.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>PostgreSQL</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/redis.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>Redis</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/rabbitmq.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>RabbitMQ</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/docker.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>Docker</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/jenkins.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>Jenkins</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/nginx.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>NGINX</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/tech/s3.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                  loading="lazy"
+                /><span>AWS S3</span>
+              </li>
+            </ul>
+          </aside>
 
-        <button class="project-select-card project-preview" type="button" data-case="mtq" data-title="MyTripQuest" data-desc="GPS·사진 인증" data-page="project-mytripquest.html">
-          <div class="project-preview-media video-shot" aria-hidden="true">
-            <img src="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" />
-            <span class="project-preview-play" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg></span>
+          <aside class="project-summary-card" aria-label="대표 프로젝트 요약">
+            <h3>대표 프로젝트</h3>
+            <ul>
+              <li>
+                <strong>Wedge</strong>
+                <span>비동기 분석 처리 안정성</span>
+              </li>
+              <li>
+                <strong>DonDone</strong>
+                <span>근무 증빙 데이터 재사용</span>
+              </li>
+              <li>
+                <strong>DNC</strong>
+                <span>AI 식단 분석·리포트 흐름</span>
+              </li>
+              <li>
+                <strong>MyTripQuest</strong>
+                <span>지도 API 기반 여행 퀘스트</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="focus-title">
+        <div class="section-head">
+          <p class="eyebrow">백엔드 관심 영역</p>
+          <h2 id="focus-title">제가 다룬 백엔드 문제</h2>
+        </div>
+        <div class="focus-grid">
+          <article class="focus-card">
+            <span>01</span>
+            <h3>역할·인증·접근 경계</h3>
+            <p>
+              고용주·근로자·관리자처럼 역할이 나뉜 흐름과 JWT·OAuth2 기반
+              인증에서 사용자별 접근 조건과 실패 응답을 명확히 정리합니다.
+            </p>
+          </article>
+          <article class="focus-card">
+            <span>02</span>
+            <h3>데이터 정합성과 상태 전이</h3>
+            <p>
+              Run·Runner 실행 상태, WorkProof 정정 요청, 퀘스트 완료처럼 상태가
+              바뀌는 도메인에서 전이 조건과 중복·예외 경로를 먼저 확인합니다.
+            </p>
+          </article>
+          <article class="focus-card">
+            <span>03</span>
+            <h3>외부 연동과 실패 복구</h3>
+            <p>
+              Runner·Analyzer, Dexcom OAuth, 외부 분석 서버, 한국관광공사
+              API처럼 외부 결과를 내부 데이터로 연결하고 재시도·중복 방어·응답
+              계약을 함께 설계합니다.
+            </p>
+          </article>
+          <article class="focus-card">
+            <span>04</span>
+            <h3>테스트와 실제 QA</h3>
+            <p>
+              단위·통합·동시성 테스트와 테스트 서버 검증을 함께 수행해 정상
+              흐름뿐 아니라 실패·중복·경계 조건도 확인합니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">대표 프로젝트</p>
+            <h2 id="projects-title">프로젝트 선택</h2>
           </div>
-          <div class="project-preview-copy">
-            <span class="project-index">04 · 풀스택</span>
-            <strong>MyTripQuest</strong>
-            <p>위치·사진 인증을 활용한 여행 퀘스트 플랫폼입니다.</p>
-            <small>상세 보기 →</small>
-          </div>
-        </button>
+          <p class="section-note">
+            클릭하면 해당 프로젝트 상세 페이지로 이동합니다.
+          </p>
+        </div>
+
+        <div class="project-scroll-stage" data-project-stage>
+          <div class="project-viewport" data-project-viewport>
+            <div
+              class="project-picker"
+              aria-label="프로젝트 선택 목록"
+              data-project-track
+            >
+              <button
+                class="project-select-card project-preview main is-active"
+                type="button"
+                data-case="wedge"
+                data-title="Wedge"
+                data-desc="비동기 분석 처리 안정성"
+                data-page="project-wedge.html"
+              >
+                <div
+                  class="project-preview-media video-shot"
+                  aria-hidden="true"
+                >
+                  <img
+                    src="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg"
+                    width="480"
+                    height="360"
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span class="project-preview-play" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg
+                  ></span>
+                </div>
+                <div class="project-preview-copy">
+                  <span class="project-index">01 · 백엔드</span>
+                  <strong>Wedge</strong>
+                  <p>브라우저 실행 기반 UX 진단 리포트 서비스입니다.</p>
+                  <small>상세 보기 →</small>
+                </div>
+              </button>
+
+              <button
+                class="project-select-card project-preview main"
+                type="button"
+                data-case="dondone"
+                data-title="DonDone"
+                data-desc="근무 증빙 데이터 재사용"
+                data-page="project-dondone.html"
+              >
+                <div
+                  class="project-preview-media video-shot"
+                  aria-hidden="true"
+                >
+                  <img
+                    src="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg"
+                    width="480"
+                    height="360"
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span class="project-preview-play" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg
+                  ></span>
+                </div>
+                <div class="project-preview-copy">
+                  <span class="project-index">02 · 백엔드</span>
+                  <strong>DonDone</strong>
+                  <p>외국인 근로자를 위한 근무 기록 기반 급여 지갑입니다.</p>
+                  <small>상세 보기 →</small>
+                </div>
+              </button>
+
+              <button
+                class="project-select-card project-preview"
+                type="button"
+                data-case="dnc"
+                data-title="DNC"
+                data-desc="외부 API·AI 분석 연동"
+                data-page="project-dnc.html"
+              >
+                <div
+                  class="project-preview-media video-shot"
+                  aria-hidden="true"
+                >
+                  <img
+                    src="https://img.youtube.com/vi/sQhA71Rfi8A/hqdefault.jpg"
+                    width="480"
+                    height="360"
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span class="project-preview-play" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg
+                  ></span>
+                </div>
+                <div class="project-preview-copy">
+                  <span class="project-index">03 · 백엔드 / 인프라</span>
+                  <strong>DNC 당낭콩</strong>
+                  <p>
+                    AI 기반 개인화 혈당 예측·식단 코칭 헬스케어 서비스입니다.
+                  </p>
+                  <small>상세 보기 →</small>
+                </div>
+              </button>
+
+              <button
+                class="project-select-card project-preview"
+                type="button"
+                data-case="mtq"
+                data-title="MyTripQuest"
+                data-desc="GPS·사진 인증"
+                data-page="project-mytripquest.html"
+              >
+                <div
+                  class="project-preview-media video-shot"
+                  aria-hidden="true"
+                >
+                  <img
+                    src="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg"
+                    width="480"
+                    height="360"
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span class="project-preview-play" aria-hidden="true"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M9 7.5v9l7-4.5-7-4.5Z" /></svg
+                  ></span>
+                </div>
+                <div class="project-preview-copy">
+                  <span class="project-index">04 · 풀스택</span>
+                  <strong>MyTripQuest</strong>
+                  <p>위치·사진 인증을 활용한 여행 퀘스트 플랫폼입니다.</p>
+                  <small>상세 보기 →</small>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section working" id="about" aria-labelledby="about-title">
-      <div class="working-copy">
-        <p class="eyebrow">작업 방식</p>
-        <h2 id="about-title">제가 일하는 방식</h2>
-        <ol>
-          <li><strong>데이터 정합성을 우선으로 설계합니다.</strong><span>트랜잭션, DB 제약, 동시성 테스트를 통해 중복·정원 초과 등의 오류를 방지합니다.</span></li>
-          <li><strong>외부 연동 실패에도 핵심 데이터를 안전하게 유지하도록 구현합니다.</strong><span>API 실패를 기록하고 재시도할 수 있게 하며, 실패가 이미 확정된 DB 상태를 되돌리지 않도록 설계합니다.</span></li>
-          <li><strong>구현 전에 구조와 테스트 범위를 먼저 설계합니다.</strong><span>사용자 흐름, 클래스 책임, 데이터 구조, 예외 상황을 정리한 뒤 작은 단위로 구현합니다.</span></li>
-          <li><strong>테스트와 실제 QA를 통해 동작을 검증합니다.</strong><span>단위·통합·동시성 테스트와 테스트 서버 검증을 함께 수행합니다.</span></li>
-          <li><strong>책임 분리와 기록을 중요하게 생각합니다.</strong><span>이벤트 처리, 비즈니스 로직, DB, 외부 API를 분리하고 중요한 결정과 이유를 문서로 남깁니다.</span></li>
-        </ol>
-      </div>
-    </section>
+      <section class="section working" id="about" aria-labelledby="about-title">
+        <div class="working-copy">
+          <p class="eyebrow">작업 방식</p>
+          <h2 id="about-title">제가 일하는 방식</h2>
+          <ol>
+            <li>
+              <strong>데이터 정합성을 우선으로 설계합니다.</strong
+              ><span
+                >트랜잭션, DB 제약, 동시성 테스트를 통해 중복·정원 초과 등의
+                오류를 방지합니다.</span
+              >
+            </li>
+            <li>
+              <strong
+                >외부 연동 실패에도 핵심 데이터를 안전하게 유지하도록
+                구현합니다.</strong
+              ><span
+                >API 실패를 기록하고 재시도할 수 있게 하며, 실패가 이미 확정된
+                DB 상태를 되돌리지 않도록 설계합니다.</span
+              >
+            </li>
+            <li>
+              <strong>구현 전에 구조와 테스트 범위를 먼저 설계합니다.</strong
+              ><span
+                >사용자 흐름, 클래스 책임, 데이터 구조, 예외 상황을 정리한 뒤
+                작은 단위로 구현합니다.</span
+              >
+            </li>
+            <li>
+              <strong>테스트와 실제 QA를 통해 동작을 검증합니다.</strong
+              ><span
+                >단위·통합·동시성 테스트와 테스트 서버 검증을 함께
+                수행합니다.</span
+              >
+            </li>
+            <li>
+              <strong>책임 분리와 기록을 중요하게 생각합니다.</strong
+              ><span
+                >이벤트 처리, 비즈니스 로직, DB, 외부 API를 분리하고 중요한
+                결정과 이유를 문서로 남깁니다.</span
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
 
-  </main>
+    <footer class="footer">
+      <p><strong>정관우 백엔드 포트폴리오</strong></p>
+      <p>최근 갱신 · 2026.08.11</p>
+      <a href="#top">맨 위로</a>
+    </footer>
 
-  <footer class="footer">
-    <p><strong>정관우 백엔드 포트폴리오</strong></p>
-    <p>최근 갱신 · 2026.08.11</p>
-    <a href="#top">맨 위로</a>
-  </footer>
-
-
-
-  <dialog class="project-modal" data-project-modal data-modal-project="wedge" aria-labelledby="project-modal-title">
-    <div class="project-modal-card">
-      <button class="project-modal-close" type="button" data-modal-close aria-label="프로젝트 요약 닫기">×</button>
-      <div class="project-modal-head">
-        <p class="eyebrow" data-modal-kicker>프로젝트 요약</p>
-        <h2 id="project-modal-title" data-modal-title>프로젝트 요약</h2>
-        <p data-modal-summary></p>
-      </div>
-      <div class="project-modal-content" data-modal-content></div>
-      <div class="project-modal-actions">
-        <button class="modal-primary" type="button" data-modal-detail>프로젝트 상세 보기</button>
-        <a class="modal-secondary" href="#" target="_blank" rel="noopener" data-modal-pdf>PDF 보기</a>
-      </div>
-    </div>
-  </dialog>
-
-  <dialog class="image-modal" data-image-modal aria-label="프로젝트 영상과 이미지">
-    <div class="image-modal-card">
-      <button class="project-modal-close image-modal-close" type="button" data-image-modal-close aria-label="영상과 이미지 닫기">×</button>
-      <div class="image-modal-head">
-        <p class="eyebrow" data-image-modal-eyebrow>영상 · 이미지</p>
-      </div>
-      <div class="image-modal-viewer">
-        <button class="image-modal-nav prev" type="button" data-image-modal-prev aria-label="이전 이미지">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8.75 12l5.75 6.5" /></svg>
+    <dialog
+      class="project-modal"
+      data-project-modal
+      data-modal-project="wedge"
+      aria-labelledby="project-modal-title"
+    >
+      <div class="project-modal-card">
+        <button
+          class="project-modal-close"
+          type="button"
+          data-modal-close
+          aria-label="프로젝트 요약 닫기"
+        >
+          ×
         </button>
-        <figure class="image-modal-figure" data-image-modal-figure>
-          <img alt="" data-image-modal-img />
-          <div class="image-modal-video" data-image-modal-video hidden></div>
-          <div class="image-modal-zoom" data-image-modal-zoom aria-hidden="true"></div>
-          <figcaption data-image-modal-caption></figcaption>
-        </figure>
-        <button class="image-modal-nav next" type="button" data-image-modal-next aria-label="다음 이미지">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9.5 5.5 5.75 6.5-5.75 6.5" /></svg>
-        </button>
+        <div class="project-modal-head">
+          <p class="eyebrow" data-modal-kicker>프로젝트 요약</p>
+          <h2 id="project-modal-title" data-modal-title>프로젝트 요약</h2>
+          <p data-modal-summary></p>
+        </div>
+        <div class="project-modal-content" data-modal-content></div>
+        <div class="project-modal-actions">
+          <button class="modal-primary" type="button" data-modal-detail>
+            프로젝트 상세 보기
+          </button>
+          <a
+            class="modal-secondary"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            data-modal-pdf
+            >PDF 보기</a
+          >
+        </div>
       </div>
-      <div class="image-modal-thumbs" data-image-modal-thumbs aria-label="프로젝트 이미지 목록"></div>
-    </div>
-  </dialog>
+    </dialog>
 
-  <template data-gallery-template="wedge">
-    <span data-gallery-video="l0aA3LioQRU" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg"></span>
-    <img src="assets/images/gallery/wedge/home.png" alt="메인 홈" />
-    <img src="assets/images/gallery/wedge/scenario-select.png" alt="시나리오 선택" />
-    <img src="assets/images/gallery/wedge/analysis-progress.png" alt="분석 진행 화면" />
-    <img src="assets/images/gallery/wedge/test-running.png" alt="테스트 실행" />
-    <img src="assets/images/gallery/wedge/test-done.png" alt="테스트 완료" />
-    <img src="assets/images/gallery/wedge/report-web.png" alt="리포트 웹 화면" />
-    <img src="assets/images/gallery/wedge/report-pdf.png" alt="리포트 PDF 화면" />
-    <img src="assets/images/gallery/wedge/architecture.png" alt="아키텍처" />
-  </template>
-  <template data-gallery-template="dondone">
-    <span data-gallery-video="SWdI_c_8MB8" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg"></span>
-    <img src="assets/images/gallery/dondone/attendance.png" alt="출퇴근" />
-    <img src="assets/images/gallery/dondone/wage-review.png" alt="급여점검" />
-    <img src="assets/images/gallery/dondone/advance.png" alt="미리받기" />
-    <img src="assets/images/gallery/dondone/report-pdf.png" alt="리포트 PDF" />
-  </template>
-  <template data-gallery-template="dnc">
-    <span data-gallery-video="sQhA71Rfi8A" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/sQhA71Rfi8A/hqdefault.jpg"></span>
-    <img src="assets/images/gallery/dnc/glucose-clean.png" alt="실시간 혈당 화면" />
-    <img src="assets/images/gallery/dnc/predicted-clean.png" alt="예상 혈당 화면" />
-    <img src="assets/images/gallery/dnc/analysis-clean.png" alt="분석 촬영 화면" />
-    <img src="assets/images/gallery/dnc/report-clean.png" alt="리포트 화면" />
-  </template>
-  <template data-gallery-template="mtq">
-    <span data-gallery-video="2jrZPjJJ3KY" data-title="서비스 소개 영상" data-thumb="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg"></span>
-    <img src="assets/images/gallery/mtq/main-page.png" alt="메인페이지" />
-    <img src="assets/images/gallery/mtq/quest-map.png" alt="퀘스트맵" />
-    <img src="assets/images/gallery/mtq/quest-page.png" alt="퀘스트페이지" />
-    <img src="assets/images/gallery/mtq/character-customizing.png" alt="캐릭터 커스터마이징" />
-    <img src="assets/images/gallery/mtq/quest-status.png" alt="퀘스트 현황" />
-  </template>
+    <dialog
+      class="image-modal"
+      data-image-modal
+      aria-label="프로젝트 영상과 이미지"
+    >
+      <div class="image-modal-card">
+        <button
+          class="project-modal-close image-modal-close"
+          type="button"
+          data-image-modal-close
+          aria-label="영상과 이미지 닫기"
+        >
+          ×
+        </button>
+        <div class="image-modal-head">
+          <p class="eyebrow" data-image-modal-eyebrow>영상 · 이미지</p>
+        </div>
+        <div class="image-modal-viewer">
+          <button
+            class="image-modal-nav prev"
+            type="button"
+            data-image-modal-prev
+            aria-label="이전 이미지"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M14.5 5.5 8.75 12l5.75 6.5" />
+            </svg>
+          </button>
+          <figure class="image-modal-figure" data-image-modal-figure>
+            <img alt="" data-image-modal-img />
+            <div class="image-modal-video" data-image-modal-video hidden></div>
+            <div
+              class="image-modal-zoom"
+              data-image-modal-zoom
+              aria-hidden="true"
+            ></div>
+            <figcaption data-image-modal-caption></figcaption>
+          </figure>
+          <button
+            class="image-modal-nav next"
+            type="button"
+            data-image-modal-next
+            aria-label="다음 이미지"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m9.5 5.5 5.75 6.5-5.75 6.5" />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="image-modal-thumbs"
+          data-image-modal-thumbs
+          aria-label="프로젝트 이미지 목록"
+        ></div>
+      </div>
+    </dialog>
 
-  <script>
-    (() => {
-      const cards = Array.from(document.querySelectorAll('[data-case]'));
-      const panels = Array.from(document.querySelectorAll('[data-case-panel]'));
-      const sideNav = document.querySelector('[data-side-nav]');
-      const sidePrev = document.querySelector('[data-side-action="prev"]');
-      const sideNext = document.querySelector('[data-side-action="next"]');
-      const known = new Set(cards.map((card) => card.dataset.case));
-      const projectOrder = cards.map((card) => ({
-        id: card.dataset.case,
-        title: card.dataset.title,
-        desc: card.dataset.desc
-      }));
-      const projectModal = document.querySelector('[data-project-modal]');
-      const modalTitle = projectModal?.querySelector('[data-modal-title]');
-      const modalKicker = projectModal?.querySelector('[data-modal-kicker]');
-      const modalSummary = projectModal?.querySelector('[data-modal-summary]');
-      const modalContent = projectModal?.querySelector('[data-modal-content]');
-      const modalPdf = projectModal?.querySelector('[data-modal-pdf]');
-      const modalDetail = projectModal?.querySelector('[data-modal-detail]');
-      const modalClose = projectModal?.querySelector('[data-modal-close]');
-      const imageModal = document.querySelector('[data-image-modal]');
-      const imageModalEyebrow = imageModal?.querySelector('[data-image-modal-eyebrow]');
-      const imageModalFigure = imageModal?.querySelector('[data-image-modal-figure]');
-      const imageModalImg = imageModal?.querySelector('[data-image-modal-img]');
-      const imageModalVideo = imageModal?.querySelector('[data-image-modal-video]');
-      const imageModalCaption = imageModal?.querySelector('[data-image-modal-caption]');
-      const imageModalZoom = imageModal?.querySelector('[data-image-modal-zoom]');
-      const imageModalThumbs = imageModal?.querySelector('[data-image-modal-thumbs]');
-      const imageModalPrev = imageModal?.querySelector('[data-image-modal-prev]');
-      const imageModalNext = imageModal?.querySelector('[data-image-modal-next]');
-      const imageModalClose = imageModal?.querySelector('[data-image-modal-close]');
-      let modalLastFocus = null;
-      let modalCloseTimer = 0;
-      let imageModalLastFocus = null;
-      let imageModalCloseTimer = 0;
-      let imageModalItems = [];
-      let imageModalCurrentIndex = 0;
-      let imageModalProjectTitle = '프로젝트';
-      const IMAGE_ZOOM_SCALE = 2.7;
+    <template data-gallery-template="wedge">
+      <span
+        data-gallery-video="l0aA3LioQRU"
+        data-title="서비스 소개 영상"
+        data-thumb="https://img.youtube.com/vi/l0aA3LioQRU/hqdefault.jpg"
+      ></span>
+      <img src="assets/images/gallery/wedge/home.png" alt="메인 홈" />
+      <img
+        src="assets/images/gallery/wedge/scenario-select.png"
+        alt="시나리오 선택"
+      />
+      <img
+        src="assets/images/gallery/wedge/analysis-progress.png"
+        alt="분석 진행 화면"
+      />
+      <img
+        src="assets/images/gallery/wedge/test-running.png"
+        alt="테스트 실행"
+      />
+      <img src="assets/images/gallery/wedge/test-done.png" alt="테스트 완료" />
+      <img
+        src="assets/images/gallery/wedge/report-web.png"
+        alt="리포트 웹 화면"
+      />
+      <img
+        src="assets/images/gallery/wedge/report-pdf.png"
+        alt="리포트 PDF 화면"
+      />
+      <img src="assets/images/gallery/wedge/architecture.png" alt="아키텍처" />
+    </template>
+    <template data-gallery-template="dondone">
+      <span
+        data-gallery-video="SWdI_c_8MB8"
+        data-title="서비스 소개 영상"
+        data-thumb="https://img.youtube.com/vi/SWdI_c_8MB8/hqdefault.jpg"
+      ></span>
+      <img src="assets/images/gallery/dondone/attendance.png" alt="출퇴근" />
+      <img src="assets/images/gallery/dondone/wage-review.png" alt="급여점검" />
+      <img src="assets/images/gallery/dondone/advance.png" alt="미리받기" />
+      <img
+        src="assets/images/gallery/dondone/report-pdf.png"
+        alt="리포트 PDF"
+      />
+    </template>
+    <template data-gallery-template="dnc">
+      <span
+        data-gallery-video="sQhA71Rfi8A"
+        data-title="서비스 소개 영상"
+        data-thumb="https://img.youtube.com/vi/sQhA71Rfi8A/hqdefault.jpg"
+      ></span>
+      <img
+        src="assets/images/gallery/dnc/glucose-clean.png"
+        alt="실시간 혈당 화면"
+      />
+      <img
+        src="assets/images/gallery/dnc/predicted-clean.png"
+        alt="예상 혈당 화면"
+      />
+      <img
+        src="assets/images/gallery/dnc/analysis-clean.png"
+        alt="분석 촬영 화면"
+      />
+      <img src="assets/images/gallery/dnc/report-clean.png" alt="리포트 화면" />
+    </template>
+    <template data-gallery-template="mtq">
+      <span
+        data-gallery-video="2jrZPjJJ3KY"
+        data-title="서비스 소개 영상"
+        data-thumb="https://img.youtube.com/vi/2jrZPjJJ3KY/hqdefault.jpg"
+      ></span>
+      <img src="assets/images/gallery/mtq/main-page.png" alt="메인페이지" />
+      <img src="assets/images/gallery/mtq/quest-map.png" alt="퀘스트맵" />
+      <img src="assets/images/gallery/mtq/quest-page.png" alt="퀘스트페이지" />
+      <img
+        src="assets/images/gallery/mtq/character-customizing.png"
+        alt="캐릭터 커스터마이징"
+      />
+      <img src="assets/images/gallery/mtq/quest-status.png" alt="퀘스트 현황" />
+    </template>
 
-      const modalData = {
-        wedge: {
-          kicker: '01 · Backend',
-          title: 'Wedge',
-          summary: 'Run 상태 관리, Analyzer 비동기 요청, 분석 결과 기반 리포트 생성을 연결한 브라우저 실행 기반 UX 진단 서비스입니다.',
-          pdf: null,
-          sections: [
-            { title: '프로젝트 정보 및 구성', items: ['2026.04 ~ 2026.05 · 약 7주 · 6인 · Web', 'GitHub Repository: github.com/JeongGwanWoo/WEDGE-Evidence-Based-UX-Diagnostics', '백엔드: Java 17, Spring Boot 3.5, MyBatis', '웹: React, Vite, TypeScript', '실행·분석: Node.js·Playwright Runner, FastAPI Analyzer', '데이터·메시징: PostgreSQL, Redis, RabbitMQ', '운영: Docker, NGINX, Jenkins, AWS S3'] },
-            { title: '담당 역할', items: ['Spring Boot 백엔드에서 Run·Runner 실행 상태를 관리했습니다.', 'Analyzer 입력 구성과 비동기 요청 흐름을 구현했습니다.', '분석 결과를 바탕으로 리포트를 생성하고 상태에 반영했습니다.'] },
-            { title: '구현 사항', items: ['Run 생성·시작부터 Runner callback, 단계 이벤트, checkpoint·capture, 실행 실패까지 상태가 이어지도록 구성했습니다.', 'Analyzer 요청 시점의 입력값을 스냅샷으로 보관하고, 내부 API와 서명 URL로 분석에 필요한 데이터를 제공했습니다.', '분석 작업을 pending 상태로 생성한 뒤 Outbox·재시도 흐름으로 요청을 발행하고, callback 중복을 방어했습니다.', '완료된 분석 결과로 리포트를 생성하고, 같은 Run의 중복 생성 방지와 최신 리포트 상태 반영을 처리했습니다.'] },
-            { title: '문제 해결', items: ['문제: DB 작업은 생성됐지만 MQ 발행 실패로 분석 요청이 유실될 수 있었습니다.', '원인: DB 저장과 메시지 발행이 분리되어 실패 추적과 재시도가 어려웠습니다.', '해결: 작업 생성과 Outbox 저장을 같은 트랜잭션으로 처리하고, eventId 중복 방어와 DLQ 실패 상태 전환을 적용했습니다.', '결과: 요청 유실 위험을 추적·재처리하고, 중복 callback과 Runner 실패를 정상적으로 상태에 반영했습니다.'] },
-            { title: '프로젝트 성과', items: ['분석 요청 메시지 유실 위험을 기록·재시도 흐름으로 관리했습니다.', '외부 callback이 재수신되어도 상태와 결과가 중복 반영되지 않도록 방어했습니다.', 'Runner 실행 실패를 Run 실패 상태와 실패 정보로 연결해 사용자에게 노출했습니다.'] },
-            { title: '프로젝트 리뷰', items: ['지금이라면 중복 callback, 완료 상태 이후 이벤트, Outbox 재시도 흐름을 테스트로 더 촘촘히 검증하겠습니다.', '비동기 흐름은 정상 처리뿐 아니라 재시도, 중복 방지, 실패 상태의 사용자 노출까지 함께 설계해야 한다는 점을 배웠습니다.'] }
-          ]
-        },
-        dondone: {
-          kicker: '02 · Backend',
-          title: 'DonDone',
-          summary: '외국인 근로자의 근무 기록을 급여 확인·미리받기 흐름과 연결한 급여 지갑 서비스입니다.',
-          pdf: null,
-          sections: [
-            { title: '프로젝트 정보 및 구성', items: ['2026.02 ~ 2026.04 · 약 6주 · 5인 프로젝트', 'GitHub Repository: github.com/JeongGwanWoo/DonDone-Foreign-Worker-Wage-Wallet', '백엔드: Java 17, Spring Boot 3.2, Spring Data JPA', '웹·모바일: React, Vite, Android Kotlin', '데이터: PostgreSQL, Redis', '블록체인: Solidity, Foundry, Web3j', '운영: Docker, NGINX, Jenkins'] },
-            { title: '담당 역할', items: ['Spring Boot 기반 백엔드 API 구현에 참여했습니다.', '고용주·근로자·관리자 흐름 중 일부 기능을 구현했습니다.', 'WorkProof 출퇴근, 위치 검증, 검토 상태 흐름을 구현했습니다.'] },
-            { title: '구현 사항', items: ['근무자의 출퇴근 기록을 급여 확인과 미리받기 흐름에서 재사용하는 기준 데이터로 정리했습니다.', 'WorkProof 출퇴근 기록과 근무 정정 요청 흐름을 구현했습니다.', '근무 정정 요청에 대한 고용주 승인·반려 흐름과 근무 기록 확정 처리를 구성했습니다.', '회사 등록 코드 기반 근로자 등록과 관리자·고용주용 승인 상태 조회 API를 구현했습니다.', 'GPS 위치 검증과 예외 상황의 검토 상태 처리 흐름을 구성했습니다.', '급여 확인 시점의 근무 증빙을 고정해 문서와 클레임 흐름에서도 같은 기준을 재사용할 수 있게 했습니다.'] },
-            { title: '문제 해결', items: ['문제: 출퇴근 기록이 급여 확인, 문서, 클레임에서 각각 다르게 쓰이면 기준 데이터가 흔들릴 수 있었습니다.', '선택지: 기능마다 별도 데이터를 둘지, WorkProof 기록을 공통 증빙 기준으로 둘지 비교했습니다.', '해결: 출퇴근 기록을 기준 데이터로 정리하고, 급여 확인 snapshot과 문서·클레임 흐름에 연결했습니다.', '배운 점: 돈과 문서가 연결되는 기능에서는 데이터 기준이 흔들리지 않는 구조가 중요했습니다.'] },
-            { title: '프로젝트 성과', items: ['하나의 출퇴근 기록을 여러 업무 흐름에서 재사용하는 데이터 기준을 경험했습니다.', '예외 상황을 실패로 끝내기보다 검토 가능한 상태로 남기는 설계의 필요성을 배웠습니다.', '문서와 클레임 기능에서는 기준 데이터가 흔들리지 않는 것이 중요하다는 점을 확인했습니다.'] },
-            { title: '프로젝트 리뷰', items: ['지금이라면 WorkProof → Wage → Documents/Claim 흐름을 기능 단위 테스트로 더 촘촘히 검증하겠습니다.', '선지급 요청처럼 중복 요청 위험이 있는 기능은 Idempotency-Key 정책을 더 명확히 문서화하겠습니다.'] }
-          ]
-        },
-        dnc: {
-          kicker: '03 · Backend / Infra',
-          title: 'DNC 당낭콩',
-          summary: 'CGM 데이터 수집과 식단 이미지 분석 결과를 개인화 식단 추천 및 Daily Report 흐름으로 연결한 서비스입니다.',
-          pdf: null,
-          sections: [
-            { title: '프로젝트 정보 및 구성', items: ['2026.01 ~ 2026.02 · 약 5주 · 6인 · Mobile', 'GitHub Repository: github.com/JeongGwanWoo/DNC-Personalized-Glucose-Assistant', '백엔드: Java 17, Spring Boot 3.5, Spring Data JPA', 'AI: FastAPI, YOLOv8', '모바일: React Native, Expo, TypeScript', '데이터·외부 연동: MySQL, Redis, Dexcom OAuth, FCM, AWS S3', '운영: Docker, NGINX, Jenkins'] },
-            { title: '담당 역할', items: ['Dexcom OAuth 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.', '식단 이미지 분석 요청과 AI 분석 결과 저장·처리를 구현했습니다.', '식단 추천과 Daily Report 생성·조회 흐름을 구현했습니다.'] },
-            { title: '구현 사항', items: ['Dexcom OAuth를 통해 CGM 데이터를 수집·조회하고, 사용자별 혈당 데이터를 서비스 흐름에 연결했습니다.', '식단 이미지를 S3 Presigned URL로 업로드한 뒤 FastAPI AI 서버에 분석을 요청하고 결과를 저장했습니다.', '분석 결과를 바탕으로 식단 추천을 생성하고, 최신 추천과 이전 추천을 조회할 수 있도록 구성했습니다.', '혈당과 식단 정보를 Daily Report로 정리하고, 사용자별 일일 리포트를 생성·조회하는 흐름을 구현했습니다.'] },
-            { title: '문제 해결', items: ['문제: Dexcom Sandbox 환경에서 deviceId가 중복되어 다른 사용자의 CGM 데이터가 섞일 수 있었습니다.', '원인: 외부 deviceId만으로는 서비스 내부 사용자를 구분하기 어려웠습니다.', '해결: 사용자 정보를 기준으로 CGM 데이터와 조회 범위를 분리하고, FastAPI endpoint·응답 DTO와 Controller 파라미터를 명시적으로 맞췄습니다.', '결과: 사용자별 조회 경계를 명확히 하고, AI 연동·API 바인딩 오류 가능성을 줄였습니다.'] },
-            { title: '프로젝트 성과', items: ['외부 CGM 데이터와 식단 분석 결과를 사용자별 리포트 흐름으로 연결했습니다.', 'AI 서버 endpoint와 응답 DTO의 계약을 정리해 연동 오류 가능성을 줄였습니다.', 'Controller 파라미터 이름을 명시해 일부 API의 바인딩 오류와 500 응답 가능성을 줄였습니다.'] },
-            { title: '프로젝트 리뷰', items: ['지금이라면 외부 API, Redis, AI 서버 실패에 대한 fallback과 모니터링 지표를 더 보강하겠습니다.', '건강 데이터는 사용자별 조회 경계와 공개 화면의 표현 범위를 더 엄격하게 관리하겠습니다.'] }
-          ]
-        },
-        mtq: {
-          kicker: '04 · Full Stack',
-          title: 'MyTripQuest',
-          summary: '관광지 정보, 위치 도착 확인, 사진 인증을 퀘스트 완료와 보상 흐름으로 연결한 여행 서비스입니다.',
-          pdf: null,
-          sections: [
-            { title: '프로젝트 정보 및 구성', items: ['2025.12 · 약 4주 · 2인 프로젝트', 'GitHub Repository: github.com/JeongGwanWoo/My_Trip_Quest', '백엔드: Java 17, Spring Boot 3.5, MyBatis', '웹: Vue 3, Vite', '데이터: MySQL', '인증: JWT, OAuth2', '외부 연동: 한국관광공사 API'] },
-            { title: '담당 역할', items: ['Spring Boot 백엔드 API와 Vue 화면 구현에 참여했습니다.', '관광지 API 연동과 퀘스트 완료 흐름을 구현했습니다.', '사진 인증 결과를 퀘스트 상태 변경과 보상 처리 흐름으로 연결했습니다.'] },
-            { title: '구현 사항', items: ['한국관광공사 API를 연동해 관광지 데이터를 조회·저장하고 퀘스트 장소와 화면에서 사용할 수 있게 했습니다.', '사용자의 현재 위치가 관광지 근처인지 확인해 퀘스트 완료 조건의 첫 단계를 판단했습니다.', '방문 인증 사진을 위치 확인 이후의 추가 인증 단계로 분리했습니다.', '위치·사진 인증 결과에 따라 퀘스트 상태를 변경하고 완료 흐름을 구성했습니다.', '퀘스트 완료 후 포인트·랭킹 등 게이미피케이션 기능 일부를 구현했습니다.', '사용자 로그인 이후 토큰 기반으로 접근 권한을 확인하는 인증 흐름을 구성했습니다.'] },
-            { title: '문제 해결', items: ['문제: 퀘스트 완료를 단순 버튼 클릭이 아니라 실제 방문 여부에 가깝게 판단해야 했습니다.', '선택지: GPS만 사용하는 방식, 사진만 사용하는 방식, GPS 확인 후 사진 인증을 추가하는 방식을 비교했습니다.', '해결: 위치 도착 확인과 사진 인증을 단계별 조건으로 나누고, 결과에 따라 퀘스트 상태가 변경되도록 구성했습니다.', '배운 점: 인증 기능은 조건을 단계별로 나누는 것이 예외 처리와 설명에 유리했습니다.'] },
-            { title: '프로젝트 성과', items: ['위치 확인과 사진 인증을 한 덩어리로 보지 않고 단계별 조건으로 나누어 구현했습니다.', '관광지 데이터, 사용자 행동, 보상 흐름이 연결되는 서비스 구조를 경험했습니다.', '2인 프로젝트에서 역할을 나누고 서로의 구현 흐름을 맞추는 협업 경험을 얻었습니다.'] },
-            { title: '프로젝트 리뷰', items: ['지금이라면 테스트 실행 환경을 분리하고 위치·사진 인증 실패 케이스를 더 많이 검증하겠습니다.', 'OAuth2 로그인 이후 토큰 전달 방식은 URL 전달보다 HttpOnly Cookie나 일회성 code 방식으로 개선하겠습니다.'] }
-          ]
-        }
-      };
+    <script>
+      (() => {
+        const cards = Array.from(document.querySelectorAll("[data-case]"));
+        const panels = Array.from(
+          document.querySelectorAll("[data-case-panel]"),
+        );
+        const sideNav = document.querySelector("[data-side-nav]");
+        const sidePrev = document.querySelector('[data-side-action="prev"]');
+        const sideNext = document.querySelector('[data-side-action="next"]');
+        const known = new Set(cards.map((card) => card.dataset.case));
+        const projectOrder = cards.map((card) => ({
+          id: card.dataset.case,
+          title: card.dataset.title,
+          desc: card.dataset.desc,
+        }));
+        const projectModal = document.querySelector("[data-project-modal]");
+        const modalTitle = projectModal?.querySelector("[data-modal-title]");
+        const modalKicker = projectModal?.querySelector("[data-modal-kicker]");
+        const modalSummary = projectModal?.querySelector(
+          "[data-modal-summary]",
+        );
+        const modalContent = projectModal?.querySelector(
+          "[data-modal-content]",
+        );
+        const modalPdf = projectModal?.querySelector("[data-modal-pdf]");
+        const modalDetail = projectModal?.querySelector("[data-modal-detail]");
+        const modalClose = projectModal?.querySelector("[data-modal-close]");
+        const imageModal = document.querySelector("[data-image-modal]");
+        const imageModalEyebrow = imageModal?.querySelector(
+          "[data-image-modal-eyebrow]",
+        );
+        const imageModalFigure = imageModal?.querySelector(
+          "[data-image-modal-figure]",
+        );
+        const imageModalImg = imageModal?.querySelector(
+          "[data-image-modal-img]",
+        );
+        const imageModalVideo = imageModal?.querySelector(
+          "[data-image-modal-video]",
+        );
+        const imageModalCaption = imageModal?.querySelector(
+          "[data-image-modal-caption]",
+        );
+        const imageModalZoom = imageModal?.querySelector(
+          "[data-image-modal-zoom]",
+        );
+        const imageModalThumbs = imageModal?.querySelector(
+          "[data-image-modal-thumbs]",
+        );
+        const imageModalPrev = imageModal?.querySelector(
+          "[data-image-modal-prev]",
+        );
+        const imageModalNext = imageModal?.querySelector(
+          "[data-image-modal-next]",
+        );
+        const imageModalClose = imageModal?.querySelector(
+          "[data-image-modal-close]",
+        );
+        let modalLastFocus = null;
+        let modalCloseTimer = 0;
+        let imageModalLastFocus = null;
+        let imageModalCloseTimer = 0;
+        let imageModalItems = [];
+        let imageModalCurrentIndex = 0;
+        let imageModalProjectTitle = "프로젝트";
+        const IMAGE_ZOOM_SCALE = 2.7;
 
-
-      const galleryData = Array.from(document.querySelectorAll('template[data-gallery-template]')).reduce((acc, template) => {
-        acc[template.dataset.galleryTemplate] = Array.from(template.content.querySelectorAll('[data-gallery-video], img')).map((item) => {
-          if (item.matches('[data-gallery-video]')) {
-            const videoId = item.dataset.galleryVideo;
-            return {
-              type: 'video',
-              videoId,
-              thumb: item.dataset.thumb || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-              title: item.dataset.title || '서비스 소개 영상'
-            };
-          }
-          return {
-            type: 'image',
-            src: item.getAttribute('src'),
-            thumb: item.getAttribute('src'),
-            title: item.getAttribute('alt') || '프로젝트 이미지'
-          };
-        });
-        return acc;
-      }, {});
-
-      function hashFromHref(value) {
-        if (!value) return '';
-        if (value.startsWith('#')) return value;
-        try {
-          return new URL(value, location.href).hash || '';
-        } catch (_) {
-          const hashIndex = value.indexOf('#');
-          return hashIndex >= 0 ? value.slice(hashIndex) : '';
-        }
-      }
-
-      function caseFromHash(hash) {
-        const value = hashFromHref(hash).replace(/^#/, '');
-        if (value.startsWith('case-')) return value.replace('case-', '');
-        const prefix = value.split('-')[0];
-        return known.has(prefix) ? prefix : 'wedge';
-      }
-
-      function isCaseHash(hash) {
-        const value = hashFromHref(hash).replace(/^#/, '');
-        if (!value) return false;
-        if (value.startsWith('case-')) return known.has(value.replace('case-', ''));
-        return known.has(value.split('-')[0]);
-      }
-
-      function cleanCaseHash() {
-        if (!location.hash) return;
-        history.replaceState(null, '', `${location.pathname}${location.search}`);
-      }
-
-      function getNeighbor(caseId, offset) {
-        const currentIndex = Math.max(0, projectOrder.findIndex((item) => item.id === caseId));
-        const nextIndex = (currentIndex + offset + projectOrder.length) % projectOrder.length;
-        return projectOrder[nextIndex];
-      }
-
-      function initImplementationPanels() {
-        document.querySelectorAll('[data-impl-panel]').forEach((panel) => {
-          const buttons = Array.from(panel.querySelectorAll('.impl-button'));
-          const title = panel.querySelector('[data-impl-detail-title]');
-          const desc = panel.querySelector('[data-impl-detail-desc]');
-          const proof = panel.querySelector('[data-impl-detail-proof]');
-          if (!buttons.length || !title || !desc || !proof) return;
-
-          function select(button) {
-            buttons.forEach((item) => {
-              const active = item === button;
-              item.classList.toggle('is-active', active);
-              item.setAttribute('aria-pressed', String(active));
-            });
-            title.textContent = button.dataset.implTitle || button.textContent.trim();
-            desc.textContent = button.dataset.implDesc || '';
-            proof.textContent = button.dataset.implProof || '';
-          }
-
-          buttons.forEach((button) => {
-            button.setAttribute('aria-pressed', String(button.classList.contains('is-active')));
-            button.addEventListener('click', () => select(button));
-          });
-
-          select(buttons.find((button) => button.classList.contains('is-active')) || buttons[0]);
-        });
-      }
-
-      function initYoutubeEmbeds() {
-        document.querySelectorAll('[data-youtube-id]').forEach((frame) => {
-          const videoId = (frame.dataset.youtubeId || '').trim();
-          if (!videoId) return;
-
-          const iframe = document.createElement('iframe');
-          iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`;
-          iframe.title = frame.dataset.videoTitle || '서비스 소개 영상';
-          iframe.loading = 'lazy';
-          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-          iframe.allowFullscreen = true;
-          frame.replaceChildren(iframe);
-          frame.classList.add('has-video');
-        });
-      }
-
-      function updateSideNav(caseId) {
-        const prev = getNeighbor(caseId, -1);
-        const next = getNeighbor(caseId, 1);
-        if (!sidePrev || !sideNext) return;
-
-        sidePrev.dataset.targetCase = prev.id;
-        sideNext.dataset.targetCase = next.id;
-        sidePrev.querySelector('[data-side-prev-title]').textContent = prev.title;
-        sidePrev.querySelector('[data-side-prev-desc]').textContent = prev.desc;
-        sideNext.querySelector('[data-side-next-title]').textContent = next.title;
-        sideNext.querySelector('[data-side-next-desc]').textContent = next.desc;
-      }
-
-      const sideNavDesktop = window.matchMedia('(min-width: 1481px)');
-      const CASE_SCROLL_OFFSET = 104;
-
-      function scrollToCaseSection() {
-        const target = document.querySelector('.detail-section');
-        if (!target) return;
-        const top = target.getBoundingClientRect().top + window.scrollY - CASE_SCROLL_OFFSET;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll('&', '&amp;')
-          .replaceAll('<', '&lt;')
-          .replaceAll('>', '&gt;')
-          .replaceAll('"', '&quot;')
-          .replaceAll("'", '&#039;');
-      }
-
-      const highlightTerms = [
-        '브라우저 실행', '비동기 실행', '상태 기준', 'Run/Step', '단계별 이벤트', '분석 요청', 'Analysis request',
-        '트랜잭션 이후', '이벤트 발행', '재시도', 'outbox', '공유 링크', 'Report share token', '접근 경계', '동시 수정 방지',
-        '출퇴근 기록', 'WorkProof', '위치 검증', '검토 필요 상태', '급여 확인', '근무 증빙', '증빙', '문서', '클레임', '관리자 승인', 'Idempotency-Key',
-        '토큰 갱신', '외부 API', '실시간 데이터', '사용자별', '데이터 격리', '임시 저장', '중복 데이터', 'AI 분석', 'AI 서버', '결과 매핑', '리포트', 'fallback', '모니터링',
-        '관광지 정보', '위치 도착 확인', '도착 조건', '사진 인증', '퀘스트 상태', '보상', '로그인', '권한', '일회성 code', 'HttpOnly Cookie',
-        'RabbitMQ', 'Redis', 'PostgreSQL', 'MySQL', 'FastAPI', 'Gemini API', 'TourAPI', 'JWT', 'OAuth2', 'Spring Boot', 'JPA', 'Docker', 'Jenkins', 'NGINX', 'AWS S3'
-      ].sort((a, b) => b.length - a.length);
-
-      function highlightText(value) {
-        let escaped = escapeHtml(value);
-        highlightTerms.forEach((term) => {
-          const escapedTerm = escapeHtml(term);
-          escaped = escaped.replaceAll(escapedTerm, `<mark class="modal-highlight">${escapedTerm}</mark>`);
-        });
-        return escaped;
-      }
-
-      function sectionTone(title) {
-        if (title === '구현 사항') return ' tone-build';
-        if (title === '담당 역할') return ' tone-role';
-        if (title === '기술 선정 이유') return ' tone-tech';
-        if (title === '프로젝트 성과') return ' tone-result';
-        if (title === '프로젝트 리뷰') return ' tone-review';
-        return '';
-      }
-
-      function renderModalSection(section) {
-        const wide = section.title === '프로젝트 리뷰' ? ' wide' : '';
-        return `<section class="modal-section${wide}${sectionTone(section.title)}"><h3>✔️ ${escapeHtml(section.title)}</h3><ul>${section.items.map((item) => `<li>${highlightText(item)}</li>`).join('')}</ul></section>`;
-      }
-
-      function renderStackSection(stack) {
-        return `<section class="modal-section wide tone-stack"><h3>✔️ 기술 스택</h3><div class="modal-stack">${stack.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</div></section>`;
-      }
-
-      function openProjectModal(caseId) {
-        if (!projectModal || !modalData[caseId]) return;
-        const data = modalData[caseId];
-        modalLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-        projectModal.dataset.currentCase = caseId;
-        projectModal.dataset.modalProject = caseId;
-        modalKicker.textContent = data.kicker;
-        modalTitle.textContent = data.title;
-        modalSummary.textContent = data.summary;
-        if (modalPdf) {
-          modalPdf.hidden = !data.pdf;
-          if (data.pdf) modalPdf.href = data.pdf;
-        }
-        modalContent.innerHTML = data.sections.map(renderModalSection).join('');
-
-        window.clearTimeout(modalCloseTimer);
-        if (!projectModal.open) projectModal.showModal();
-        document.body.classList.add('modal-open');
-        window.requestAnimationFrame(() => projectModal.classList.add('is-open'));
-        modalDetail.focus({ preventScroll: true });
-      }
-
-      function closeProjectModal({ immediate = false } = {}) {
-        if (!projectModal || !projectModal.open) return;
-        window.clearTimeout(modalCloseTimer);
-        projectModal.classList.remove('is-open');
-        document.body.classList.remove('modal-open');
-
-        const finish = () => {
-          if (projectModal.open) projectModal.close();
-          modalLastFocus?.focus?.({ preventScroll: true });
+        const modalData = {
+          wedge: {
+            kicker: "01 · Backend",
+            title: "Wedge",
+            summary:
+              "Run 상태 관리, Analyzer 비동기 요청, 분석 결과 기반 리포트 생성을 연결한 브라우저 실행 기반 UX 진단 서비스입니다.",
+            pdf: null,
+            sections: [
+              {
+                title: "프로젝트 정보 및 구성",
+                items: [
+                  "2026.04 ~ 2026.05 · 약 7주 · 6인 · Web",
+                  "GitHub Repository: github.com/JeongGwanWoo/WEDGE-Evidence-Based-UX-Diagnostics",
+                  "백엔드: Java 17, Spring Boot 3.5, MyBatis",
+                  "웹: React, Vite, TypeScript",
+                  "실행·분석: Node.js·Playwright Runner, FastAPI Analyzer",
+                  "데이터·메시징: PostgreSQL, Redis, RabbitMQ",
+                  "운영: Docker, NGINX, Jenkins, AWS S3",
+                ],
+              },
+              {
+                title: "담당 역할",
+                items: [
+                  "Spring Boot 백엔드에서 Run·Runner 실행 상태를 관리했습니다.",
+                  "Analyzer 입력 구성과 비동기 요청 흐름을 구현했습니다.",
+                  "분석 결과를 바탕으로 리포트를 생성하고 상태에 반영했습니다.",
+                ],
+              },
+              {
+                title: "구현 사항",
+                items: [
+                  "Run 생성·시작부터 Runner callback, 단계 이벤트, checkpoint·capture, 실행 실패까지 상태가 이어지도록 구성했습니다.",
+                  "Analyzer 요청 시점의 입력값을 스냅샷으로 보관하고, 내부 API와 서명 URL로 분석에 필요한 데이터를 제공했습니다.",
+                  "분석 작업을 pending 상태로 생성한 뒤 Outbox·재시도 흐름으로 요청을 발행하고, callback 중복을 방어했습니다.",
+                  "완료된 분석 결과로 리포트를 생성하고, 같은 Run의 중복 생성 방지와 최신 리포트 상태 반영을 처리했습니다.",
+                ],
+              },
+              {
+                title: "문제 해결",
+                items: [
+                  "문제: DB 작업은 생성됐지만 MQ 발행 실패로 분석 요청이 유실될 수 있었습니다.",
+                  "원인: DB 저장과 메시지 발행이 분리되어 실패 추적과 재시도가 어려웠습니다.",
+                  "해결: 작업 생성과 Outbox 저장을 같은 트랜잭션으로 처리하고, eventId 중복 방어와 DLQ 실패 상태 전환을 적용했습니다.",
+                  "결과: 요청 유실 위험을 추적·재처리하고, 중복 callback과 Runner 실패를 정상적으로 상태에 반영했습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 성과",
+                items: [
+                  "분석 요청 메시지 유실 위험을 기록·재시도 흐름으로 관리했습니다.",
+                  "외부 callback이 재수신되어도 상태와 결과가 중복 반영되지 않도록 방어했습니다.",
+                  "Runner 실행 실패를 Run 실패 상태와 실패 정보로 연결해 사용자에게 노출했습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 리뷰",
+                items: [
+                  "지금이라면 중복 callback, 완료 상태 이후 이벤트, Outbox 재시도 흐름을 테스트로 더 촘촘히 검증하겠습니다.",
+                  "비동기 흐름은 정상 처리뿐 아니라 재시도, 중복 방지, 실패 상태의 사용자 노출까지 함께 설계해야 한다는 점을 배웠습니다.",
+                ],
+              },
+            ],
+          },
+          dondone: {
+            kicker: "02 · Backend",
+            title: "DonDone",
+            summary:
+              "외국인 근로자의 근무 기록을 급여 확인·미리받기 흐름과 연결한 급여 지갑 서비스입니다.",
+            pdf: null,
+            sections: [
+              {
+                title: "프로젝트 정보 및 구성",
+                items: [
+                  "2026.02 ~ 2026.04 · 약 6주 · 5인 프로젝트",
+                  "GitHub Repository: github.com/JeongGwanWoo/DonDone-Foreign-Worker-Wage-Wallet",
+                  "백엔드: Java 17, Spring Boot 3.2, Spring Data JPA",
+                  "웹·모바일: React, Vite, Android Kotlin",
+                  "데이터: PostgreSQL, Redis",
+                  "블록체인: Solidity, Foundry, Web3j",
+                  "운영: Docker, NGINX, Jenkins",
+                ],
+              },
+              {
+                title: "담당 역할",
+                items: [
+                  "Spring Boot 기반 백엔드 API 구현에 참여했습니다.",
+                  "고용주·근로자·관리자 흐름 중 일부 기능을 구현했습니다.",
+                  "WorkProof 출퇴근, 위치 검증, 검토 상태 흐름을 구현했습니다.",
+                ],
+              },
+              {
+                title: "구현 사항",
+                items: [
+                  "근무자의 출퇴근 기록을 급여 확인과 미리받기 흐름에서 재사용하는 기준 데이터로 정리했습니다.",
+                  "WorkProof 출퇴근 기록과 근무 정정 요청 흐름을 구현했습니다.",
+                  "근무 정정 요청에 대한 고용주 승인·반려 흐름과 근무 기록 확정 처리를 구성했습니다.",
+                  "회사 등록 코드 기반 근로자 등록과 관리자·고용주용 승인 상태 조회 API를 구현했습니다.",
+                  "GPS 위치 검증과 예외 상황의 검토 상태 처리 흐름을 구성했습니다.",
+                  "급여 확인 시점의 근무 증빙을 고정해 문서와 클레임 흐름에서도 같은 기준을 재사용할 수 있게 했습니다.",
+                ],
+              },
+              {
+                title: "문제 해결",
+                items: [
+                  "문제: 출퇴근 기록이 급여 확인, 문서, 클레임에서 각각 다르게 쓰이면 기준 데이터가 흔들릴 수 있었습니다.",
+                  "선택지: 기능마다 별도 데이터를 둘지, WorkProof 기록을 공통 증빙 기준으로 둘지 비교했습니다.",
+                  "해결: 출퇴근 기록을 기준 데이터로 정리하고, 급여 확인 snapshot과 문서·클레임 흐름에 연결했습니다.",
+                  "배운 점: 돈과 문서가 연결되는 기능에서는 데이터 기준이 흔들리지 않는 구조가 중요했습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 성과",
+                items: [
+                  "하나의 출퇴근 기록을 여러 업무 흐름에서 재사용하는 데이터 기준을 경험했습니다.",
+                  "예외 상황을 실패로 끝내기보다 검토 가능한 상태로 남기는 설계의 필요성을 배웠습니다.",
+                  "문서와 클레임 기능에서는 기준 데이터가 흔들리지 않는 것이 중요하다는 점을 확인했습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 리뷰",
+                items: [
+                  "지금이라면 WorkProof → Wage → Documents/Claim 흐름을 기능 단위 테스트로 더 촘촘히 검증하겠습니다.",
+                  "선지급 요청처럼 중복 요청 위험이 있는 기능은 Idempotency-Key 정책을 더 명확히 문서화하겠습니다.",
+                ],
+              },
+            ],
+          },
+          dnc: {
+            kicker: "03 · Backend / Infra",
+            title: "DNC 당낭콩",
+            summary:
+              "CGM 데이터 수집과 식단 이미지 분석 결과를 개인화 식단 추천 및 Daily Report 흐름으로 연결한 서비스입니다.",
+            pdf: null,
+            sections: [
+              {
+                title: "프로젝트 정보 및 구성",
+                items: [
+                  "2026.01 ~ 2026.02 · 약 5주 · 6인 · Mobile",
+                  "GitHub Repository: github.com/JeongGwanWoo/DNC-Personalized-Glucose-Assistant",
+                  "백엔드: Java 17, Spring Boot 3.5, Spring Data JPA",
+                  "AI: FastAPI, YOLOv8",
+                  "모바일: React Native, Expo, TypeScript",
+                  "데이터·외부 연동: MySQL, Redis, Dexcom OAuth, FCM, AWS S3",
+                  "운영: Docker, NGINX, Jenkins",
+                ],
+              },
+              {
+                title: "담당 역할",
+                items: [
+                  "Dexcom OAuth 연동과 CGM 데이터 수집·조회 흐름을 구현했습니다.",
+                  "식단 이미지 분석 요청과 AI 분석 결과 저장·처리를 구현했습니다.",
+                  "식단 추천과 Daily Report 생성·조회 흐름을 구현했습니다.",
+                ],
+              },
+              {
+                title: "구현 사항",
+                items: [
+                  "Dexcom OAuth를 통해 CGM 데이터를 수집·조회하고, 사용자별 혈당 데이터를 서비스 흐름에 연결했습니다.",
+                  "식단 이미지를 S3 Presigned URL로 업로드한 뒤 FastAPI AI 서버에 분석을 요청하고 결과를 저장했습니다.",
+                  "분석 결과를 바탕으로 식단 추천을 생성하고, 최신 추천과 이전 추천을 조회할 수 있도록 구성했습니다.",
+                  "혈당과 식단 정보를 Daily Report로 정리하고, 사용자별 일일 리포트를 생성·조회하는 흐름을 구현했습니다.",
+                ],
+              },
+              {
+                title: "문제 해결",
+                items: [
+                  "문제: Dexcom Sandbox 환경에서 deviceId가 중복되어 다른 사용자의 CGM 데이터가 섞일 수 있었습니다.",
+                  "원인: 외부 deviceId만으로는 서비스 내부 사용자를 구분하기 어려웠습니다.",
+                  "해결: 사용자 정보를 기준으로 CGM 데이터와 조회 범위를 분리하고, FastAPI endpoint·응답 DTO와 Controller 파라미터를 명시적으로 맞췄습니다.",
+                  "결과: 사용자별 조회 경계를 명확히 하고, AI 연동·API 바인딩 오류 가능성을 줄였습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 성과",
+                items: [
+                  "외부 CGM 데이터와 식단 분석 결과를 사용자별 리포트 흐름으로 연결했습니다.",
+                  "AI 서버 endpoint와 응답 DTO의 계약을 정리해 연동 오류 가능성을 줄였습니다.",
+                  "Controller 파라미터 이름을 명시해 일부 API의 바인딩 오류와 500 응답 가능성을 줄였습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 리뷰",
+                items: [
+                  "지금이라면 외부 API, Redis, AI 서버 실패에 대한 fallback과 모니터링 지표를 더 보강하겠습니다.",
+                  "건강 데이터는 사용자별 조회 경계와 공개 화면의 표현 범위를 더 엄격하게 관리하겠습니다.",
+                ],
+              },
+            ],
+          },
+          mtq: {
+            kicker: "04 · Full Stack",
+            title: "MyTripQuest",
+            summary:
+              "관광지 정보, 위치 도착 확인, 사진 인증을 퀘스트 완료와 보상 흐름으로 연결한 여행 서비스입니다.",
+            pdf: null,
+            sections: [
+              {
+                title: "프로젝트 정보 및 구성",
+                items: [
+                  "2025.12 · 약 4주 · 2인 프로젝트",
+                  "GitHub Repository: github.com/JeongGwanWoo/My_Trip_Quest",
+                  "백엔드: Java 17, Spring Boot 3.5, MyBatis",
+                  "웹: Vue 3, Vite",
+                  "데이터: MySQL",
+                  "인증: JWT, OAuth2",
+                  "외부 연동: 한국관광공사 API",
+                ],
+              },
+              {
+                title: "담당 역할",
+                items: [
+                  "Spring Boot 백엔드 API와 Vue 화면 구현에 참여했습니다.",
+                  "관광지 API 연동과 퀘스트 완료 흐름을 구현했습니다.",
+                  "사진 인증 결과를 퀘스트 상태 변경과 보상 처리 흐름으로 연결했습니다.",
+                ],
+              },
+              {
+                title: "구현 사항",
+                items: [
+                  "한국관광공사 API를 연동해 관광지 데이터를 조회·저장하고 퀘스트 장소와 화면에서 사용할 수 있게 했습니다.",
+                  "사용자의 현재 위치가 관광지 근처인지 확인해 퀘스트 완료 조건의 첫 단계를 판단했습니다.",
+                  "방문 인증 사진을 위치 확인 이후의 추가 인증 단계로 분리했습니다.",
+                  "위치·사진 인증 결과에 따라 퀘스트 상태를 변경하고 완료 흐름을 구성했습니다.",
+                  "퀘스트 완료 후 포인트·랭킹 등 게이미피케이션 기능 일부를 구현했습니다.",
+                  "사용자 로그인 이후 토큰 기반으로 접근 권한을 확인하는 인증 흐름을 구성했습니다.",
+                ],
+              },
+              {
+                title: "문제 해결",
+                items: [
+                  "문제: 퀘스트 완료를 단순 버튼 클릭이 아니라 실제 방문 여부에 가깝게 판단해야 했습니다.",
+                  "선택지: GPS만 사용하는 방식, 사진만 사용하는 방식, GPS 확인 후 사진 인증을 추가하는 방식을 비교했습니다.",
+                  "해결: 위치 도착 확인과 사진 인증을 단계별 조건으로 나누고, 결과에 따라 퀘스트 상태가 변경되도록 구성했습니다.",
+                  "배운 점: 인증 기능은 조건을 단계별로 나누는 것이 예외 처리와 설명에 유리했습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 성과",
+                items: [
+                  "위치 확인과 사진 인증을 한 덩어리로 보지 않고 단계별 조건으로 나누어 구현했습니다.",
+                  "관광지 데이터, 사용자 행동, 보상 흐름이 연결되는 서비스 구조를 경험했습니다.",
+                  "2인 프로젝트에서 역할을 나누고 서로의 구현 흐름을 맞추는 협업 경험을 얻었습니다.",
+                ],
+              },
+              {
+                title: "프로젝트 리뷰",
+                items: [
+                  "지금이라면 테스트 실행 환경을 분리하고 위치·사진 인증 실패 케이스를 더 많이 검증하겠습니다.",
+                  "OAuth2 로그인 이후 토큰 전달 방식은 URL 전달보다 HttpOnly Cookie나 일회성 code 방식으로 개선하겠습니다.",
+                ],
+              },
+            ],
+          },
         };
 
-        if (immediate) {
-          finish();
-        } else {
-          modalCloseTimer = window.setTimeout(finish, 180);
+        const galleryData = Array.from(
+          document.querySelectorAll("template[data-gallery-template]"),
+        ).reduce((acc, template) => {
+          acc[template.dataset.galleryTemplate] = Array.from(
+            template.content.querySelectorAll("[data-gallery-video], img"),
+          ).map((item) => {
+            if (item.matches("[data-gallery-video]")) {
+              const videoId = item.dataset.galleryVideo;
+              return {
+                type: "video",
+                videoId,
+                thumb:
+                  item.dataset.thumb ||
+                  `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+                title: item.dataset.title || "서비스 소개 영상",
+              };
+            }
+            return {
+              type: "image",
+              src: item.getAttribute("src"),
+              thumb: item.getAttribute("src"),
+              title: item.getAttribute("alt") || "프로젝트 이미지",
+            };
+          });
+          return acc;
+        }, {});
+
+        function hashFromHref(value) {
+          if (!value) return "";
+          if (value.startsWith("#")) return value;
+          try {
+            return new URL(value, location.href).hash || "";
+          } catch (_) {
+            const hashIndex = value.indexOf("#");
+            return hashIndex >= 0 ? value.slice(hashIndex) : "";
+          }
         }
-      }
 
-      function hideImageZoom() {
-        imageModalZoom?.classList.remove('is-visible');
-      }
-
-      function getContainedImageRect(image) {
-        const rect = image.getBoundingClientRect();
-        const naturalRatio = image.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : rect.width / rect.height;
-        const boxRatio = rect.width / rect.height;
-        let width = rect.width;
-        let height = rect.height;
-        let left = rect.left;
-        let top = rect.top;
-
-        if (naturalRatio > boxRatio) {
-          height = rect.width / naturalRatio;
-          top = rect.top + (rect.height - height) / 2;
-        } else {
-          width = rect.height * naturalRatio;
-          left = rect.left + (rect.width - width) / 2;
+        function caseFromHash(hash) {
+          const value = hashFromHref(hash).replace(/^#/, "");
+          if (value.startsWith("case-")) return value.replace("case-", "");
+          const prefix = value.split("-")[0];
+          return known.has(prefix) ? prefix : "wedge";
         }
-        return { left, top, width, height };
-      }
 
-      function updateImageZoom(event) {
-        if (!imageModalImg || !imageModalZoom || !imageModalImg.naturalWidth) return;
-        const content = getContainedImageRect(imageModalImg);
-        const zoomRect = imageModalZoom.getBoundingClientRect();
-        const x = Math.min(1, Math.max(0, (event.clientX - content.left) / content.width));
-        const y = Math.min(1, Math.max(0, (event.clientY - content.top) / content.height));
-        const backgroundWidth = content.width * IMAGE_ZOOM_SCALE;
-        const backgroundHeight = content.height * IMAGE_ZOOM_SCALE;
-        const backgroundX = -(x * backgroundWidth - zoomRect.width / 2);
-        const backgroundY = -(y * backgroundHeight - zoomRect.height / 2);
+        function isCaseHash(hash) {
+          const value = hashFromHref(hash).replace(/^#/, "");
+          if (!value) return false;
+          if (value.startsWith("case-"))
+            return known.has(value.replace("case-", ""));
+          return known.has(value.split("-")[0]);
+        }
 
-        imageModalZoom.style.backgroundImage = `url("${imageModalImg.currentSrc || imageModalImg.src}")`;
-        imageModalZoom.style.backgroundSize = `${backgroundWidth}px ${backgroundHeight}px`;
-        imageModalZoom.style.backgroundPosition = `${backgroundX}px ${backgroundY}px`;
-        imageModalZoom.classList.add('is-visible');
-      }
+        function cleanCaseHash() {
+          if (!location.hash) return;
+          history.replaceState(
+            null,
+            "",
+            `${location.pathname}${location.search}`,
+          );
+        }
 
-      function renderImageModalThumbs() {
-        if (!imageModalThumbs) return;
-        imageModalThumbs.innerHTML = imageModalItems.map((item, index) => `
-          <button class="image-modal-thumb${item.type === 'video' ? ' is-video' : ''}${index === imageModalCurrentIndex ? ' is-active' : ''}" type="button" data-image-index="${index}" aria-pressed="${index === imageModalCurrentIndex}">
+        function getNeighbor(caseId, offset) {
+          const currentIndex = Math.max(
+            0,
+            projectOrder.findIndex((item) => item.id === caseId),
+          );
+          const nextIndex =
+            (currentIndex + offset + projectOrder.length) % projectOrder.length;
+          return projectOrder[nextIndex];
+        }
+
+        function initImplementationPanels() {
+          document.querySelectorAll("[data-impl-panel]").forEach((panel) => {
+            const buttons = Array.from(panel.querySelectorAll(".impl-button"));
+            const title = panel.querySelector("[data-impl-detail-title]");
+            const desc = panel.querySelector("[data-impl-detail-desc]");
+            const proof = panel.querySelector("[data-impl-detail-proof]");
+            if (!buttons.length || !title || !desc || !proof) return;
+
+            function select(button) {
+              buttons.forEach((item) => {
+                const active = item === button;
+                item.classList.toggle("is-active", active);
+                item.setAttribute("aria-pressed", String(active));
+              });
+              title.textContent =
+                button.dataset.implTitle || button.textContent.trim();
+              desc.textContent = button.dataset.implDesc || "";
+              proof.textContent = button.dataset.implProof || "";
+            }
+
+            buttons.forEach((button) => {
+              button.setAttribute(
+                "aria-pressed",
+                String(button.classList.contains("is-active")),
+              );
+              button.addEventListener("click", () => select(button));
+            });
+
+            select(
+              buttons.find((button) =>
+                button.classList.contains("is-active"),
+              ) || buttons[0],
+            );
+          });
+        }
+
+        function initYoutubeEmbeds() {
+          document.querySelectorAll("[data-youtube-id]").forEach((frame) => {
+            const videoId = (frame.dataset.youtubeId || "").trim();
+            if (!videoId) return;
+
+            const iframe = document.createElement("iframe");
+            iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?rel=0`;
+            iframe.title = frame.dataset.videoTitle || "서비스 소개 영상";
+            iframe.loading = "lazy";
+            iframe.allow =
+              "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.allowFullscreen = true;
+            frame.replaceChildren(iframe);
+            frame.classList.add("has-video");
+          });
+        }
+
+        function updateSideNav(caseId) {
+          const prev = getNeighbor(caseId, -1);
+          const next = getNeighbor(caseId, 1);
+          if (!sidePrev || !sideNext) return;
+
+          sidePrev.dataset.targetCase = prev.id;
+          sideNext.dataset.targetCase = next.id;
+          sidePrev.querySelector("[data-side-prev-title]").textContent =
+            prev.title;
+          sidePrev.querySelector("[data-side-prev-desc]").textContent =
+            prev.desc;
+          sideNext.querySelector("[data-side-next-title]").textContent =
+            next.title;
+          sideNext.querySelector("[data-side-next-desc]").textContent =
+            next.desc;
+        }
+
+        const sideNavDesktop = window.matchMedia("(min-width: 1481px)");
+        const CASE_SCROLL_OFFSET = 104;
+
+        function scrollToCaseSection() {
+          const target = document.querySelector(".detail-section");
+          if (!target) return;
+          const top =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            CASE_SCROLL_OFFSET;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+
+        function escapeHtml(value) {
+          return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
+
+        const highlightTerms = [
+          "브라우저 실행",
+          "비동기 실행",
+          "상태 기준",
+          "Run/Step",
+          "단계별 이벤트",
+          "분석 요청",
+          "Analysis request",
+          "트랜잭션 이후",
+          "이벤트 발행",
+          "재시도",
+          "outbox",
+          "공유 링크",
+          "Report share token",
+          "접근 경계",
+          "동시 수정 방지",
+          "출퇴근 기록",
+          "WorkProof",
+          "위치 검증",
+          "검토 필요 상태",
+          "급여 확인",
+          "근무 증빙",
+          "증빙",
+          "문서",
+          "클레임",
+          "관리자 승인",
+          "Idempotency-Key",
+          "토큰 갱신",
+          "외부 API",
+          "실시간 데이터",
+          "사용자별",
+          "데이터 격리",
+          "임시 저장",
+          "중복 데이터",
+          "AI 분석",
+          "AI 서버",
+          "결과 매핑",
+          "리포트",
+          "fallback",
+          "모니터링",
+          "관광지 정보",
+          "위치 도착 확인",
+          "도착 조건",
+          "사진 인증",
+          "퀘스트 상태",
+          "보상",
+          "로그인",
+          "권한",
+          "일회성 code",
+          "HttpOnly Cookie",
+          "RabbitMQ",
+          "Redis",
+          "PostgreSQL",
+          "MySQL",
+          "FastAPI",
+          "Gemini API",
+          "TourAPI",
+          "JWT",
+          "OAuth2",
+          "Spring Boot",
+          "JPA",
+          "Docker",
+          "Jenkins",
+          "NGINX",
+          "AWS S3",
+        ].sort((a, b) => b.length - a.length);
+
+        function highlightText(value) {
+          let escaped = escapeHtml(value);
+          highlightTerms.forEach((term) => {
+            const escapedTerm = escapeHtml(term);
+            escaped = escaped.replaceAll(
+              escapedTerm,
+              `<mark class="modal-highlight">${escapedTerm}</mark>`,
+            );
+          });
+          return escaped;
+        }
+
+        function sectionTone(title) {
+          if (title === "구현 사항") return " tone-build";
+          if (title === "담당 역할") return " tone-role";
+          if (title === "기술 선정 이유") return " tone-tech";
+          if (title === "프로젝트 성과") return " tone-result";
+          if (title === "프로젝트 리뷰") return " tone-review";
+          return "";
+        }
+
+        function renderModalSection(section) {
+          const wide = section.title === "프로젝트 리뷰" ? " wide" : "";
+          return `<section class="modal-section${wide}${sectionTone(section.title)}"><h3>✔️ ${escapeHtml(section.title)}</h3><ul>${section.items.map((item) => `<li>${highlightText(item)}</li>`).join("")}</ul></section>`;
+        }
+
+        function renderStackSection(stack) {
+          return `<section class="modal-section wide tone-stack"><h3>✔️ 기술 스택</h3><div class="modal-stack">${stack.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div></section>`;
+        }
+
+        function openProjectModal(caseId) {
+          if (!projectModal || !modalData[caseId]) return;
+          const data = modalData[caseId];
+          modalLastFocus =
+            document.activeElement instanceof HTMLElement
+              ? document.activeElement
+              : null;
+          projectModal.dataset.currentCase = caseId;
+          projectModal.dataset.modalProject = caseId;
+          modalKicker.textContent = data.kicker;
+          modalTitle.textContent = data.title;
+          modalSummary.textContent = data.summary;
+          if (modalPdf) {
+            modalPdf.hidden = !data.pdf;
+            if (data.pdf) modalPdf.href = data.pdf;
+          }
+          modalContent.innerHTML = data.sections
+            .map(renderModalSection)
+            .join("");
+
+          window.clearTimeout(modalCloseTimer);
+          if (!projectModal.open) projectModal.showModal();
+          document.body.classList.add("modal-open");
+          window.requestAnimationFrame(() =>
+            projectModal.classList.add("is-open"),
+          );
+          modalDetail.focus({ preventScroll: true });
+        }
+
+        function closeProjectModal({ immediate = false } = {}) {
+          if (!projectModal || !projectModal.open) return;
+          window.clearTimeout(modalCloseTimer);
+          projectModal.classList.remove("is-open");
+          document.body.classList.remove("modal-open");
+
+          const finish = () => {
+            if (projectModal.open) projectModal.close();
+            modalLastFocus?.focus?.({ preventScroll: true });
+          };
+
+          if (immediate) {
+            finish();
+          } else {
+            modalCloseTimer = window.setTimeout(finish, 180);
+          }
+        }
+
+        function hideImageZoom() {
+          imageModalZoom?.classList.remove("is-visible");
+        }
+
+        function getContainedImageRect(image) {
+          const rect = image.getBoundingClientRect();
+          const naturalRatio =
+            image.naturalWidth && image.naturalHeight
+              ? image.naturalWidth / image.naturalHeight
+              : rect.width / rect.height;
+          const boxRatio = rect.width / rect.height;
+          let width = rect.width;
+          let height = rect.height;
+          let left = rect.left;
+          let top = rect.top;
+
+          if (naturalRatio > boxRatio) {
+            height = rect.width / naturalRatio;
+            top = rect.top + (rect.height - height) / 2;
+          } else {
+            width = rect.height * naturalRatio;
+            left = rect.left + (rect.width - width) / 2;
+          }
+          return { left, top, width, height };
+        }
+
+        function updateImageZoom(event) {
+          if (!imageModalImg || !imageModalZoom || !imageModalImg.naturalWidth)
+            return;
+          const content = getContainedImageRect(imageModalImg);
+          const zoomRect = imageModalZoom.getBoundingClientRect();
+          const x = Math.min(
+            1,
+            Math.max(0, (event.clientX - content.left) / content.width),
+          );
+          const y = Math.min(
+            1,
+            Math.max(0, (event.clientY - content.top) / content.height),
+          );
+          const backgroundWidth = content.width * IMAGE_ZOOM_SCALE;
+          const backgroundHeight = content.height * IMAGE_ZOOM_SCALE;
+          const backgroundX = -(x * backgroundWidth - zoomRect.width / 2);
+          const backgroundY = -(y * backgroundHeight - zoomRect.height / 2);
+
+          imageModalZoom.style.backgroundImage = `url("${imageModalImg.currentSrc || imageModalImg.src}")`;
+          imageModalZoom.style.backgroundSize = `${backgroundWidth}px ${backgroundHeight}px`;
+          imageModalZoom.style.backgroundPosition = `${backgroundX}px ${backgroundY}px`;
+          imageModalZoom.classList.add("is-visible");
+        }
+
+        function renderImageModalThumbs() {
+          if (!imageModalThumbs) return;
+          imageModalThumbs.innerHTML = imageModalItems
+            .map(
+              (item, index) => `
+          <button class="image-modal-thumb${item.type === "video" ? " is-video" : ""}${index === imageModalCurrentIndex ? " is-active" : ""}" type="button" data-image-index="${index}" aria-pressed="${index === imageModalCurrentIndex}">
             <img alt="" loading="lazy" data-thumb-image />
-            ${item.type === 'video' ? '<span class="image-modal-thumb-play">▶</span>' : ''}
+            ${item.type === "video" ? '<span class="image-modal-thumb-play">▶</span>' : ""}
             <span>${escapeHtml(item.title)}</span>
           </button>
-        `).join('');
+        `,
+            )
+            .join("");
 
-        imageModalThumbs.querySelectorAll('[data-image-index]').forEach((button) => {
-          const index = Number(button.dataset.imageIndex) || 0;
-          const thumbImage = button.querySelector('[data-thumb-image]');
-          if (thumbImage) thumbImage.src = imageModalItems[index]?.thumb || imageModalItems[index]?.src || '';
-          button.addEventListener('click', () => selectImageModalItem(index));
-        });
-      }
-
-      function selectImageModalItem(index) {
-        if (!imageModalItems.length || !imageModalImg || !imageModalEyebrow || !imageModalCaption) return;
-        imageModalCurrentIndex = (index + imageModalItems.length) % imageModalItems.length;
-        const item = imageModalItems[imageModalCurrentIndex];
-        const itemLabel = item.type === 'video' ? '영상' : item.title;
-        const title = `${imageModalProjectTitle} · ${itemLabel}`;
-
-        hideImageZoom();
-        imageModalEyebrow.textContent = title;
-        imageModalCaption.textContent = `${imageModalCurrentIndex + 1} / ${imageModalItems.length} · ${itemLabel}`;
-        imageModalFigure?.classList.toggle('has-video', item.type === 'video');
-
-        if (item.type === 'video') {
-          imageModalImg.hidden = true;
-          imageModalImg.removeAttribute('src');
-          if (imageModalVideo) {
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.videoId)}?rel=0`;
-            iframe.title = title;
-            iframe.loading = 'lazy';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            iframe.allowFullscreen = true;
-            imageModalVideo.hidden = false;
-            imageModalVideo.replaceChildren(iframe);
-          }
-        } else {
-          imageModalVideo?.replaceChildren();
-          if (imageModalVideo) imageModalVideo.hidden = true;
-          imageModalImg.hidden = false;
-          imageModalImg.src = item.src;
-          imageModalImg.alt = title;
-          if (imageModalZoom) {
-            imageModalZoom.style.backgroundImage = `url("${item.src}")`;
-            imageModalZoom.style.backgroundSize = '';
-            imageModalZoom.style.backgroundPosition = '';
-          }
+          imageModalThumbs
+            .querySelectorAll("[data-image-index]")
+            .forEach((button) => {
+              const index = Number(button.dataset.imageIndex) || 0;
+              const thumbImage = button.querySelector("[data-thumb-image]");
+              if (thumbImage)
+                thumbImage.src =
+                  imageModalItems[index]?.thumb ||
+                  imageModalItems[index]?.src ||
+                  "";
+              button.addEventListener("click", () =>
+                selectImageModalItem(index),
+              );
+            });
         }
 
-        imageModalThumbs?.querySelectorAll('[data-image-index]').forEach((button) => {
-          const active = Number(button.dataset.imageIndex) === imageModalCurrentIndex;
-          button.classList.toggle('is-active', active);
-          button.setAttribute('aria-pressed', String(active));
-          if (active) button.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-        });
-      }
+        function selectImageModalItem(index) {
+          if (
+            !imageModalItems.length ||
+            !imageModalImg ||
+            !imageModalEyebrow ||
+            !imageModalCaption
+          )
+            return;
+          imageModalCurrentIndex =
+            (index + imageModalItems.length) % imageModalItems.length;
+          const item = imageModalItems[imageModalCurrentIndex];
+          const itemLabel = item.type === "video" ? "영상" : item.title;
+          const title = `${imageModalProjectTitle} · ${itemLabel}`;
 
-      function openPreviewImageModal(image, card) {
-        if (!imageModal || !imageModalImg || !imageModalEyebrow || !imageModalCaption) return false;
-        const projectId = card.dataset.case || 'wedge';
-        const fallbackTitle = image.alt?.trim() || '프로젝트 이미지';
-        const gallery = galleryData[projectId] || [];
-        const cardImages = Array.from(card.querySelectorAll('.project-preview-media img'));
-        const imageIndex = Math.max(0, cardImages.indexOf(image));
-
-        imageModalItems = gallery.length ? gallery : [{ type: 'image', src: image.currentSrc || image.src, thumb: image.currentSrc || image.src, title: fallbackTitle }];
-        imageModalCurrentIndex = Math.min(imageIndex, imageModalItems.length - 1);
-        imageModalProjectTitle = card.dataset.title || card.querySelector('strong')?.textContent?.trim() || '프로젝트';
-        imageModalLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-        renderImageModalThumbs();
-        selectImageModalItem(imageModalCurrentIndex);
-
-        window.clearTimeout(imageModalCloseTimer);
-        if (!imageModal.open) imageModal.showModal();
-        document.body.classList.add('modal-open');
-        window.requestAnimationFrame(() => imageModal.classList.add('is-open'));
-        imageModalClose?.focus({ preventScroll: true });
-        return true;
-      }
-
-      function closePreviewImageModal({ immediate = false } = {}) {
-        if (!imageModal || !imageModal.open) return;
-        window.clearTimeout(imageModalCloseTimer);
-        imageModal.classList.remove('is-open');
-        document.body.classList.remove('modal-open');
-
-        const finish = () => {
-          if (imageModal.open) imageModal.close();
           hideImageZoom();
-          imageModalFigure?.classList.remove('has-video');
-          imageModalVideo?.replaceChildren();
-          if (imageModalVideo) imageModalVideo.hidden = true;
-          if (imageModalImg) {
+          imageModalEyebrow.textContent = title;
+          imageModalCaption.textContent = `${imageModalCurrentIndex + 1} / ${imageModalItems.length} · ${itemLabel}`;
+          imageModalFigure?.classList.toggle(
+            "has-video",
+            item.type === "video",
+          );
+
+          if (item.type === "video") {
+            imageModalImg.hidden = true;
+            imageModalImg.removeAttribute("src");
+            if (imageModalVideo) {
+              const iframe = document.createElement("iframe");
+              iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(item.videoId)}?rel=0`;
+              iframe.title = title;
+              iframe.loading = "lazy";
+              iframe.allow =
+                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+              iframe.allowFullscreen = true;
+              imageModalVideo.hidden = false;
+              imageModalVideo.replaceChildren(iframe);
+            }
+          } else {
+            imageModalVideo?.replaceChildren();
+            if (imageModalVideo) imageModalVideo.hidden = true;
             imageModalImg.hidden = false;
-            imageModalImg.removeAttribute('src');
+            imageModalImg.src = item.src;
+            imageModalImg.alt = title;
+            if (imageModalZoom) {
+              imageModalZoom.style.backgroundImage = `url("${item.src}")`;
+              imageModalZoom.style.backgroundSize = "";
+              imageModalZoom.style.backgroundPosition = "";
+            }
           }
-          if (imageModalThumbs) imageModalThumbs.innerHTML = '';
-          imageModalItems = [];
-          imageModalCurrentIndex = 0;
-          imageModalLastFocus?.focus?.({ preventScroll: true });
-        };
 
-        if (immediate) {
-          finish();
-        } else {
-          imageModalCloseTimer = window.setTimeout(finish, 180);
+          imageModalThumbs
+            ?.querySelectorAll("[data-image-index]")
+            .forEach((button) => {
+              const active =
+                Number(button.dataset.imageIndex) === imageModalCurrentIndex;
+              button.classList.toggle("is-active", active);
+              button.setAttribute("aria-pressed", String(active));
+              if (active)
+                button.scrollIntoView({ block: "nearest", inline: "nearest" });
+            });
         }
-      }
 
-      function activate(caseId) {
-        if (!known.has(caseId)) caseId = 'wedge';
-        updateSideNav(caseId);
+        function openPreviewImageModal(image, card) {
+          if (
+            !imageModal ||
+            !imageModalImg ||
+            !imageModalEyebrow ||
+            !imageModalCaption
+          )
+            return false;
+          const projectId = card.dataset.case || "wedge";
+          const fallbackTitle = image.alt?.trim() || "프로젝트 이미지";
+          const gallery = galleryData[projectId] || [];
+          const cardImages = Array.from(
+            card.querySelectorAll(".project-preview-media img"),
+          );
+          const imageIndex = Math.max(0, cardImages.indexOf(image));
+
+          imageModalItems = gallery.length
+            ? gallery
+            : [
+                {
+                  type: "image",
+                  src: image.currentSrc || image.src,
+                  thumb: image.currentSrc || image.src,
+                  title: fallbackTitle,
+                },
+              ];
+          imageModalCurrentIndex = Math.min(
+            imageIndex,
+            imageModalItems.length - 1,
+          );
+          imageModalProjectTitle =
+            card.dataset.title ||
+            card.querySelector("strong")?.textContent?.trim() ||
+            "프로젝트";
+          imageModalLastFocus =
+            document.activeElement instanceof HTMLElement
+              ? document.activeElement
+              : null;
+          renderImageModalThumbs();
+          selectImageModalItem(imageModalCurrentIndex);
+
+          window.clearTimeout(imageModalCloseTimer);
+          if (!imageModal.open) imageModal.showModal();
+          document.body.classList.add("modal-open");
+          window.requestAnimationFrame(() =>
+            imageModal.classList.add("is-open"),
+          );
+          imageModalClose?.focus({ preventScroll: true });
+          return true;
+        }
+
+        function closePreviewImageModal({ immediate = false } = {}) {
+          if (!imageModal || !imageModal.open) return;
+          window.clearTimeout(imageModalCloseTimer);
+          imageModal.classList.remove("is-open");
+          document.body.classList.remove("modal-open");
+
+          const finish = () => {
+            if (imageModal.open) imageModal.close();
+            hideImageZoom();
+            imageModalFigure?.classList.remove("has-video");
+            imageModalVideo?.replaceChildren();
+            if (imageModalVideo) imageModalVideo.hidden = true;
+            if (imageModalImg) {
+              imageModalImg.hidden = false;
+              imageModalImg.removeAttribute("src");
+            }
+            if (imageModalThumbs) imageModalThumbs.innerHTML = "";
+            imageModalItems = [];
+            imageModalCurrentIndex = 0;
+            imageModalLastFocus?.focus?.({ preventScroll: true });
+          };
+
+          if (immediate) {
+            finish();
+          } else {
+            imageModalCloseTimer = window.setTimeout(finish, 180);
+          }
+        }
+
+        function activate(caseId) {
+          if (!known.has(caseId)) caseId = "wedge";
+          updateSideNav(caseId);
+
+          cards.forEach((card) => {
+            const active = card.dataset.case === caseId;
+            card.classList.toggle("is-active", active);
+          });
+
+          panels.forEach((panel) => {
+            const active = panel.dataset.casePanel === caseId;
+            panel.classList.toggle("is-active", active);
+            panel.toggleAttribute("hidden", !active);
+          });
+
+          requestSideVisibilityUpdate();
+        }
 
         cards.forEach((card) => {
-          const active = card.dataset.case === caseId;
-          card.classList.toggle('is-active', active);
+          card.addEventListener("click", (event) => {
+            event.preventDefault();
+            const previewMedia =
+              event.target instanceof Element
+                ? event.target.closest(".project-preview-media")
+                : null;
+            const previewImage = previewMedia?.querySelector("img");
+            if (
+              previewMedia &&
+              previewImage &&
+              card.contains(previewMedia) &&
+              openPreviewImageModal(previewImage, card)
+            )
+              return;
+
+            const pageUrl = card.dataset.page;
+            if (pageUrl) {
+              window.location.href = pageUrl;
+              return;
+            }
+
+            const caseId = card.dataset.case;
+            cleanCaseHash();
+            activate(caseId);
+          });
         });
 
-        panels.forEach((panel) => {
-          const active = panel.dataset.casePanel === caseId;
-          panel.classList.toggle('is-active', active);
-          panel.toggleAttribute('hidden', !active);
+        if (projectModal) {
+          modalClose?.addEventListener("click", () => closeProjectModal());
+          projectModal.addEventListener("cancel", (event) => {
+            event.preventDefault();
+            closeProjectModal();
+          });
+          projectModal.addEventListener("click", (event) => {
+            if (event.target === projectModal) closeProjectModal();
+          });
+          modalDetail?.addEventListener("click", () => {
+            const caseId = projectModal.dataset.currentCase || "wedge";
+            closeProjectModal({ immediate: true });
+            cleanCaseHash();
+            activate(caseId);
+            scrollToCaseSection();
+          });
+        }
+
+        if (imageModal) {
+          imageModalClose?.addEventListener("click", () =>
+            closePreviewImageModal(),
+          );
+          imageModalPrev?.addEventListener("click", () =>
+            selectImageModalItem(imageModalCurrentIndex - 1),
+          );
+          imageModalNext?.addEventListener("click", () =>
+            selectImageModalItem(imageModalCurrentIndex + 1),
+          );
+          imageModalImg?.addEventListener("mousemove", updateImageZoom);
+          imageModalImg?.addEventListener("mouseenter", updateImageZoom);
+          imageModalImg?.addEventListener("mouseleave", hideImageZoom);
+          imageModal.addEventListener("cancel", (event) => {
+            event.preventDefault();
+            closePreviewImageModal();
+          });
+          imageModal.addEventListener("click", (event) => {
+            if (event.target === imageModal) closePreviewImageModal();
+          });
+        }
+
+        [sidePrev, sideNext].forEach((button) => {
+          if (!button) return;
+          button.addEventListener("click", () => {
+            const caseId = button.dataset.targetCase;
+            cleanCaseHash();
+            activate(caseId);
+            scrollToCaseSection();
+          });
         });
 
-        requestSideVisibilityUpdate();
-      }
+        function setSideNavVisible(visible) {
+          if (!sideNav) return;
+          sideNav.classList.toggle("is-visible", visible);
+          sideNav.setAttribute("aria-hidden", String(!visible));
+          sideNav.inert = !visible;
+          [sidePrev, sideNext].forEach((button) => {
+            if (button) button.tabIndex = visible ? 0 : -1;
+          });
+        }
 
-      cards.forEach((card) => {
-        card.addEventListener('click', (event) => {
-          event.preventDefault();
-          const previewMedia = event.target instanceof Element ? event.target.closest('.project-preview-media') : null;
-          const previewImage = previewMedia?.querySelector('img');
-          if (previewMedia && previewImage && card.contains(previewMedia) && openPreviewImageModal(previewImage, card)) return;
-
-          const pageUrl = card.dataset.page;
-          if (pageUrl) {
-            window.location.href = pageUrl;
+        function updateSideVisibility() {
+          if (!sideNav || !sideNavDesktop.matches) {
+            setSideNavVisible(false);
+            return;
+          }
+          const activePanel = document.querySelector(
+            "[data-case-panel].is-active",
+          );
+          if (!activePanel) {
+            setSideNavVisible(false);
             return;
           }
 
-          const caseId = card.dataset.case;
-          cleanCaseHash();
-          activate(caseId);
-        });
-      });
+          const rect = activePanel.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const sampleButton = sidePrev || sideNext;
+          const buttonHeight = sampleButton ? sampleButton.offsetHeight : 116;
+          const margin = 18;
+          const headerSafeTop = 92;
 
-      if (projectModal) {
-        modalClose?.addEventListener('click', () => closeProjectModal());
-        projectModal.addEventListener('cancel', (event) => {
-          event.preventDefault();
-          closeProjectModal();
-        });
-        projectModal.addEventListener('click', (event) => {
-          if (event.target === projectModal) closeProjectModal();
-        });
-        modalDetail?.addEventListener('click', () => {
-          const caseId = projectModal.dataset.currentCase || 'wedge';
-          closeProjectModal({ immediate: true });
-          cleanCaseHash();
-          activate(caseId);
-          scrollToCaseSection();
-        });
-      }
+          const cardTopLimit = rect.top + margin;
+          const cardBottomLimit = rect.bottom - buttonHeight - margin;
+          const viewportTopLimit = headerSafeTop;
+          const viewportBottomLimit = viewportHeight - buttonHeight - margin;
 
-      if (imageModal) {
-        imageModalClose?.addEventListener('click', () => closePreviewImageModal());
-        imageModalPrev?.addEventListener('click', () => selectImageModalItem(imageModalCurrentIndex - 1));
-        imageModalNext?.addEventListener('click', () => selectImageModalItem(imageModalCurrentIndex + 1));
-        imageModalImg?.addEventListener('mousemove', updateImageZoom);
-        imageModalImg?.addEventListener('mouseenter', updateImageZoom);
-        imageModalImg?.addEventListener('mouseleave', hideImageZoom);
-        imageModal.addEventListener('cancel', (event) => {
-          event.preventDefault();
-          closePreviewImageModal();
-        });
-        imageModal.addEventListener('click', (event) => {
-          if (event.target === imageModal) closePreviewImageModal();
-        });
-      }
+          const minTop = Math.max(cardTopLimit, viewportTopLimit);
+          const maxTop = Math.min(cardBottomLimit, viewportBottomLimit);
+          const preferredTop = (viewportHeight - buttonHeight) / 2;
+          const visible =
+            rect.top < viewportHeight - margin &&
+            rect.bottom > headerSafeTop + margin &&
+            maxTop >= minTop;
 
-      [sidePrev, sideNext].forEach((button) => {
-        if (!button) return;
-        button.addEventListener('click', () => {
-          const caseId = button.dataset.targetCase;
-          cleanCaseHash();
-          activate(caseId);
-          scrollToCaseSection();
-        });
-      });
+          if (visible) {
+            const clampedTop = Math.min(Math.max(preferredTop, minTop), maxTop);
+            sideNav.style.setProperty(
+              "--side-button-top",
+              `${Math.round(clampedTop)}px`,
+            );
+          }
+          setSideNavVisible(visible);
+        }
 
-      function setSideNavVisible(visible) {
-        if (!sideNav) return;
-        sideNav.classList.toggle('is-visible', visible);
-        sideNav.setAttribute('aria-hidden', String(!visible));
-        sideNav.inert = !visible;
-        [sidePrev, sideNext].forEach((button) => {
-          if (button) button.tabIndex = visible ? 0 : -1;
-        });
-      }
+        let sideVisibilityFrame = 0;
+        function requestSideVisibilityUpdate() {
+          if (!sideNav || sideVisibilityFrame) return;
+          sideVisibilityFrame = window.requestAnimationFrame(() => {
+            sideVisibilityFrame = 0;
+            updateSideVisibility();
+          });
+        }
 
-      function updateSideVisibility() {
-        if (!sideNav || !sideNavDesktop.matches) {
+        initImplementationPanels();
+        initYoutubeEmbeds();
+
+        if (sideNav) {
+          window.addEventListener("scroll", requestSideVisibilityUpdate, {
+            passive: true,
+          });
+          window.addEventListener("resize", requestSideVisibilityUpdate);
+          sideNavDesktop.addEventListener?.(
+            "change",
+            requestSideVisibilityUpdate,
+          );
           setSideNavVisible(false);
-          return;
-        }
-        const activePanel = document.querySelector('[data-case-panel].is-active');
-        if (!activePanel) {
-          setSideNavVisible(false);
-          return;
+          requestSideVisibilityUpdate();
         }
 
-        const rect = activePanel.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const sampleButton = sidePrev || sideNext;
-        const buttonHeight = sampleButton ? sampleButton.offsetHeight : 116;
-        const margin = 18;
-        const headerSafeTop = 92;
-
-        const cardTopLimit = rect.top + margin;
-        const cardBottomLimit = rect.bottom - buttonHeight - margin;
-        const viewportTopLimit = headerSafeTop;
-        const viewportBottomLimit = viewportHeight - buttonHeight - margin;
-
-        const minTop = Math.max(cardTopLimit, viewportTopLimit);
-        const maxTop = Math.min(cardBottomLimit, viewportBottomLimit);
-        const preferredTop = (viewportHeight - buttonHeight) / 2;
-        const visible = rect.top < viewportHeight - margin && rect.bottom > headerSafeTop + margin && maxTop >= minTop;
-
-        if (visible) {
-          const clampedTop = Math.min(Math.max(preferredTop, minTop), maxTop);
-          sideNav.style.setProperty('--side-button-top', `${Math.round(clampedTop)}px`);
-        }
-        setSideNavVisible(visible);
-      }
-
-      let sideVisibilityFrame = 0;
-      function requestSideVisibilityUpdate() {
-        if (!sideNav || sideVisibilityFrame) return;
-        sideVisibilityFrame = window.requestAnimationFrame(() => {
-          sideVisibilityFrame = 0;
-          updateSideVisibility();
+        document.querySelectorAll("[data-scroll-top]").forEach((button) => {
+          button.addEventListener("click", () => {
+            if (location.hash)
+              history.replaceState(
+                null,
+                "",
+                `${location.pathname}${location.search}`,
+              );
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+          });
         });
-      }
 
-      initImplementationPanels();
-      initYoutubeEmbeds();
-
-      if (sideNav) {
-        window.addEventListener('scroll', requestSideVisibilityUpdate, { passive: true });
-        window.addEventListener('resize', requestSideVisibilityUpdate);
-        sideNavDesktop.addEventListener?.('change', requestSideVisibilityUpdate);
-        setSideNavVisible(false);
-        requestSideVisibilityUpdate();
-      }
-
-      document.querySelectorAll('[data-scroll-top]').forEach((button) => {
-        button.addEventListener('click', () => {
-          if (location.hash) history.replaceState(null, '', `${location.pathname}${location.search}`);
-          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        window.addEventListener("hashchange", () => {
+          const currentHash = hashFromHref(location.hash);
+          if (!isCaseHash(currentHash)) return;
+          activate(caseFromHash(currentHash));
+          cleanCaseHash();
         });
-      });
 
-      window.addEventListener('hashchange', () => {
-        const currentHash = hashFromHref(location.hash);
-        if (!isCaseHash(currentHash)) return;
-        activate(caseFromHash(currentHash));
-        cleanCaseHash();
-      });
-
-      if (window.__initialCase) {
-        activate(window.__initialCase);
-      } else if (location.hash && isCaseHash(location.hash)) {
-        const initialHash = hashFromHref(location.hash);
-        activate(caseFromHash(initialHash));
-        cleanCaseHash();
-      } else {
-        activate('wedge');
-      }
-    })();
-  </script>
-</body>
+        if (window.__initialCase) {
+          activate(window.__initialCase);
+        } else if (location.hash && isCaseHash(location.hash)) {
+          const initialHash = hashFromHref(location.hash);
+          activate(caseFromHash(initialHash));
+          cleanCaseHash();
+        } else {
+          activate("wedge");
+        }
+      })();
+    </script>
+  </body>
 </html>
